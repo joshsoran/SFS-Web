@@ -1,0 +1,186 @@
+<?php
+// Check for empty input for employee signup
+
+// Check for SSN inside of database, no duplicate SSN's should exist.
+
+
+// Check for empty input for admin signup
+function emptyInputSignup($username, $pwd, $pwdRepeat, $authent)
+{
+	$result;
+	if (empty($username) || empty($pwd) || empty($pwdRepeat) || empty($authent)) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
+// Check invalid username
+function invalidUid($username)
+{
+	$result;
+	if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
+// Check if passwords matches
+function pwdMatch($pwd, $pwdrepeat)
+{
+	$result;
+	if ($pwd !== $pwdrepeat) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
+// Check if authentication is valid
+function checkAuthent($authent)
+{
+	$result;
+	if ($authent === "L8dLTYCCyN") {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
+// Check if username is in database, if so then return data
+function uidExists($conn, $username)
+{
+	$sql = "SELECT * FROM adminUsers WHERE usersUid = ?;";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../adminSignup.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt, "s", $username);
+	mysqli_stmt_execute($stmt);
+
+	// "Get result" returns the results from a prepared statement
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+		return $row;
+	} else {
+		$result = false;
+		return $result;
+	}
+
+	mysqli_stmt_close($stmt);
+}
+
+// Insert new user into database
+function createUser($conn, $username, $pwd)
+{
+	$sql = "INSERT INTO adminUsers (usersUid, pwd) VALUES (?, ?);";
+
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../adminSignup.php?error=stmtfailed");
+		exit();
+	}
+
+	$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+	mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPwd);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	mysqli_close($conn);
+	header("location: ../adminSignup.php?error=none");
+	exit();
+}
+
+// Insert new employee into database
+function createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate)
+{
+	$sql = "INSERT INTO empInfo (firstName, middleName, lastName, DOB, address, city, state, zip, email, ssn, bankAccountNumber, bankRoutingNumber, bankDirectDeposit, W42019RelStatus, W42019ClaimDependents, W42021RelStatus, W42021ClaimDependents, W4MichiganDL, W4MichiganNewEmployee, W4MichiganDependents, phone, W4MichiganHireDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../employeeSignup.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssss", $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	mysqli_close($conn);
+	header("location: ../employeeSignup.php?error=none");
+	exit();
+}
+
+// Check if SSN is in database, if so then return data
+function ssnExists($conn, $SSN)
+{
+	$sql = "SELECT * FROM empInfo WHERE ssn = ?;";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../employeeSignup.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt, "s", $SSN);
+	mysqli_stmt_execute($stmt);
+
+	// "Get result" returns the results from a prepared statement
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+		return $row;
+	} else {
+		$result = false;
+		return $result;
+	}
+
+	mysqli_stmt_close($stmt);
+}
+
+
+
+
+
+// Check for empty input login
+function emptyInputLogin($username, $pwd)
+{
+	$result;
+	if (empty($username) || empty($pwd)) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
+// Log user into website
+function loginUser($conn, $username, $pwd)
+{
+	$uidExists = uidExists($conn, $username);
+
+	if ($uidExists === false) {
+		header("location: ../login.php?error=wronglogin");
+		exit();
+	}
+
+	$pwdHashed = $uidExists["pwd"];
+	$checkPwd = password_verify($pwd, $pwdHashed);
+
+	if ($checkPwd === false) {
+		header("location: ../login.php?error=wronglogin");
+		exit();
+	} elseif ($checkPwd === true) {
+		session_start();
+		$_SESSION["userid"] = $uidExists["usersId"];
+		$_SESSION["useruid"] = $uidExists["usersUid"];
+		header("location: ../index.php?error=none");
+		exit();
+	}
+}

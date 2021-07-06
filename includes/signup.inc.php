@@ -1,0 +1,120 @@
+<?php
+// This is for the Admin Sign up page
+if (isset($_POST["submit"])) {
+
+  // First we get the form data from the URL
+  $username = $_POST["uid"];
+  $pwd = $_POST["pwd"];
+  $pwdRepeat = $_POST["pwdrepeat"];
+  $authent = $_POST["authent"];
+
+  // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
+  // These functions can be found in functions.inc.php
+
+  require_once "dbh.inc.php";
+  require_once 'functions.inc.php';
+
+  // Left inputs empty
+  // We set the functions "!== false" since "=== true" has a risk of giving us the wrong outcome
+  if (emptyInputSignup($username, $pwd, $pwdRepeat, $authent) !== false) {
+    header("location: ../adminSignup.php?error=emptyinput");
+		exit();
+  }
+	// Proper username chosen
+  if (invalidUid($uid) !== false) {
+    header("location: ../adminSignup.php?error=invaliduid");
+		exit();
+  }
+  // Do the two passwords match?
+  if (pwdMatch($pwd, $pwdRepeat) !== false) {
+    header("location: ../adminSignup.php?error=passwordsdontmatch");
+		exit();
+  }
+  // Is the username taken already
+  if (uidExists($conn, $username) !== false) {
+    header("location: ../adminSignup.php?error=usernametaken");
+		exit();
+  }
+
+  // check if authentication matches given key
+  if (checkAuthent($authent) === false){
+    header("location: ../adminSignup.php?error=invalidAuth");
+    exit();
+  }
+
+  // If we get to here, it means there are no user errors
+
+  // Now we insert the user into the database
+  createUser($conn, $username, $pwd);
+
+}
+
+// This is for the Employee sending information page
+else if (isset($_POST["sendInfo"])){
+
+  // Personal Information
+  $fName = $_POST["FName"];
+  $mName = $_POST["MName"];
+  $lName = $_POST["LName"];
+  $dob = $_POST["DOB"];
+  $addr = $_POST["address"];
+  $city = $_POST["city"];
+  $state = $_POST["state"];
+  $zip = $_POST["zip"];
+  $phone = $_POST["employeePhone"];
+  $email = $_POST["email"];
+  $SSN = $_POST["ssn"];
+
+  //Banking
+  $bankAccNum = $_POST["bankAccNum"];
+  $bankRoutingNum = $_POST["routingNum"];
+  $bankDepMethod = $_POST["depositMethod"];
+
+  //W4 prior to 2019
+  $W4p2019Status = $_POST["W4p2019Status"];
+  $W4p2019DepNum = $_POST["W4p2019numDep"];
+
+  //W4 2021
+  $W42021Status = $_POST["W42021Status"];
+  $W42021DepNum = $_POST["W42021numDep"];
+
+  //Michigan W4
+  $MW4DriverLicNum = $_POST["MW4DLNum"];
+  $MW4HireCheck = $_POST["MW4HireCheck"];
+  $MW4HireDate = $_POST["MW4HireDate"];
+  $MW4DepNum = $_POST["MW4dependents"];
+
+  //Agreement
+  $checkAgreement = $_POST["AgreementCheck"];
+
+  // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
+  // These functions can be found in functions.inc.php
+
+  require_once "dbh.inc.php";
+  require_once 'functions.inc.php';
+
+  // Left inputs empty
+  // We set the functions "!== false" since "=== true" has a risk of giving us the wrong outcome
+  if (emptyInputSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement) !== false) {
+    header("location: ../employeeSignup.php?error=emptyinput");
+		exit();
+  }
+	
+  // Is the SSN taken already
+  if (ssnExists($conn, $SSN) !== false) {
+    header("location: ../employeeSignup.php?error=SSNtaken");
+		exit();
+  }
+
+
+  // If we get to here, it means there are no user errors
+
+  // Now we insert the user into the database
+  createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
+
+}
+
+else {
+	header("location: ../employeeSignup.php");
+    exit();
+}
