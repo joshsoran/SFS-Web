@@ -14,7 +14,7 @@ require_once "includes/dbh.inc.php";
 <div class="row">
     <div class="col">
         <div class="card card-body">
-            <input id="search-input" class="form-control" type="text">
+            <input id="search-input" class="form-control" type="text" placeholder="Enter name here">
         </div>
     </div>
 </div>
@@ -123,8 +123,9 @@ if ($resultCheck > 0) {
 
     function buildTable(data, secondData) {
         var table = document.getElementById('myTable')
+        var searchBox = document.getElementById('search-input')
         table.innerHTML = ''
-        if (secondData == 0) {
+        if (secondData == 0 && searchBox.value.length == 0) {
             for (var i = 0; i < data["name"].length; i++) { // measured array length by "name" because all employees are required to have a name
                 var row = `<tr>
                                         <td>${data["name"][i]}</td>
