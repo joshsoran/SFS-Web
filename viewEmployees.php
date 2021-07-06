@@ -10,6 +10,9 @@ require_once "includes/dbh.inc.php";
         color: #fff;
     }
 </style>
+<section class="signup-form">
+  <h1>Employee Information</h1>
+</section>
 <br>
 <div class="row">
     <div class="col">
@@ -30,17 +33,17 @@ require_once "includes/dbh.inc.php";
         <th data-colname="email" data-order="desc">Email</th>
         <th data-colname="phone" data-order="desc">Phone</th>
         <th data-colname="ssn" data-order="desc">SSN</th>
-        <th data-colname="bankAccountNumber" data-order="desc">Bank Account Number</th>
-        <th data-colname="bankRoutingNumber" data-order="desc">Bank Routing Number</th>
+        <th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th>
+        <th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th>
         <th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th>
         <th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th>
         <th data-colname="W42019ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th>
         <th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th>
         <th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th>
-        <th data-colname="W4MichiganDL" data-order="desc">W4-Michigan Driver's License Number</th>
-        <th data-colname="W4MichiganNewEmployee" data-order="desc">W4-Michigan New Employee?</th>
-        <th data-colname="W4MichiganHireDate" data-order="desc">W4-Michigan Hire Date</th>
-        <th data-colname="W4MichiganDependents" data-order="desc">W4-Michigan Dependents</th>
+        <th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th>
+        <th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th>
+        <th data-colname="W4MichiganHireDate" data-order="desc">W4-MI Hire Date</th>
+        <th data-colname="W4MichiganDependents" data-order="desc">W4-MI Dependents</th>
     </tr>
     <tbody id="myTable">
 
@@ -125,7 +128,7 @@ if ($resultCheck > 0) {
         var table = document.getElementById('myTable')
         var searchBox = document.getElementById('search-input')
         table.innerHTML = ''
-        if (secondData == 0 && searchBox.value.length == 0) {
+        if (secondData == 0 && searchBox.value.length == 0) { // Check to make sure there is no filtering data as well as search bar is empty
             for (var i = 0; i < data["name"].length; i++) { // measured array length by "name" because all employees are required to have a name
                 var row = `<tr>
                                         <td>${data["name"][i]}</td>
@@ -151,18 +154,17 @@ if ($resultCheck > 0) {
                                     </tr>`
                 table.innerHTML += row
             }
-        } 
-        else{
+        } else {
             // This section matches the elements from secondData to the elements of data so as to find the proper indicies.
             var indexArray = []; // indexArray.push(); --> to add to an array
-            for(var i = 0; i < secondData.length; i++){
-                for(var j = 0; j < data["name"].length; j++){
-                    if(secondData[i] == data["name"][j]){
+            for (var i = 0; i < secondData.length; i++) {
+                for (var j = 0; j < data["name"].length; j++) {
+                    if (secondData[i] == data["name"][j]) {
                         indexArray.push(j)
                     }
                 }
             }
-            for (var i = 0; i < secondData.length; i++) { 
+            for (var i = 0; i < secondData.length; i++) {
                 var row = `<tr>
                                         <td>${data["name"][indexArray[i]]}</td>
                                         <td>${data["DOB"][indexArray[i]]}</td>
@@ -186,9 +188,9 @@ if ($resultCheck > 0) {
                                         <td>${data["W4MichiganDependents"][indexArray[i]]}</td>
                                     </tr>`
                 table.innerHTML += row
+            }
         }
     }
-}
 </script>
 
 <?php
