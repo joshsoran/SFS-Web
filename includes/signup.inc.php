@@ -114,6 +114,60 @@ else if (isset($_POST["sendInfo"])){
 
 }
 
+else if (isset($_POST["updateEmployeeInfo"])){
+  // Employee ID
+  $empId = $_POST["empId"];
+  
+  // Personal Information
+  $fName = $_POST["fName"];
+  $mName = $_POST["mName"];
+  $lName = $_POST["lName"];
+  $dob = $_POST["DOB"];
+  $addr = $_POST["address"];
+  $city = $_POST["city"];
+  $state = $_POST["state"];
+  $zip = $_POST["zip"];
+  $phone = $_POST["employeePhone"];
+  $email = $_POST["email"];
+  $SSN = $_POST["ssn"];
+
+  //Banking
+  $bankAccNum = $_POST["bankAccNum"];
+  $bankRoutingNum = $_POST["routingNum"];
+  $bankDepMethod = $_POST["depositMethod"];
+
+  //W4 prior to 2019
+  $W4p2019Status = $_POST["W4p2019Status"];
+  $W4p2019DepNum = $_POST["W4p2019numDep"];
+
+  //W4 2021
+  $W42021Status = $_POST["W42021Status"];
+  $W42021DepNum = $_POST["W42021numDep"];
+
+  //Michigan W4
+  $MW4DriverLicNum = $_POST["MW4DLNum"];
+  $MW4HireCheck = $_POST["MW4HireCheck"];
+  $MW4HireDate = $_POST["MW4HireDate"];
+  $MW4DepNum = $_POST["MW4dependents"];
+
+
+ 
+
+  // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
+  // These functions can be found in functions.inc.php
+
+  //require_once '../myInfo.php';
+  require_once "dbh.inc.php";
+  require_once 'functions.inc.php';
+
+  //$firstName = "<script>document.writeln(firstName);</script>";
+  //echo "<h2>Name: " . $fName . "</h2>";
+
+  //modifyEmployee($conn, $empID, "Joshs", $middleName, $lastName, $dateOfBirth, $addr, $cit, $sta, $zp, $empEmail, $empSsn, $bAccNum, $rNum, $depMet, $w42019stat, $w42019numDep, $W42021stat, $W42021numDep, $MW4DL, $MW4HiCheck, $MW4dep, $empPhone, $MW4HiDate);
+  //modifyEmployee($conn, "6", $fName, "C");
+  modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
+}
+
 else {
 	header("location: ../employeeSignup.php");
     exit();

@@ -25,9 +25,15 @@
               echo "<li><a href='viewEmployees.php'>View Employees</a></li>";
               echo "<li><a href='logout.php'>Logout</a></li>";
             }
+            else if(isset($_SESSION["email"])){
+              echo "<li><a href='myInfo.php'>" . $_SESSION["email"] . "</a></li>";
+              echo "<li><a href='logout.php'>Logout</a></li>";
+              //echo "<h2>" . $_SESSION["email"] . "</h2>";
+            }
             else {
               echo "<li><a href='employeeSignup.php'>Employee Signup</a></li>";
               echo "<li><a href='adminSignup.php'>Admin Signup</a></li>";
+              echo "<li><a href='employeeLogin.php'>Employee Log in</a></li>";
               echo "<li><a href='login.php'>Admin Log in</a></li>";
             }
           ?>

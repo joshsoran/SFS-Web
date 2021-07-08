@@ -118,6 +118,37 @@ function createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $stat
 	exit();
 }
 
+// Modify Existing employees info
+//function modifyEmployee($conn, $empId, $fName, $mName)
+function modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate)
+{
+	$sql = "UPDATE empInfo SET firstName = ?, middleName = ?, lastName = ? , DOB = ?, address = ?, city = ?, state = ?, zip = ?, email = ?, ssn = ?, bankAccountNumber = ?, bankRoutingNumber = ?, bankDirectDeposit = ?, W42019RelStatus = ?, W42019ClaimDependents = ?, W42021RelStatus = ?, W42021ClaimDependents =?, W4MichiganDL = ?, W4MichiganNewEmployee=?, W4MichiganDependents = ?, phone = ?, W4MichiganHireDate = ? WHERE empId = ?";
+	//$sql = "UPDATE empInfo SET firstName = ?, middleName = ? WHERE empId = ?";
+	
+	
+	//, DOB, address, city, state, zip, email, ssn, bankAccountNumber, bankRoutingNumber, bankDirectDeposit, W42019RelStatus, W42019ClaimDependents, W42021RelStatus, W42021ClaimDependents, W4MichiganDL, W4MichiganNewEmployee, W4MichiganDependents, phone, W4MichiganHireDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../myInfo.php?error=stmtfailed");
+		exit();
+	}
+
+	//mysqli_stmt_bind_param($stmt, "ssi", $fName, $mName, $empId);
+	mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssi", $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $empId);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	mysqli_close($conn);
+	header("location: ../myInfo.php?error=none");
+
+
+	session_start();
+	$_SESSION["empId"] = $email;
+	$_SESSION["email"] = $email;
+	header("location: ../index.php?error=none");
+	exit();
+}
+
 // Check if SSN is in database, if so then return data
 function ssnExists($conn, $SSN)
 {
@@ -160,6 +191,18 @@ function emptyInputLogin($username, $pwd)
 	return $result;
 }
 
+// Check for empty input email
+function emptyInputLoginEmail($email, $ssn)
+{
+	$result;
+	if (empty($email) || empty($ssn)) {
+		$result = true;
+	} else {
+		$result = false;
+	}
+	return $result;
+}
+
 // Log user into website
 function loginUser($conn, $username, $pwd)
 {
@@ -180,6 +223,57 @@ function loginUser($conn, $username, $pwd)
 		session_start();
 		$_SESSION["userid"] = $uidExists["usersId"];
 		$_SESSION["useruid"] = $uidExists["usersUid"];
+		header("location: ../index.php?error=none");
+		exit();
+	}
+}
+
+function empEmailExists($conn, $empEmail)
+{
+	$sql = "SELECT * FROM empInfo WHERE email = ?;";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../employeeLogin.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt, "s", $empEmail);
+	mysqli_stmt_execute($stmt);
+
+	// "Get result" returns the results from a prepared statement
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+		return $row;
+	} else {
+		$result = false;
+		return $result;
+	}
+
+	mysqli_stmt_close($stmt);
+}
+
+function loginEmployee($conn, $empEmail, $ssn)
+{
+	// Email check
+	$empEmailExists = empEmailExists($conn, $empEmail);
+
+	if ($empEmailExists === false) {
+		header("location: ../employeeLogin.php?error=wronglogin");
+		exit();
+	}
+
+	// find the SSN that is paired with that email
+	$ssnCheck = $empEmailExists["ssn"];
+
+	// Final check to ensure that everything matches correctly
+	if ($ssn !== $ssnCheck) {
+		header("location: ../employeeLogin.php?error=wronglogin");
+		exit();
+	} elseif ($ssn === $ssnCheck) {
+		session_start();
+		$_SESSION["empId"] = $empEmailExists["email"];
+		$_SESSION["email"] = $empEmailExists["email"];
 		header("location: ../index.php?error=none");
 		exit();
 	}
