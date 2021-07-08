@@ -6,9 +6,9 @@
   <h1>Admin Log In</h1>
   <div class="signup-form-form">
     <form action="includes/login.inc.php" method="post">
-      <center><input type="text" name="uid" placeholder="Username/Email..."><br>
+      <center><input type="text" name="uid" placeholder="Username..."><br>
       <input type="password" name="pwd" placeholder="Password..."></center>
-      <button type="submit" name="submit">Sign in</button>
+      <button type="submit" name="submit">Log in</button>
     </form>
   </div>
   <?php

@@ -3,7 +3,6 @@ include_once 'header.php';
 require_once "includes/dbh.inc.php";
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style>
     th {
@@ -15,36 +14,38 @@ require_once "includes/dbh.inc.php";
 </section>
 <br>
 
-<table class="table table-striped">
-    <tr class="bg-info">
-        <th data-colname="empID" data-order="desc">ID</th>
-        <th class="bg-info" data-colname="fName" data-order="desc">First Name</th> <!-- Combine First Name + Middle Name + Last Name/!-->
-        <th data-colname="mName" data-order="desc">Middle Name</th>
-        <th data-colname="lName" data-order="desc">Last Name</th>
-        <th data-colname="DOB" data-order="desc">Date of Birth</th>
-        <th data-colname="address" data-order="desc">Address</th>
-        <th data-colname="city" data-order="desc">City</th>
-        <th data-colname="state" data-order="desc">State</th>
-        <th data-colname="zip" data-order="desc">Zip</th>
-        <th data-colname="email" data-order="desc">Email</th>
-        <th data-colname="phone" data-order="desc">Phone</th>
-        <th data-colname="ssn" data-order="desc">SSN</th>
-        <th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th>
-        <th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th>
-        <th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th>
-        <th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th>
-        <th data-colname="W42019ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th>
-        <th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th>
-        <th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th>
-        <th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th>
-        <th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th>
-        <th data-colname="W4MichiganHireDate" data-order="desc">W4-MI Hire Date</th>
-        <th data-colname="W4MichiganDependents" data-order="desc">W4-MI Dependents</th>
-    </tr>
-    <tbody id="myTable">
+<div class="emp-container">
+    <table>
+        <tr>
+            <th data-colname="empID" data-order="desc">ID</th>
+            <th class="bg-info" data-colname="fName" data-order="desc">First Name</th> <!-- Combine First Name + Middle Name + Last Name/!-->
+            <th data-colname="mName" data-order="desc">Middle Name</th>
+            <th data-colname="lName" data-order="desc">Last Name</th>
+            <th data-colname="DOB" data-order="desc">Date of Birth</th>
+            <th data-colname="address" data-order="desc">Address</th>
+            <th data-colname="city" data-order="desc">City</th>
+            <th data-colname="state" data-order="desc">State</th>
+            <th data-colname="zip" data-order="desc">Zip</th>
+            <th data-colname="email" data-order="desc">Email</th>
+            <th data-colname="phone" data-order="desc">Phone</th>
+            <th data-colname="ssn" data-order="desc">SSN</th>
+            <th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th>
+            <th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th>
+            <th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th>
+            <th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th>
+            <th data-colname="W42019ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th>
+            <th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th>
+            <th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th>
+            <th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th>
+            <th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th>
+            <th data-colname="W4MichiganHireDate" data-order="desc">W4-MI Hire Date</th>
+            <th data-colname="W4MichiganDependents" data-order="desc">W4-MI Dependents</th>
+        </tr>
+        <tbody id="myTable">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
 
 
@@ -54,10 +55,14 @@ require_once "includes/dbh.inc.php";
             <center>Save</center>
         </button>
     </div>
-</section>
+    <h3>
+        <center>After you are finished making your changes please press "Save", and when you are ready, "Update".</center>
+    </h3>
 
 
-<section class="signup-form">
+
+
+
     <div class="signup-form-form">
         <form action="includes/signup.inc.php" method="post">
             <input type="hidden" id="inpempId" name="empId">
@@ -84,7 +89,7 @@ require_once "includes/dbh.inc.php";
             <input type="hidden" id="inpW4MIHireDate" name="MW4HireDate">
             <input type="hidden" id="inpW4MIDep" name="MW4dependents">
 
-            <button type="submit" id = "updateButton" name="updateEmployeeInfo" disabled>
+            <button type="submit" id="updateButton" name="updateEmployeeInfo" disabled>
                 <center>Update</center>
             </button>
         </form>

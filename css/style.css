@@ -50,7 +50,7 @@ nav {
   width: 100%;
   height: 50px;
   align-items: center;
-  --background-color: #ffffff;
+
 }
 
 nav .wrapper {
@@ -78,13 +78,13 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: #2baaff;
+  color: #2c83ca;
   transition: all 0.3s ease 0s;
   text-decoration: none;
 }
 
+
 section {
-  --background-color: rgb(226, 226, 226);
   width: 100%;
   padding: 20px 3%;
 }
@@ -104,7 +104,7 @@ section {
 .index-categories-list div {
   width: 24%;
   height: 200px;
-  background-color: rgb(0, 177, 147);
+  background-color: #2c83ca;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +120,7 @@ section {
 .signup-form p {
   text-align: center;
   padding-bottom: 40px;
-  color: #007ecc;
+  color: #2c83ca;
 }
 
 .signup-form form {
@@ -154,10 +154,55 @@ section {
 
 .signup-form form input[type="text"]:focus, input[type="date"]:focus, input[type="password"]:focus, select:focus{
   outline:none;
-  box-shadow: 0px 0px 0px 2px rgb(31, 192, 255);
+  box-shadow: 0px 0px 0px 2px #2c83ca;
   transition: all 0.3s ease 0s;
 }
 
+
+
+/* viewEmployee.php search bar */
+
+.form-control{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+}
+
+.input-search{
+  height: 50px;
+  width: 210px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  border-radius: 10px;
+  transition: all .5s ease-in-out;
+  background-color: #ececec;
+  padding-right: 40px;
+  color:rgb(0, 0, 0);
+}
+.input-search::placeholder{
+  color:rgba(0, 0, 0, 0.9);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+
+.input-search:focus{
+  width: 500px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom:1px solid rgba(0, 0, 0, 0.5);
+  transition: all .35s ease-in-out;
+  /* transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2); */
+}
+
+
+
+
+
+/* Form stuff */
 .signup-form form button {
   
   color:white;
@@ -166,7 +211,7 @@ section {
   font-size: 17px;
   text-align: center;
 	margin: auto;
-	background-color: #3aa6ff; 
+	background-color: #2c83ca; 
 	border: none;
 	border-radius: 3px;
 	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.09);
@@ -211,7 +256,7 @@ button {
   font-size: 17px;
   text-align: center;
 	margin: auto;
-	background-color: #3aa6ff; 
+	background-color: #2c83ca; 
 	border: none;
 	border-radius: 3px;
 	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.09);
@@ -225,7 +270,7 @@ button {
  button:hover {
   /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
   background-color:rgb(255, 255, 255);
-  color: #3aa6ff;
+  color: #2c83ca;
   border:1px solid #cccccc;
 	transition: all 0.3s ease 0s;
 }
@@ -257,8 +302,33 @@ label {
 
 
 /* TABLE */
-table {
+
+/* viewEmployee.php table */
+/* If you're looking to changing the table alternatio color, go inside viewEmployees.php,
+there's a JS script that does it */
+table{
   box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, .35);
+  padding-top: 20px;
+  border-collapse:collapse;
+}
+
+
+td{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: 'Roboto', sans-serif;
+}
+
+
+th{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #2c83ca;
+  font-family: 'Roboto', sans-serif;
+  border: none;
+
 }
 
 td[contenteditable="true"]{
@@ -274,10 +344,12 @@ td[contenteditable="true"]:hover{
 td[contenteditable="true"]:focus{
   outline: 0px solid transparent;
   font-size: 24px;
-  box-shadow: 0px 0px 0px 2px rgb(31, 192, 255);
+  box-shadow: 0px 0px 0px 2px #2c83ca;
   background-color: rgb(255, 255, 255);
   transition: all 0.3s ease 0s;
 }
+
+
 
 
 

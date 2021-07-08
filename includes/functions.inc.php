@@ -144,7 +144,6 @@ function modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $cit
 	session_start();
 	$_SESSION["empId"] = $email;
 	$_SESSION["email"] = $email;
-	header("location: ../index.php?error=none");
 	exit();
 }
 
