@@ -84,7 +84,7 @@ require_once "includes/dbh.inc.php";
             <input type="hidden" id="inpW4MIHireDate" name="MW4HireDate">
             <input type="hidden" id="inpW4MIDep" name="MW4dependents">
 
-            <button type="submit" name="updateEmployeeInfo">
+            <button type="submit" id = "updateButton" name="updateEmployeeInfo" disabled>
                 <center>Update</center>
             </button>
         </form>
@@ -257,6 +257,8 @@ if ($resultCheck > 0) {
         document.getElementById("inpW4MINewEmp").value = MW4HireCheck;
         document.getElementById("inpW4MIHireDate").value = MW4HiDate;
         document.getElementById("inpW4MIDep").value = MW4dep;
+
+        document.getElementById("updateButton").disabled = false;
         //console.log(document.getElementById("inpfName").value);
 
     }

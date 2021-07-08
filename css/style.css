@@ -185,6 +185,24 @@ section {
 	transition: all 0.3s ease 0s;
 }
 
+.signup-form form button:disabled {
+  color:white;
+	width: 100px;
+  height: 40px;
+  font-size: 17px;
+  text-align: center;
+	margin: auto;
+	background-color: #99afc2; 
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.09);
+	transition: all 0.3s ease 0s;
+  display: block;
+  padding: 10px 20px;
+  margin: 10px auto;
+  cursor:auto;
+}
+
 button {
   
   color:white;
