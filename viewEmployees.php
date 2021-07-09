@@ -7,6 +7,7 @@ if (!isset($_SESSION["useruid"])) {
     exit();
 }
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <style>
@@ -19,7 +20,8 @@ if (!isset($_SESSION["useruid"])) {
 <h1>Employee Information</h1>
 
 <div class="form-control">
-    <center><input class="input-search" id="search-input" type="text" placeholder="Enter employee name here..."></center>
+<center><label>Search: </label>
+    <input class="input-search" id="search-input" type="text" placeholder="Employee name..."></center>
 </div>
 <br>
 

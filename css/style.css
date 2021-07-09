@@ -169,7 +169,7 @@ section {
 }
 
 .input-search{
-  height: 50px;
+  height: 30px;
   width: 210px;
   border-style: none;
   padding: 10px;
@@ -178,8 +178,7 @@ section {
   outline: none;
   border-radius: 10px;
   transition: all .5s ease-in-out;
-  background-color: #ececec;
-  padding-right: 40px;
+  background-color: #f8f8f8;
   color:rgb(0, 0, 0);
 }
 .input-search::placeholder{
@@ -196,6 +195,11 @@ section {
   border-bottom:1px solid rgba(0, 0, 0, 0.5);
   transition: all .35s ease-in-out;
   /* transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2); */
+}
+
+.input-search:hover, .input-search::placeholder:hover{
+  background-color: rgb(241, 241, 241);
+  transition: all .3s ease-in-out;
 }
 
 

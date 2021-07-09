@@ -1,6 +1,10 @@
 <?php
 include_once 'header.php';
 require_once "includes/dbh.inc.php";
+if (!isset($_SESSION["useruid"])) {
+    header("location: employeeAccessError.php");
+    exit();
+}
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
