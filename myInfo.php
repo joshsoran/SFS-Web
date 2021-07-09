@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
 require_once "includes/dbh.inc.php";
-if (!isset($_SESSION["useruid"])) {
+if (!isset($_SESSION["email"])) {
     header("location: employeeAccessError.php");
     exit();
 }
