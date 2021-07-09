@@ -20,10 +20,19 @@ function emptyInputSignup($username, $pwd, $pwdRepeat, $authent)
 function emptyInputEmpSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement)
 {
 	$result;
-	if (empty($fName) || empty($lName) || empty($dob) || empty($addr) || empty($city) || empty($state) || empty($zip) || empty($phone) || empty($email) || empty($SSN) || empty($bankAccNum) || empty($bankRoutingNum) || empty($bankDepMethod) || empty($W4p2019Status) || empty($W4p2019DepNum) || empty($W42021Status) || empty($MW4DriverLicNum) || empty($MW4HireCheck) || empty($MW4HireDate) || empty($MW4DepNum) || empty($checkAgreement)) {
-		$result = true;
-	} else {
-		$result = false;
+	if ($MW4HireCheck === "Yes.") {
+		if (empty($fName) || empty($lName) || empty($dob) || empty($addr) || empty($city) || empty($state) || empty($zip) || empty($phone) || empty($email) || empty($SSN) || empty($bankAccNum) || empty($bankRoutingNum) || empty($bankDepMethod) || empty($W4p2019Status) || empty($W4p2019DepNum) || empty($W42021Status) || empty($MW4DriverLicNum) || empty($MW4HireCheck) || empty($MW4HireDate) || empty($MW4DepNum) || empty($checkAgreement)) {
+			$result = true;
+		} else {
+			$result = false;
+		}
+	}
+	else{
+		if (empty($fName) || empty($lName) || empty($dob) || empty($addr) || empty($city) || empty($state) || empty($zip) || empty($phone) || empty($email) || empty($SSN) || empty($bankAccNum) || empty($bankRoutingNum) || empty($bankDepMethod) || empty($W4p2019Status) || empty($W4p2019DepNum) || empty($W42021Status) || empty($MW4DriverLicNum) || empty($MW4HireCheck) || empty($MW4DepNum) || empty($checkAgreement)) {
+			$result = true;
+		} else {
+			$result = false;
+		}
 	}
 	return $result;
 }
