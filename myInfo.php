@@ -192,7 +192,7 @@ if ($resultCheck > 0) {
                                         <td contenteditable ='true' spellcheck="false" id="fName">${data["fName"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="mName">${data["mName"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="lName">${data["lName"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="DOB">${data["DOB"][0]}</td>
+                                        <td><input type="date" id="DOB" value= ${data["DOB"][0]}></td>
                                         <td contenteditable ='true' spellcheck="false" id="address">${data["address"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="city">${data["city"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="state">${data["state"][0]}</td>
@@ -209,7 +209,7 @@ if ($resultCheck > 0) {
                                         <td contenteditable ='true' spellcheck="false" id="W42021numDep" onkeypress="return onlyNumberKey(event)">${data["W42021ClaimDependents"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4DLNum">${data["W4MichiganDL"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4HireCheck">${data["W4MichiganNewEmployee"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="MW4HireDate">${data["W4MichiganHireDate"][0]}</td>
+                                        <td><input type="date" id="MW4HireDate" value=${data["W4MichiganHireDate"][0]}></td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4dependents" onkeypress="return onlyNumberKey(event)">${data["W4MichiganDependents"][0]}</td>
                                     </tr>`
         table.innerHTML += row
@@ -222,7 +222,7 @@ if ($resultCheck > 0) {
         var firstName = document.getElementById("fName").textContent;
         var middleName = document.getElementById("mName").textContent;
         var lastName = document.getElementById("lName").textContent;
-        var dateOfBirth = document.getElementById("DOB").textContent;
+        var dateOfBirth = document.getElementById("DOB").value;
         var addr = document.getElementById("address").textContent;
         var cit = document.getElementById("city").textContent;
         var sta = document.getElementById("state").textContent;
@@ -239,7 +239,7 @@ if ($resultCheck > 0) {
         var W42021numDep = document.getElementById("W42021numDep").textContent;
         var MW4DL = document.getElementById("MW4DLNum").textContent;
         var MW4HireCheck = document.getElementById("MW4HireCheck").textContent;
-        var MW4HiDate = document.getElementById("MW4HireDate").textContent;
+        var MW4HiDate = document.getElementById("MW4HireDate").value;
         var MW4dep = document.getElementById("MW4dependents").textContent;
 
 
