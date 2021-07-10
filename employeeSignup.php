@@ -79,20 +79,20 @@ include_once 'header.php';
         <option value="Wyoming">Wyoming</option>
       </select>
       <labelSpace>h. Zip</labelSpace>
-      <input type="text" name="zip" placeholder="XXXXX" maxlength="5">
+      <input type="text" name="zip" placeholder="XXXXX" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
       <labelSpace>i. Phone number</labelSpace>
-      <input type="text" name="employeePhone" placeholder="(XXX)-XXX-XXXX" maxlength="10">
+      <input type="text" name="employeePhone" placeholder="(XXX)-XXX-XXXX" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)">
       <labelSpace>j. Email Address</labelSpace>
-      <input type="text" name="email" placeholder="example@company.com">
+      <input type="email" name="email" placeholder="example@company.com">
       <labelSpace>k. SSN</labelSpace>
-      <input type="text" name="ssn" placeholder="XXX-XX-XXXX" maxlength="9">
+      <input type="text" name="ssn" placeholder="XXX-XX-XXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)">
 
 
       <h2>2. Banking</h2>
       <labelSpace>a. Bank Account #</labelSpace>
-      <input type="text" name="bankAccNum" placeholder="XXXX-XXXX" maxlength="8">
+      <input type="text" name="bankAccNum" placeholder="Enter bank account number..." minlength="9" maxlength="17" onkeypress="return onlyNumberKey(event)">
       <labelSpace>b. Routing #</labelSpace>
-      <input type="text" name="routingNum" placeholder="Enter routing number here"><br>
+      <input type="text" name="routingNum" placeholder="XXXX-XXXX" maxlength="8" onkeypress="return onlyNumberKey(event)"><br>
       <input type="radio" name="depositMethod" value="directDeposit">
       <label for="directDep">Direct Deposit</label>
       <input type="radio" name="depositMethod" value="Check">
@@ -111,8 +111,8 @@ include_once 'header.php';
       </div>
       <labelSpace>b. Claim Dependents</labelSpace>
       <h3><i>Enter '0' if none.</i></h3>
-      <input type="text" name="W4p2019numDep" placeholder="Enter number of dependents...">
-      
+      <input type="text" name="W4p2019numDep" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)">
+
 
       <h2>4. W-4 2021</h2>
       <labelSpace>a. Relationship Status</labelSpace>
@@ -126,25 +126,26 @@ include_once 'header.php';
       <h3><i>(Multiply the number of qualifying children under age 18 by $3,000.</i></h3>
       <h3><i>Multiply the number of other dependents by $500.)</i></h3>
       <h3><i>Add the amounts above and enter the total here:</i></h3>
-      <input type="text" name="W42021numDep" placeholder="Enter total $ here...">
+      <h3><i>Enter '0' if none</i></h3>
+      <div class="dollar"><input type="number" name="W42021numDep" placeholder="Enter total $ here..." onkeypress="return onlyNumberKey(event)"></div>
 
       <h2>5. Michigan W4</h2>
       <labelSpace>a. Driver's License Number</labelSpace>
-      <input type="text" name="MW4DLNum" placeholder="S-XXX-XXX-XXX-XXX" maxlength="13">
+      <input type="text" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" maxlength="13" spellcheck="false">
       <labelSpace>b. Are you a new employee?</labelSpace>
       <label for="chkYes">
-        <input type="radio" id="chkYes" name="MW4HireCheck" onclick="ShowHideDiv()" value="Yes."/>Yes.</label><br>
+        <input type="radio" id="chkYes" name="MW4HireCheck" onclick="ShowHideDiv()" value="Yes." />Yes.</label><br>
       <div id="dvtext" style="display: none"><label>Enter date of hire: </label>
         <input type="date" id="dateOfHire" name="MW4HireDate" />
       </div>
       <label for="chkNo">
-        <input type="radio" id="chkNo" name="MW4HireCheck" onclick="ShowHideDiv()" value="No."/>No.</label><br><br>
+        <input type="radio" id="chkNo" name="MW4HireCheck" onclick="ShowHideDiv()" value="No." />No.</label><br><br>
       <labelSpace>c. Enter the number of personal and dependent exemptions </labelSpace>
-      <input type="text" name="MW4dependents" placeholder="Enter number of dependents...">
+      <input type="text" name="MW4dependents" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)">
 
       <h2>6. Agreement</h2>
       <labelSpace>By checking this box you are hereby agreeing that all this information is valid and yours.</labelSpace>
-        <labelSpace><input type="checkbox" name="AgreementCheck"  />I Agree.</labelSpace><br>
+      <labelSpace><input type="checkbox" name="AgreementCheck" />I Agree.</labelSpace><br>
 
       <button type="submit" name="sendInfo">Submit</button>
     </form>
@@ -183,5 +184,14 @@ include_once 'footer.php';
     var chkYes = document.getElementById("chkYes");
     var dvtext = document.getElementById("dvtext");
     dvtext.style.display = chkYes.checked ? "block" : "none";
+  }
+
+  // Only allow numbers to be typed
+  function onlyNumberKey(evt) {
+    // Only ASCII character in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+      return false;
+    return true;
   }
 </script>

@@ -196,21 +196,21 @@ if ($resultCheck > 0) {
                                         <td contenteditable ='true' spellcheck="false" id="address">${data["address"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="city">${data["city"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="state">${data["state"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="zip">${data["zip"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="zip" onkeypress="return onlyNumberKey(event)">${data["zip"][0]}</td></div>
                                         <td contenteditable ='true' spellcheck="false" id="email">${data["email"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="employeePhone">${data["phone"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="ssn">${data["ssn"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="bankAccNum">${data["bankAccountNumber"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="routingNum">${data["bankRoutingNumber"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="employeePhone" onkeypress="return onlyNumberKey(event)">${data["phone"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="ssn" onkeypress="return onlyNumberKey(event)">${data["ssn"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="bankAccNum" onkeypress="return onlyNumberKey(event)">${data["bankAccountNumber"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="routingNum" onkeypress="return onlyNumberKey(event)">${data["bankRoutingNumber"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="depositMethod">${data["bankDirectDeposit"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="W4p2019Status">${data["W42019RelStatus"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="W4p2019numDep">${data["W42019ClaimDependents"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="W4p2019numDep" onkeypress="return onlyNumberKey(event)">${data["W42019ClaimDependents"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="W42021Status">${data["W42021RelStatus"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="W42021numDep">${data["W42021ClaimDependents"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="W42021numDep" onkeypress="return onlyNumberKey(event)">${data["W42021ClaimDependents"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4DLNum">${data["W4MichiganDL"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4HireCheck">${data["W4MichiganNewEmployee"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4HireDate">${data["W4MichiganHireDate"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="MW4dependents">${data["W4MichiganDependents"][0]}</td>
+                                        <td contenteditable ='true' spellcheck="false" id="MW4dependents" onkeypress="return onlyNumberKey(event)">${data["W4MichiganDependents"][0]}</td>
                                     </tr>`
         table.innerHTML += row
     }
@@ -271,6 +271,193 @@ if ($resultCheck > 0) {
         //console.log(document.getElementById("inpfName").value);
 
     }
+
+    // Only allow numbers to be typed
+    function onlyNumberKey(evt) {
+        // Only ASCII character in that range allowed
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+
+    zipInput = document.querySelector('#zip');
+    empPhoneInput = document.querySelector('#employeePhone');
+    ssnInput = document.querySelector('#ssn');
+    bankAccInput = document.querySelector('#bankAccNum');
+    routingInput = document.querySelector('#routingNum');
+    DLInput = document.querySelector('#MW4DLNum');
+
+    settings = {
+        maxLen: 5,
+    }
+
+    keys = {
+        'backspace': 8,
+        'shift': 16,
+        'ctrl': 17,
+        'alt': 18,
+        'delete': 46,
+        // 'cmd':
+        'leftArrow': 37,
+        'upArrow': 38,
+        'rightArrow': 39,
+        'downArrow': 40,
+    }
+
+    utils = {
+        special: {},
+        navigational: {},
+        isSpecial(e) {
+            return typeof this.special[e.keyCode] !== 'undefined';
+        },
+        isNavigational(e) {
+            return typeof this.navigational[e.keyCode] !== 'undefined';
+        }
+    }
+
+    utils.special[keys['backspace']] = true;
+    utils.special[keys['shift']] = true;
+    utils.special[keys['ctrl']] = true;
+    utils.special[keys['alt']] = true;
+    utils.special[keys['delete']] = true;
+
+    utils.navigational[keys['upArrow']] = true;
+    utils.navigational[keys['downArrow']] = true;
+    utils.navigational[keys['leftArrow']] = true;
+    utils.navigational[keys['rightArrow']] = true;
+
+    zipInput.addEventListener('keydown', function(event) {
+        let len = event.target.innerText.trim().length;
+        hasSelection = false;
+        selection = window.getSelection();
+        isSpecial = utils.isSpecial(event);
+        isNavigational = utils.isNavigational(event);
+
+        if (selection) {
+            hasSelection = !!selection.toString();
+        }
+
+        if (isSpecial || isNavigational) {
+            return true;
+        }
+
+        if (len >= 5 && !hasSelection) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+    empPhoneInput.addEventListener('keydown', function(event) {
+        let len = event.target.innerText.trim().length;
+        hasSelection = false;
+        selection = window.getSelection();
+        isSpecial = utils.isSpecial(event);
+        isNavigational = utils.isNavigational(event);
+
+        if (selection) {
+            hasSelection = !!selection.toString();
+        }
+
+        if (isSpecial || isNavigational) {
+            return true;
+        }
+
+        if (len >= 10 && !hasSelection) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+    ssnInput.addEventListener('keydown', function(event) {
+        let len = event.target.innerText.trim().length;
+        hasSelection = false;
+        selection = window.getSelection();
+        isSpecial = utils.isSpecial(event);
+        isNavigational = utils.isNavigational(event);
+
+        if (selection) {
+            hasSelection = !!selection.toString();
+        }
+
+        if (isSpecial || isNavigational) {
+            return true;
+        }
+
+        if (len >= 9 && !hasSelection) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+    bankAccInput.addEventListener('keydown', function(event) {
+        let len = event.target.innerText.trim().length;
+        hasSelection = false;
+        selection = window.getSelection();
+        isSpecial = utils.isSpecial(event);
+        isNavigational = utils.isNavigational(event);
+
+        if (selection) {
+            hasSelection = !!selection.toString();
+        }
+
+        if (isSpecial || isNavigational) {
+            return true;
+        }
+
+        if (len >= 9 && !hasSelection) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+    routingInput.addEventListener('keydown', function(event) {
+        let len = event.target.innerText.trim().length;
+        hasSelection = false;
+        selection = window.getSelection();
+        isSpecial = utils.isSpecial(event);
+        isNavigational = utils.isNavigational(event);
+
+        if (selection) {
+            hasSelection = !!selection.toString();
+        }
+
+        if (isSpecial || isNavigational) {
+            return true;
+        }
+
+        if (len >= 8 && !hasSelection) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
+
+    DLInput.addEventListener('keydown', function(event) {
+        let len = event.target.innerText.trim().length;
+        hasSelection = false;
+        selection = window.getSelection();
+        isSpecial = utils.isSpecial(event);
+        isNavigational = utils.isNavigational(event);
+
+        if (selection) {
+            hasSelection = !!selection.toString();
+        }
+
+        if (isSpecial || isNavigational) {
+            return true;
+        }
+
+        if (len >= 13 && !hasSelection) {
+            event.preventDefault();
+            return false;
+        }
+
+    });
     //console.log(firstName);
 </script>
 

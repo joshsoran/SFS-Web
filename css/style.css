@@ -137,31 +137,55 @@ section {
   transition: all 0.3s ease 0s;
 }
 
-.signup-form form input[type="text"], input[type="date"], input[type="password"], input[type="email"] {
+.signup-form form input[type="text"], input[type="date"], input[type="password"], input[type="email"], input[type="number"] {
   width: 200px;
   padding: 12px;
   border:1px solid #cccccc;
   margin-bottom: 20px;
   border-radius: 3px;
+  -moz-appearance:textfield;
   transition: all 0.3s ease 0s;
 }
 
-.signup-form form input[type="text"]:hover, input[type="date"]:hover, input[type="password"]:hover, input[type="email"]:hover, select:hover{
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.signup-form form input[type="text"]:hover, input[type="date"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="number"]:hover, select:hover{
   outline:none;
   box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, 0.1);
   transition: all 0.3s ease 0s;
 }
 
-.signup-form form input[type="text"]:focus, input[type="date"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus{
+.signup-form form input[type="text"]:focus, input[type="date"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="number"]:focus,select:focus{
   outline:none;
   box-shadow: 0px 0px 0px 2px #2c83ca;
   transition: all 0.3s ease 0s;
 }
 
+/*$ sign in front of texts that require money */
+
+.dollar{
+	display:inline-block;
+	position: relative;
+}
+.dollar input{
+	padding-left:15px;
+}
+.dollar:before {
+  font-family: 'Roboto', sans-serif;
+	position: absolute;
+    content:"$";
+    left:3px;
+	top:11px;
+  color: rgb(0, 0, 0);
+}
+  
 
 
 /* viewEmployee.php search bar */
-
 .form-control{
   width: fit-content;
   height: fit-content;
