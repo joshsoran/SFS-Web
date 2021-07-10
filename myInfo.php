@@ -195,17 +195,93 @@ if ($resultCheck > 0) {
                                         <td><input type="date" id="DOB" value= ${data["DOB"][0]}></td>
                                         <td contenteditable ='true' spellcheck="false" id="address">${data["address"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="city">${data["city"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="state">${data["state"][0]}</td>
+                                        <td><select id="state" name="state">
+                                            <option value=${data["state"][0]}>${data["state"][0]}</option>
+                                            <option value="Alabama">Alabama</option>
+                                            <option value="Alaska">Alaska</option>
+                                            <option value="Arizona">Arizona</option>
+                                            <option value="Arkansas">Arkansas</option>
+                                            <option value="California">California</option>
+                                            <option value="Colorado">Colorado</option>
+                                            <option value="Connecticut">Connecticut</option>
+                                            <option value="Delaware">Delaware</option>
+                                            <option value="District of Columbia">District of Columbia</option>
+                                            <option value="Florida">Florida</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="Guam">Guam</option>
+                                            <option value="Hawaii">Hawaii</option>
+                                            <option value="Idaho">Idaho</option>
+                                            <option value="Illinois">Illinois</option>
+                                            <option value="Indiana">Indiana</option>
+                                            <option value="Iowa">Iowa</option>
+                                            <option value="Kansas">Kansas</option>
+                                            <option value="Kentucky">Kentucky</option>
+                                            <option value="Louisiana">Louisiana</option>
+                                            <option value="Maine">Maine</option>
+                                            <option value="Maryland">Maryland</option>
+                                            <option value="Massachusetts">Massachusetts</option>
+                                            <option value="Michigan">Michigan</option>
+                                            <option value="Minnesota">Minnesota</option>
+                                            <option value="Mississippi">Mississippi</option>
+                                            <option value="Missouri">Missouri</option>
+                                            <option value="Montana">Montana</option>
+                                            <option value="Nebraska">Nebraska</option>
+                                            <option value="Nevada">Nevada</option>
+                                            <option value="New Hampshire">New Hampshire</option>
+                                            <option value="New Jersey">New Jersey</option>
+                                            <option value="New Mexico">New Mexico</option>
+                                            <option value="New York">New York</option>
+                                            <option value="North Carolina">North Carolina</option>
+                                            <option value="North Dakota">North Dakota</option>
+                                            <option value="Northern Marianas Islands">Northern Marianas Islands</option>
+                                            <option value="Ohio">Ohio</option>
+                                            <option value="Oklahoma">Oklahoma</option>
+                                            <option value="Oregon">Oregon</option>
+                                            <option value="Pennsylvania">Pennsylvania</option>
+                                            <option value="Puerto Rico">Puerto Rico</option>
+                                            <option value="Rhode Island">Rhode Island</option>
+                                            <option value="South Carolina">South Carolina</option>
+                                            <option value="South Dakota">South Dakota</option>
+                                            <option value="Tennessee">Tennessee</option>
+                                            <option value="Texas">Texas</option>
+                                            <option value="Utah">Utah</option>
+                                            <option value="Vermont">Vermont</option>
+                                            <option value="Virginia">Virginia</option>
+                                            <option value="Virgin Islands">Virgin Islands</option>
+                                            <option value="Washington">Washington</option>
+                                            <option value="West Virginia">West Virginia</option>
+                                            <option value="Wisconsin">Wisconsin</option>
+                                            <option value="Wyoming">Wyoming</option>
+                                            </select>
+                                        </td>
                                         <td contenteditable ='true' spellcheck="false" id="zip" onkeypress="return onlyNumberKey(event)">${data["zip"][0]}</td></div>
-                                        <td contenteditable ='true' spellcheck="false" id="email">${data["email"][0]}</td>
+                                        
+                                        <td><input type="email" id="email" name="email" value=${data["email"][0]}></td>
                                         <td contenteditable ='true' spellcheck="false" id="employeePhone" onkeypress="return onlyNumberKey(event)">${data["phone"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="ssn" onkeypress="return onlyNumberKey(event)">${data["ssn"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="bankAccNum" onkeypress="return onlyNumberKey(event)">${data["bankAccountNumber"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="routingNum" onkeypress="return onlyNumberKey(event)">${data["bankRoutingNumber"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="depositMethod">${data["bankDirectDeposit"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="W4p2019Status">${data["W42019RelStatus"][0]}</td>
+                                        <td><select id="depositMethod" name="depositMethod">
+                                            <option value=${data["bankDirectDeposit"][0]}>${data["bankDirectDeposit"][0]} -- current</option>
+                                            <option value="Direct Deposit">Direct Deposit</option>
+                                            <option value="Check">Check</option>
+                                            </select>
+                                        </td>
+                                        <td><select id="W4p2019Status" name="W4p2019Status">
+                                            <option value=${data["W42019RelStatus"][0]}>${data["W42019RelStatus"][0]} -- current</option>
+                                            <option value="SMFS">SMFS</option>
+                                            <option value="MFJQW">MFJQW</option>
+                                            <option value="HOH">HOH</option>
+                                            </select>
+                                        </td>
                                         <td contenteditable ='true' spellcheck="false" id="W4p2019numDep" onkeypress="return onlyNumberKey(event)">${data["W42019ClaimDependents"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="W42021Status">${data["W42021RelStatus"][0]}</td>
+                                        <td><select id="W42021Status" name="W42021Status">
+                                            <option value=${data["W42021RelStatus"][0]}>${data["W42021RelStatus"][0]} -- current</option>
+                                            <option value="SMFS">SMFS</option>
+                                            <option value="MFJQW">MFJQW</option>
+                                            <option value="HOH">HOH</option>
+                                            </select>
+                                        </td>
                                         <td contenteditable ='true' spellcheck="false" id="W42021numDep" onkeypress="return onlyNumberKey(event)">${data["W42021ClaimDependents"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4DLNum">${data["W4MichiganDL"][0]}</td>
                                         <td contenteditable ='true' spellcheck="false" id="MW4HireCheck">${data["W4MichiganNewEmployee"][0]}</td>
@@ -215,60 +291,72 @@ if ($resultCheck > 0) {
         table.innerHTML += row
     }
 
+    // check for valid email
+    function ValidateEmail(inputText) {
+        var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (inputText.value.match(mailformat)) {
+            return true;
+        } else {
+            alert("You have entered an invalid email address!");
+            return false;
+        }
+    }
 
     function saveInfo() {
 
-        var empID = document.getElementById("empId").textContent;
-        var firstName = document.getElementById("fName").textContent;
-        var middleName = document.getElementById("mName").textContent;
-        var lastName = document.getElementById("lName").textContent;
-        var dateOfBirth = document.getElementById("DOB").value;
-        var addr = document.getElementById("address").textContent;
-        var cit = document.getElementById("city").textContent;
-        var sta = document.getElementById("state").textContent;
-        var zp = document.getElementById("zip").textContent;
-        var empEmail = document.getElementById("email").textContent;
-        var phone = document.getElementById("employeePhone").textContent;
-        var empSsn = document.getElementById("ssn").textContent;
-        var bAccNum = document.getElementById("bankAccNum").textContent;
-        var rNum = document.getElementById("routingNum").textContent;
-        var depMet = document.getElementById("depositMethod").textContent;
-        var w42019stat = document.getElementById("W4p2019Status").textContent;
-        var w42019numDep = document.getElementById("W4p2019numDep").textContent;
-        var W42021stat = document.getElementById("W42021Status").textContent;
-        var W42021numDep = document.getElementById("W42021numDep").textContent;
-        var MW4DL = document.getElementById("MW4DLNum").textContent;
-        var MW4HireCheck = document.getElementById("MW4HireCheck").textContent;
-        var MW4HiDate = document.getElementById("MW4HireDate").value;
-        var MW4dep = document.getElementById("MW4dependents").textContent;
+        if (ValidateEmail(document.getElementById("email"))) {
+            var empID = document.getElementById("empId").textContent;
+            var firstName = document.getElementById("fName").textContent;
+            var middleName = document.getElementById("mName").textContent;
+            var lastName = document.getElementById("lName").textContent;
+            var dateOfBirth = document.getElementById("DOB").value;
+            var addr = document.getElementById("address").textContent;
+            var cit = document.getElementById("city").textContent;
+            var sta = document.getElementById("state").value;
+            var zp = document.getElementById("zip").textContent;
+            var empEmail = document.getElementById("email").value;
+            var phone = document.getElementById("employeePhone").textContent;
+            var empSsn = document.getElementById("ssn").textContent;
+            var bAccNum = document.getElementById("bankAccNum").textContent;
+            var rNum = document.getElementById("routingNum").textContent;
+            var depMet = document.getElementById("depositMethod").value;
+            var w42019stat = document.getElementById("W4p2019Status").value;
+            var w42019numDep = document.getElementById("W4p2019numDep").textContent;
+            var W42021stat = document.getElementById("W42021Status").value;
+            var W42021numDep = document.getElementById("W42021numDep").textContent;
+            var MW4DL = document.getElementById("MW4DLNum").textContent;
+            var MW4HireCheck = document.getElementById("MW4HireCheck").textContent;
+            var MW4HiDate = document.getElementById("MW4HireDate").value;
+            var MW4dep = document.getElementById("MW4dependents").textContent;
 
 
-        document.getElementById("inpempId").value = empID;
-        document.getElementById("inpfName").value = firstName;
-        document.getElementById("inpmName").value = middleName;
-        document.getElementById("inplName").value = lastName;
-        document.getElementById("inpDOB").value = dateOfBirth;
-        document.getElementById("inpAdd").value = addr;
-        document.getElementById("inpCit").value = cit;
-        document.getElementById("inpState").value = sta;
-        document.getElementById("inpZip").value = zp;
-        document.getElementById("inpEmail").value = empEmail;
-        document.getElementById("inpPhone").value = phone;
-        document.getElementById("inpSSN").value = empSsn;
-        document.getElementById("inpBankAcc").value = bAccNum;
-        document.getElementById("inpBankRouting").value = rNum;
-        document.getElementById("inpBankDep").value = depMet;
-        document.getElementById("inpW42019Rel").value = w42019stat;
-        document.getElementById("inpW42019Dep").value = w42019numDep;
-        document.getElementById("inpW42021Rel").value = W42021stat;
-        document.getElementById("inpW42021Dep").value = W42021numDep;
-        document.getElementById("inpW4MIDL").value = MW4DL;
-        document.getElementById("inpW4MINewEmp").value = MW4HireCheck;
-        document.getElementById("inpW4MIHireDate").value = MW4HiDate;
-        document.getElementById("inpW4MIDep").value = MW4dep;
+            document.getElementById("inpempId").value = empID;
+            document.getElementById("inpfName").value = firstName;
+            document.getElementById("inpmName").value = middleName;
+            document.getElementById("inplName").value = lastName;
+            document.getElementById("inpDOB").value = dateOfBirth;
+            document.getElementById("inpAdd").value = addr;
+            document.getElementById("inpCit").value = cit;
+            document.getElementById("inpState").value = sta;
+            document.getElementById("inpZip").value = zp;
+            document.getElementById("inpEmail").value = empEmail;
+            document.getElementById("inpPhone").value = phone;
+            document.getElementById("inpSSN").value = empSsn;
+            document.getElementById("inpBankAcc").value = bAccNum;
+            document.getElementById("inpBankRouting").value = rNum;
+            document.getElementById("inpBankDep").value = depMet;
+            document.getElementById("inpW42019Rel").value = w42019stat;
+            document.getElementById("inpW42019Dep").value = w42019numDep;
+            document.getElementById("inpW42021Rel").value = W42021stat;
+            document.getElementById("inpW42021Dep").value = W42021numDep;
+            document.getElementById("inpW4MIDL").value = MW4DL;
+            document.getElementById("inpW4MINewEmp").value = MW4HireCheck;
+            document.getElementById("inpW4MIHireDate").value = MW4HiDate;
+            document.getElementById("inpW4MIDep").value = MW4dep;
 
-        document.getElementById("updateButton").disabled = false;
-        //console.log(document.getElementById("inpfName").value);
+            document.getElementById("updateButton").disabled = false;
+            //console.log(document.getElementById("inpfName").value);
+        }
 
     }
 

@@ -93,7 +93,7 @@ include_once 'header.php';
       <input type="text" name="bankAccNum" placeholder="Enter bank account number..." minlength="9" maxlength="17" onkeypress="return onlyNumberKey(event)">
       <labelSpace>b. Routing #</labelSpace>
       <input type="text" name="routingNum" placeholder="XXXX-XXXX" maxlength="8" onkeypress="return onlyNumberKey(event)"><br>
-      <input type="radio" name="depositMethod" value="directDeposit">
+      <input type="radio" name="depositMethod" value="Direct Deposit">
       <label for="directDep">Direct Deposit</label>
       <input type="radio" name="depositMethod" value="Check">
       <label for="directDep">Check</label>
