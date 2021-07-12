@@ -14,6 +14,7 @@ if (!isset($_SESSION["useruid"])) {
     th {
         color: #fff;
     }
+    /* alternate row color */
     tr:nth-child(even) {background-color: #ebebeb;}
 </style>
 

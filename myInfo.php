@@ -11,51 +11,29 @@ if (!isset($_SESSION["email"])) {
 <style>
     th {
         color: #fff;
+        
     }
+    /* alternate row color */
+    tr:nth-child(even) {background-color: #dbdbdb;}
 </style>
 <section class="signup-form">
     <h1><?php echo $_SESSION["email"] ?></h1>
 </section>
 <br>
 
-<div class="emp-container">
-    <table>
-        <tr>
-            <th data-colname="empID" data-order="desc">ID</th>
-            <th class="bg-info" data-colname="fName" data-order="desc">First Name</th> <!-- Combine First Name + Middle Name + Last Name/!-->
-            <th data-colname="mName" data-order="desc">Middle Name</th>
-            <th data-colname="lName" data-order="desc">Last Name</th>
-            <th data-colname="DOB" data-order="desc">Date of Birth</th>
-            <th data-colname="address" data-order="desc">Address</th>
-            <th data-colname="city" data-order="desc">City</th>
-            <th data-colname="state" data-order="desc">State</th>
-            <th data-colname="zip" data-order="desc">Zip</th>
-            <th data-colname="email" data-order="desc">Email</th>
-            <th data-colname="phone" data-order="desc">Phone</th>
-            <th data-colname="ssn" data-order="desc">SSN</th>
-            <th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th>
-            <th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th>
-            <th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th>
-            <th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th>
-            <th data-colname="W42019ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th>
-            <th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th>
-            <th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th>
-            <th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th>
-            <th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th>
-            <th data-colname="W4MichiganHireDate" data-order="desc">W4-MI Hire Date</th>
-            <th data-colname="W4MichiganDependents" data-order="desc">W4-MI Dependents</th>
-        </tr>
-        <tbody id="myTable">
+<section class="signup-form">
+<table style="margin-left:auto;margin-right:auto;" >
+    <tbody id="myTable">
 
-        </tbody>
-    </table>
-</div>
+    </tbody>
+</table>
+</section>
 
 
-
+<!-- Used to center the table on the screen with the other items -->
 <section class="signup-form">
     <div class="signup-form-form">
-        <button type="submit" name="updateEmployeeInfo" onclick="saveInfo();">
+        <button type="submit" name="saveEmployeeInfo" onclick="saveInfo();">
             <center>Save</center>
         </button>
     </div>
@@ -117,7 +95,6 @@ if (!isset($_SESSION["email"])) {
             echo '<p><span style="color:red;text-align:center;">Someone else is signed up using that SSN!</span></p>';
         } else if ($_GET["error"] == "none") {
             echo '<p><span style="color:green;text-align:center;">Information updated successfully!</span></p>';
-            header("refresh:3;url=login.php");
         }
     }
     ?>
@@ -176,27 +153,33 @@ if ($resultCheck > 0) {
 ?>
 
 <script>
+
     // transfer object from PHP into JS
     var employeeArray = <?php echo json_encode($empArray); ?>;
     var empId = <?php echo json_encode($empID); ?>;
     buildTable(employeeArray); // passing in the object-array as well as a value of 0 to indicate which for loop function to use
-
 
     function buildTable(data) {
         var table = document.getElementById('myTable')
 
         table.innerHTML = ''
 
-        var row = `<tr>
-                                        <td id="empId">${empId}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="fName">${data["fName"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="mName">${data["mName"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="lName">${data["lName"][0]}</td>
-                                        <td><input type="date" id="DOB" value= ${data["DOB"][0]}></td>
-                                        <td contenteditable ='true' spellcheck="false" id="address">${data["address"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="city">${data["city"][0]}</td>
-                                        <td><select id="state" name="state">
-                                            <option value=${data["state"][0]}>${data["state"][0]}</option>
+        var row = `<tr><th data-colname="empID" data-order="desc">ID<td id="empId">${empId}</td></th></tr>
+                    <tr><th class="bg-info" data-colname="fName" data-order="desc">First Name</th><td><input type="text" id="fName" name="fName" placeholder="Enter first name here..." value="${data["fName"][0]}"></td></tr>
+
+                    <tr><th data-colname="mName" data-order="desc">Middle Name</th><td><input type="text"  id="mName" name="mName" placeholder="Enter middle name here..." value="${data["mName"][0]}"></td></tr>
+
+                    <tr><th data-colname="lName" data-order="desc">Last Name</th><td><input type="text" id="lName" name="lName" placeholder="Enter last name here..." value="${data["lName"][0]}"></td></tr>
+
+                    <tr><th data-colname="DOB" data-order="desc">Date of Birth</th><td><input type="date" id="DOB" value= ${data["DOB"][0]}></td></tr>
+
+                    <tr><th data-colname="address" data-order="desc">Address</th><td><input type="text" id="address" name="address" placeholder="Enter address here..." value="${data["address"][0]}"></td></tr>
+
+                    <tr><th data-colname="city" data-order="desc">City</th><td><input type="text" id="city" name="city" placeholder="Enter city here..." value="${data["city"][0]}"></td></tr>
+
+
+                                        <tr><th data-colname="state" data-order="desc">State</th><td><select id="state" name="state">
+                                            <option value="${data["state"][0]}">${data["state"][0]} -- Selected</option>
                                             <option value="Alabama">Alabama</option>
                                             <option value="Alaska">Alaska</option>
                                             <option value="Arizona">Arizona</option>
@@ -253,40 +236,57 @@ if ($resultCheck > 0) {
                                             <option value="Wisconsin">Wisconsin</option>
                                             <option value="Wyoming">Wyoming</option>
                                             </select>
-                                        </td>
-                                        <td contenteditable ='true' spellcheck="false" id="zip" onkeypress="return onlyNumberKey(event)">${data["zip"][0]}</td></div>
+                                        </td></tr>
+
+                                        <tr><th data-colname="zip" data-order="desc">Zip</th><td><input type="text" id="zip" name="zip" placeholder="XXXXX" maxlength="5" onkeypress="return onlyNumberKey(event)" value=${data["zip"][0]}></td></tr>
                                         
-                                        <td><input type="email" id="email" name="email" value=${data["email"][0]}></td>
-                                        <td contenteditable ='true' spellcheck="false" id="employeePhone" onkeypress="return onlyNumberKey(event)">${data["phone"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="ssn" onkeypress="return onlyNumberKey(event)">${data["ssn"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="bankAccNum" onkeypress="return onlyNumberKey(event)">${data["bankAccountNumber"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="routingNum" onkeypress="return onlyNumberKey(event)">${data["bankRoutingNumber"][0]}</td>
-                                        <td><select id="depositMethod" name="depositMethod">
-                                            <option value=${data["bankDirectDeposit"][0]}>${data["bankDirectDeposit"][0]} -- current</option>
+                                        <tr><th data-colname="email" data-order="desc">Email</th><td><input type="email" id="email" name="email" value=${data["email"][0]}></td></tr>
+
+                                        <tr><th data-colname="phone" data-order="desc">Phone</th><td><input type="text" id="employeePhone" name="employeePhone" placeholder="(XXX)-XXX-XXXX" maxlength="10" onkeypress="return onlyNumberKey(event)" value=${data["phone"][0]}></td></tr>
+
+                                        <tr><th data-colname="ssn" data-order="desc">SSN</th><td><input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" maxlength="9" onkeypress="return onlyNumberKey(event)" value=${data["ssn"][0]}></td></tr>
+
+                                        <tr><th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th><td><input type="text" id="bankAccNum" name="bankAccNum" placeholder="Enter bank account number..." maxlength="17" onkeypress="return onlyNumberKey(event)" value=${data["bankAccountNumber"][0]}></td></tr>
+
+                                        <tr><th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th><td><input type="text" id="routingNum" name="routingNum" placeholder="Enter bank routing number..." maxlength="8" onkeypress="return onlyNumberKey(event)" value=${data["bankRoutingNumber"][0]}></td></tr>
+
+                                        <tr><th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th><td><select id="depositMethod" name="depositMethod">
+                                            <option value=${data["bankDirectDeposit"][0]}>${data["bankDirectDeposit"][0]} -- Selected</option>
                                             <option value="Direct Deposit">Direct Deposit</option>
                                             <option value="Check">Check</option>
                                             </select>
-                                        </td>
-                                        <td><select id="W4p2019Status" name="W4p2019Status">
-                                            <option value=${data["W42019RelStatus"][0]}>${data["W42019RelStatus"][0]} -- current</option>
+                                        </td></tr>
+
+                                        <tr><th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th><td><select id="W4p2019Status" name="W4p2019Status">
+                                            <option value=${data["W42019RelStatus"][0]}>${data["W42019RelStatus"][0]} -- Selected</option>
                                             <option value="SMFS">SMFS</option>
                                             <option value="MFJQW">MFJQW</option>
                                             <option value="HOH">HOH</option>
                                             </select>
-                                        </td>
-                                        <td contenteditable ='true' spellcheck="false" id="W4p2019numDep" onkeypress="return onlyNumberKey(event)">${data["W42019ClaimDependents"][0]}</td>
-                                        <td><select id="W42021Status" name="W42021Status">
-                                            <option value=${data["W42021RelStatus"][0]}>${data["W42021RelStatus"][0]} -- current</option>
+                                        </td></tr>
+                                        
+                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th><td><input type="text" id="W4p2019numDep" name="W4p2019numDep" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)" value=${data["W42019ClaimDependents"][0]}></td></tr>
+                                        <tr><th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th><td><select id="W42021Status" name="W42021Status">
+                                            <option value=${data["W42021RelStatus"][0]}>${data["W42021RelStatus"][0]} -- Selected</option>
                                             <option value="SMFS">SMFS</option>
                                             <option value="MFJQW">MFJQW</option>
                                             <option value="HOH">HOH</option>
                                             </select>
-                                        </td>
-                                        <td contenteditable ='true' spellcheck="false" id="W42021numDep" onkeypress="return onlyNumberKey(event)">${data["W42021ClaimDependents"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="MW4DLNum">${data["W4MichiganDL"][0]}</td>
-                                        <td contenteditable ='true' spellcheck="false" id="MW4HireCheck">${data["W4MichiganNewEmployee"][0]}</td>
-                                        <td><input type="date" id="MW4HireDate" value=${data["W4MichiganHireDate"][0]}></td>
-                                        <td contenteditable ='true' spellcheck="false" id="MW4dependents" onkeypress="return onlyNumberKey(event)">${data["W4MichiganDependents"][0]}</td>
+                                        </td></tr>
+
+                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th><td><input type="text" id="W42021numDep" name="W42021numDep" placeholder="$XXXXX" onkeypress="return onlyNumberKey(event)" value=${data["W42021ClaimDependents"][0]}></td></tr>
+
+                                        <tr><th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th><td><input type="text" id="MW4DLNum" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" maxlength="13" value=${data["W4MichiganDL"][0]}></td></tr>
+
+                                        <tr><th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th><td><select id="MW4HireCheck" name="MW4HireCheck">
+                                            <option value=${data["W4MichiganNewEmployee"][0]}>${data["W4MichiganNewEmployee"][0]} -- Selected</option>
+                                            <option value="Yes.">Yes.</option>
+                                            <option value="No.">No.</option>
+                                        </td></tr>
+
+                                        <tr><th data-colname="W4MichiganHireDate" data-order="desc">W4-MI Hire Date</th><td><input type="date" id="MW4HireDate" value=${data["W4MichiganHireDate"][0]}></td></tr>
+
+                                        <tr><th data-colname="W4MichiganDependents" data-order="desc">W4-MI Dependents</th><td><input type="text" id="MW4dependents" name="MW4dependents" placeholder="Enter number of dependents..." maxlength="5" onkeypress="return onlyNumberKey(event)" value=${data["W4MichiganDependents"][0]}></td></tr>
                                     </tr>`
         table.innerHTML += row
     }
@@ -294,41 +294,107 @@ if ($resultCheck > 0) {
     // check for valid email
     function ValidateEmail(inputText) {
         var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (inputText.value.match(mailformat)) {
+        if (inputText.match(mailformat)) {
             return true;
         } else {
-            alert("You have entered an invalid email address!");
+            alert("Error: You have entered an invalid email address!");
             return false;
         }
     }
 
+    // check phone char. length
+    function checkPhoneCharLength(phoneValue) {
+        if (phoneValue.length == 10) {
+            return true;
+        } else {
+            alert("Error: Your phone number must be at least 10 digits long!");
+            return false;
+        }
+    }
+
+    // check ssn char. length
+    function checkSSNCharLength(ssnValue) {
+        if (ssnValue.length == 9) {
+            return true;
+        } else {
+            alert("Error: Your SSN must be at least 9 digits long!");
+            return false;
+        }
+    }
+
+    // check bank acc. char. length
+    function checkBankAccCharLength(bankValue) {
+        if (bankValue.length >= 9) {
+            return true;
+        } else {
+            alert("Error: Your Bank Account Number must be at least 9 digits long!");
+            return false;
+        }
+    }
+
+    // check bank routing char. length
+    function checkBankRoutingCharLength(routingValue) {
+        if (routingValue.length == 8) {
+            return true;
+        } else {
+            alert("Error: Your Bank Routing Number must be at least 8 digits long!");
+            return false;
+        }
+    }
+
+    // check Dl char. length
+    function checkDLCharLength(DLValue) {
+        if (DLValue.length == 13) {
+            return true;
+        } else {
+            alert("Error: Your Driver's License must be 13 digits long!");
+            return false;
+        }
+    }
+
+    // force date if hire check is yes
+    function hireCheckDateReq(hireCheck, dateCheck) {
+        if (hireCheck == "Yes." && dateCheck == "") {
+            alert("Error: You need to put a hire date!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
     function saveInfo() {
+        var empID = document.getElementById("empId").textContent;
+        var firstName = document.getElementById("fName").value;
+        var middleName = document.getElementById("mName").value;
+        var lastName = document.getElementById("lName").value;
+        var dateOfBirth = document.getElementById("DOB").value;
+        var addr = document.getElementById("address").value;
+        var cit = document.getElementById("city").value;
+        var sta = document.getElementById("state").value;
+        var zp = document.getElementById("zip").value;
+        var empEmail = document.getElementById("email").value;
+        var phone = document.getElementById("employeePhone").value;
+        var empSsn = document.getElementById("ssn").value;
+        var bAccNum = document.getElementById("bankAccNum").value;
+        var rNum = document.getElementById("routingNum").value;
+        var depMet = document.getElementById("depositMethod").value;
+        var w42019stat = document.getElementById("W4p2019Status").value;
+        var w42019numDep = document.getElementById("W4p2019numDep").value;
+        var W42021stat = document.getElementById("W42021Status").value;
+        var W42021numDep = document.getElementById("W42021numDep").value;
+        var MW4DL = document.getElementById("MW4DLNum").value;
+        var MW4HireCheck = document.getElementById("MW4HireCheck").value;
+        var MW4HiDate = document.getElementById("MW4HireDate").value;
+        var MW4dep = document.getElementById("MW4dependents").value;
 
-        if (ValidateEmail(document.getElementById("email"))) {
-            var empID = document.getElementById("empId").textContent;
-            var firstName = document.getElementById("fName").textContent;
-            var middleName = document.getElementById("mName").textContent;
-            var lastName = document.getElementById("lName").textContent;
-            var dateOfBirth = document.getElementById("DOB").value;
-            var addr = document.getElementById("address").textContent;
-            var cit = document.getElementById("city").textContent;
-            var sta = document.getElementById("state").value;
-            var zp = document.getElementById("zip").textContent;
-            var empEmail = document.getElementById("email").value;
-            var phone = document.getElementById("employeePhone").textContent;
-            var empSsn = document.getElementById("ssn").textContent;
-            var bAccNum = document.getElementById("bankAccNum").textContent;
-            var rNum = document.getElementById("routingNum").textContent;
-            var depMet = document.getElementById("depositMethod").value;
-            var w42019stat = document.getElementById("W4p2019Status").value;
-            var w42019numDep = document.getElementById("W4p2019numDep").textContent;
-            var W42021stat = document.getElementById("W42021Status").value;
-            var W42021numDep = document.getElementById("W42021numDep").textContent;
-            var MW4DL = document.getElementById("MW4DLNum").textContent;
-            var MW4HireCheck = document.getElementById("MW4HireCheck").textContent;
-            var MW4HiDate = document.getElementById("MW4HireDate").value;
-            var MW4dep = document.getElementById("MW4dependents").textContent;
+        console.log(MW4HireCheck);
 
+        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkDLCharLength(MW4DL) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
+            // make the hire date invalid if the person wasn't a new hire
+            if (MW4HireCheck == "No.") {
+                MW4HiDate = "";
+            }
 
             document.getElementById("inpempId").value = empID;
             document.getElementById("inpfName").value = firstName;
