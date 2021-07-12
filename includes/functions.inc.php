@@ -17,24 +17,40 @@ function emptyInputSignup($username, $pwd, $pwdRepeat, $authent)
 }
 
 // Check for empty input for employee signup
-function emptyInputEmpSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement)
+function emptyInputEmpSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement)
 {
-	$result;
-	if ($MW4HireCheck === "Yes.") {
-		if (empty($fName) || empty($lName) || empty($dob) || empty($addr) || empty($city) || empty($state) || empty($zip) || empty($phone) || empty($email) || empty($SSN) || empty($bankAccNum) || empty($bankRoutingNum) || empty($bankDepMethod) || empty($W4p2019Status) || empty($W4p2019DepNum) || empty($W42021Status) || empty($MW4DriverLicNum) || empty($MW4HireCheck) || empty($MW4HireDate) || empty($MW4DepNum) || empty($checkAgreement)) {
-			$result = true;
-		} else {
-			$result = false;
+	$inputArray = array(
+		1 => $fName,
+		2 => $lName,
+		3 => $dob,
+		4 => $addr,
+		5 => $city,
+		6 => $state,
+		7 => $zip,
+		8 => $phone,
+		9 => $email,
+		10 => $SSN,
+		11 => $bankAccNum,
+		12 => $bankRoutingNum,
+		13 => $bankDepMethod,
+		14 => $W4p2019Status,
+		15 => $W4p2019DepNum,
+		16 => $W42021Status,
+		17 => $W42021DepNum,
+		18 => $MW4DriverLicNum,
+		19 => $MW4HireCheck,
+		20 => $MW4HireDate,
+		21 => $MW4HireDate,
+		22 => $MW4DepNum,
+		23 => $checkAgreement,
+	);
+
+	foreach($inputArray as &$value){
+		if(empty($value)){
+			return $value;
+			break;
 		}
 	}
-	else{
-		if (empty($fName) || empty($lName) || empty($dob) || empty($addr) || empty($city) || empty($state) || empty($zip) || empty($phone) || empty($email) || empty($SSN) || empty($bankAccNum) || empty($bankRoutingNum) || empty($bankDepMethod) || empty($W4p2019Status) || empty($W4p2019DepNum) || empty($W42021Status) || empty($MW4DriverLicNum) || empty($MW4HireCheck) || empty($MW4DepNum) || empty($checkAgreement)) {
-			$result = true;
-		} else {
-			$result = false;
-		}
-	}
-	return $result;
 }
 
 // Check invalid username
@@ -297,3 +313,5 @@ function loginEmployee($conn, $empEmail, $ssn)
 		exit();
 	}
 }
+
+

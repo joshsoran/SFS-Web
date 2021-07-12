@@ -92,7 +92,7 @@ include_once 'header.php';
       <labelSpace>a. Bank Account #</labelSpace>
       <input type="text" name="bankAccNum" placeholder="Enter bank account number..." minlength="9" maxlength="17" onkeypress="return onlyNumberKey(event)">
       <labelSpace>b. Routing #</labelSpace>
-      <input type="text" name="routingNum" placeholder="XXXX-XXXX" maxlength="8" onkeypress="return onlyNumberKey(event)"><br>
+      <input type="text" name="routingNum" placeholder="XXXX-XXXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)"><br>
       <input type="radio" name="depositMethod" value="Direct Deposit">
       <label for="directDep">Direct Deposit</label>
       <input type="radio" name="depositMethod" value="Check">
@@ -131,7 +131,7 @@ include_once 'header.php';
 
       <h2>5. Michigan W4</h2>
       <labelSpace>a. Driver's License Number</labelSpace>
-      <input type="text" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" maxlength="13" spellcheck="false">
+      <input type="text" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" minlength="13" maxlength="13" spellcheck="false">
       <labelSpace>b. Are you a new employee?</labelSpace>
       <label for="chkYes">
         <input type="radio" id="chkYes" name="MW4HireCheck" onclick="ShowHideDiv()" value="Yes." />Yes.</label><br>
@@ -167,6 +167,8 @@ include_once 'header.php';
       echo '<p><span style="color:red;text-align:center;">Username or email already taken!</span></p>';
     } else if ($_GET["error"] == "SSNtaken") {
       echo '<p><span style="color:red;text-align:center;">Someone else is signed up using that SSN!</span></p>';
+    } else if ($_GET["error"] == "invalidDLstartChar") {
+      echo "<p><span style='color:red;text-align:center;'>Driver's license must begin with an 'S'!</span></p>";
     } else if ($_GET["error"] == "none") {
       echo '<p><span style="color:green;text-align:center;">You have signed up!</span></p>';
       header("refresh:3;url=login.php");

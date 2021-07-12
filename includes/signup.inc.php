@@ -93,19 +93,33 @@ else if (isset($_POST["sendInfo"])){
   require_once "dbh.inc.php";
   require_once 'functions.inc.php';
 
+
+  if($MW4HireCheck === "Yes."){
+    if($MW4HireDate === ""){
+      header("location: ../employeeSignup.php?error=invalidDLstartChar");
+      exit();
+    }
+  }
   // Left inputs empty
   // We set the functions "!== false" since "=== true" has a risk of giving us the wrong outcome
-  if (emptyInputEmpSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement) !== false) {
+  $empInpRes = emptyInputEmpSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement);
+  if ($empInpRes === "") {
     header("location: ../employeeSignup.php?error=emptyinput");
-		exit();
-  }
-	
-  // Is the SSN taken already
-  if (ssnExists($conn, $SSN) !== false) {
-    header("location: ../employeeSignup.php?error=SSNtaken");
-		exit();
+    exit();
   }
 
+  // Is the SSN taken already
+  if (ssnExists($conn, $SSN) !== false
+  ) {
+    header("location: ../employeeSignup.php?error=SSNtaken");
+    exit();
+  }
+
+  // check to make sure driver's license starts with an "s"
+  if(strtoupper($MW4DriverLicNum[0]) !== 'S'){
+    header("location: ../employeeSignup.php?error=invalidDLstartChar");
+		exit();
+  }
 
   // If we get to here, it means there are no user errors
 

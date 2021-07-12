@@ -240,15 +240,15 @@ if ($resultCheck > 0) {
 
                                         <tr><th data-colname="zip" data-order="desc">Zip</th><td><input type="text" id="zip" name="zip" placeholder="XXXXX" maxlength="5" onkeypress="return onlyNumberKey(event)" value=${data["zip"][0]}></td></tr>
                                         
-                                        <tr><th data-colname="email" data-order="desc">Email</th><td><input type="email" id="email" name="email" value=${data["email"][0]}></td></tr>
-
                                         <tr><th data-colname="phone" data-order="desc">Phone</th><td><input type="text" id="employeePhone" name="employeePhone" placeholder="(XXX)-XXX-XXXX" maxlength="10" onkeypress="return onlyNumberKey(event)" value=${data["phone"][0]}></td></tr>
+
+                                        <tr><th data-colname="email" data-order="desc">Email</th><td><input type="email" id="email" name="email" placeholder="example@company.com" value=${data["email"][0]}></td></tr>
 
                                         <tr><th data-colname="ssn" data-order="desc">SSN</th><td><input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" maxlength="9" onkeypress="return onlyNumberKey(event)" value=${data["ssn"][0]}></td></tr>
 
                                         <tr><th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th><td><input type="text" id="bankAccNum" name="bankAccNum" placeholder="Enter bank account number..." maxlength="17" onkeypress="return onlyNumberKey(event)" value=${data["bankAccountNumber"][0]}></td></tr>
 
-                                        <tr><th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th><td><input type="text" id="routingNum" name="routingNum" placeholder="Enter bank routing number..." maxlength="8" onkeypress="return onlyNumberKey(event)" value=${data["bankRoutingNumber"][0]}></td></tr>
+                                        <tr><th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th><td><input type="text" id="routingNum" name="routingNum" placeholder="XXXX-XXXXX" maxlength="9" onkeypress="return onlyNumberKey(event)" value=${data["bankRoutingNumber"][0]}></td></tr>
 
                                         <tr><th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th><td><select id="depositMethod" name="depositMethod">
                                             <option value=${data["bankDirectDeposit"][0]}>${data["bankDirectDeposit"][0]} -- Selected</option>
@@ -274,7 +274,7 @@ if ($resultCheck > 0) {
                                             </select>
                                         </td></tr>
 
-                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th><td><input type="text" id="W42021numDep" name="W42021numDep" placeholder="$XXXXX" onkeypress="return onlyNumberKey(event)" value=${data["W42021ClaimDependents"][0]}></td></tr>
+                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th><td><div class="dollar"><input type="text" id="W42021numDep" name="W42021numDep" placeholder="$XXXXX" onkeypress="return onlyNumberKey(event)" value=${data["W42021ClaimDependents"][0]}></td></div></tr>
 
                                         <tr><th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th><td><input type="text" id="MW4DLNum" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" maxlength="13" value=${data["W4MichiganDL"][0]}></td></tr>
 
@@ -352,6 +352,18 @@ if ($resultCheck > 0) {
         }
     }
 
+    // check DL opening character to be 'S'
+    function checkDLfirstChar(DLValue){
+        if(DLValue[0].toUpperCase() != "S"){
+            alert("Error: Your Driver's License must start with an 'S'");
+            return false;
+        }
+        else{
+            console.log(DLValue[0]);
+            return true;
+        } 
+    }
+
     // force date if hire check is yes
     function hireCheckDateReq(hireCheck, dateCheck) {
         if (hireCheck == "Yes." && dateCheck == "") {
@@ -388,9 +400,9 @@ if ($resultCheck > 0) {
         var MW4HiDate = document.getElementById("MW4HireDate").value;
         var MW4dep = document.getElementById("MW4dependents").value;
 
-        console.log(MW4HireCheck);
+        //console.log(MW4DL[0]);
 
-        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkDLCharLength(MW4DL) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
+        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkDLCharLength(MW4DL) && checkDLfirstChar(MW4DL) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
             // make the hire date invalid if the person wasn't a new hire
             if (MW4HireCheck == "No.") {
                 MW4HiDate = "";
