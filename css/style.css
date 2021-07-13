@@ -368,11 +368,19 @@ label {
 /* If you're looking to changing the table alternatio color, go inside viewEmployees.php,
 there's a JS script that does it */
 table{
-  box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, .35);
+  box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.35);
   padding-top: 20px;
+  border-radius: 10px;
   border-collapse:collapse;
 }
 
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 30px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 30px;
+}
 
 
 td{
@@ -391,7 +399,6 @@ th{
   background-color: #2c83ca;
   font-family: 'Roboto', sans-serif;
   border: none;
-
 }
 
 td[contenteditable="true"]{
@@ -412,8 +419,41 @@ td[contenteditable="true"]:focus{
   transition: all 0.3s ease 0s;
 }
 
+/*Tool Tips*/
+.tooltip {
+  position:relative; /* making the .tooltip span a container for the tooltip text */
+  border-bottom:2px dashed rgb(0, 0, 0); /* little indicater to indicate it's hoverable */
+}
 
+.tooltip:before {
+  content: attr(data-text); /* here's the magic */
+  position:absolute;
+  
+  /* vertically center */
+  top:50%;
+  transform:translateY(-50%);
+  
+  /* move to Left */
+  right:100%;
+  margin-right:20px; /* and add a small left margin */
+  
+  /* basic styles */
+  width:200px;
+  padding:10px;
+  border-radius:10px;
+  background:#2c83ca;
+  color: #fff;
+  text-align:center;
+  font-weight: lighter;
+  white-space:pre-wrap;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
 
+  display:none; /* hide by default */
+}
+
+.tooltip:hover:before {
+  display:block;
+}
 
 
 

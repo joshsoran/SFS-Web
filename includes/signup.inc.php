@@ -99,8 +99,10 @@ else if (isset($_POST["sendInfo"])) {
       exit();
     }
   }
-  
+
+  // Make sure the user agreed to this information
   if($checkAgreement == ""){
+    // Using $_GET (on employeeSignup.php) to grab info from the URL, so the user doesn't have to retype in everything.
     header("location: ../employeeSignup.php?error=emptyinput&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
     "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email."&ssn=".$SSN.
     "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
@@ -122,13 +124,21 @@ else if (isset($_POST["sendInfo"])) {
 
   // Is the SSN taken already
   if (ssnExists($conn, $SSN) !== false) {
-    header("location: ../employeeSignup.php?error=SSNtaken");
+    //header("location: ../employeeSignup.php?error=SSNtaken");
+    header("location: ../employeeSignup.php?error=SSNtaken&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+    "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email.
+    "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+    "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
     exit();
   }
 
   // check to make sure driver's license starts with an "s"
   if (strtoupper($MW4DriverLicNum[0]) !== 'S') {
-    header("location: ../employeeSignup.php?error=invalidDLstartChar");
+    //header("location: ../employeeSignup.php?error=invalidDLstartChar");
+    header("location: ../employeeSignup.php?error=invalidDLstartChar&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+    "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email."&ssn=".$SSN.
+    "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+    "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
     exit();
   }
 

@@ -6,7 +6,7 @@
   <h1>Employee Log In</h1>
   <div class="signup-form-form">
     <form action="includes/login.inc.php" method="post">
-      <center><input type="text" name="empEmail" placeholder="Enter Email..."><br>
+      <center><input type="text" name="empEmail" placeholder="Enter Email..."><br><br>
       <input type="password" name="empSSN" placeholder="Enter SSN as password..."></center>
       <button type="submit" name="employeeLoginSubmit">Log in</button>
     </form>

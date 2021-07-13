@@ -11,10 +11,13 @@ if (!isset($_SESSION["email"])) {
 <style>
     th {
         color: #fff;
-        
+
     }
+
     /* alternate row color */
-    tr:nth-child(even) {background-color: #dbdbdb;}
+    tr:nth-child(even) {
+        background-color: #dbdbdb;
+    }
 </style>
 <section class="signup-form">
     <h1><?php echo $_SESSION["email"] ?></h1>
@@ -22,11 +25,11 @@ if (!isset($_SESSION["email"])) {
 <br>
 
 <section class="signup-form">
-<table style="margin-left:auto;margin-right:auto;" >
-    <tbody id="myTable">
+    <table style="margin-left:auto;margin-right:auto;">
+        <tbody id="myTable">
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </section>
 
 
@@ -153,7 +156,6 @@ if ($resultCheck > 0) {
 ?>
 
 <script>
-
     // transfer object from PHP into JS
     var employeeArray = <?php echo json_encode($empArray); ?>;
     var empId = <?php echo json_encode($empID); ?>;
@@ -257,16 +259,18 @@ if ($resultCheck > 0) {
                                             </select>
                                         </td></tr>
 
-                                        <tr><th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th><td><select id="W4p2019Status" name="W4p2019Status">
+                                        <tr><th data-colname="W42019RelStatus" data-order="desc"><span data-text="[SMFS] = Single or Married Filing Separately; --- [MFJQW] = Married filing jointly or Qualifying widow(er); ------- [HOH] = Head of House (Check only if you’re unmarried and pay more than half the costs of keeping up a home for yourself and a qualifying individual)." class="tooltip">W4-2019 Relationship Status</span></th><td><select id="W4p2019Status" name="W4p2019Status">
                                             <option value=${data["W42019RelStatus"][0]}>${data["W42019RelStatus"][0]} -- Selected</option>
                                             <option value="SMFS">SMFS</option>
                                             <option value="MFJQW">MFJQW</option>
                                             <option value="HOH">HOH</option>
                                             </select>
                                         </td></tr>
+
+                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc"><span data-text="Enter '0' if none." class="tooltip">W4-2019 Dependents Claim</span></th><td><input type="text" id="W4p2019numDep" name="W4p2019numDep" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)" value=${data["W42019ClaimDependents"][0]}></td></tr>
                                         
-                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th><td><input type="text" id="W4p2019numDep" name="W4p2019numDep" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)" value=${data["W42019ClaimDependents"][0]}></td></tr>
-                                        <tr><th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th><td><select id="W42021Status" name="W42021Status">
+                                        
+                                        <tr><th data-colname="W42021RelStatus" data-order="desc"><span data-text="[SMFS] = Single or Married Filing Separately; --- [MFJQW] = Married filing jointly or Qualifying widow(er); ------- [HOH] = Head of House (Check only if you’re unmarried and pay more than half the costs of keeping up a home for yourself and a qualifying individual)." class="tooltip">W4-2021 Relationship Status</span></th><td><select id="W42021Status" name="W42021Status">
                                             <option value=${data["W42021RelStatus"][0]}>${data["W42021RelStatus"][0]} -- Selected</option>
                                             <option value="SMFS">SMFS</option>
                                             <option value="MFJQW">MFJQW</option>
@@ -274,7 +278,7 @@ if ($resultCheck > 0) {
                                             </select>
                                         </td></tr>
 
-                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th><td><div class="dollar"><input type="text" id="W42021numDep" name="W42021numDep" placeholder="$XXXXX" onkeypress="return onlyNumberKey(event)" value=${data["W42021ClaimDependents"][0]}></td></div></tr>
+                                        <tr><th data-colname="W42021ClaimDependents" data-order="desc"><span data-text="Multiply the number of qualifying children under age 18 by $3,000. Multiply the number of other dependents by $500. Enter '0' if none." class="tooltip">W4-2021 Dependents Claim</span></th><td><div class="dollar"><input type="text" id="W42021numDep" name="W42021numDep" placeholder="$XXXXX" onkeypress="return onlyNumberKey(event)" value=${data["W42021ClaimDependents"][0]}></td></div></tr>
 
                                         <tr><th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th><td><input type="text" id="MW4DLNum" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" maxlength="13" value=${data["W4MichiganDL"][0]}></td></tr>
 
@@ -286,7 +290,7 @@ if ($resultCheck > 0) {
 
                                         <tr><th data-colname="W4MichiganHireDate" data-order="desc">W4-MI Hire Date</th><td><input type="date" id="MW4HireDate" value=${data["W4MichiganHireDate"][0]}></td></tr>
 
-                                        <tr><th data-colname="W4MichiganDependents" data-order="desc">W4-MI Dependents</th><td><input type="text" id="MW4dependents" name="MW4dependents" placeholder="Enter number of dependents..." maxlength="5" onkeypress="return onlyNumberKey(event)" value=${data["W4MichiganDependents"][0]}></td></tr>
+                                        <tr><th data-colname="W4MichiganDependents" data-order="desc"><span data-text="Enter '0' if none." class="tooltip">W4-MI Dependents</span></th><td><input type="text" id="MW4dependents" name="MW4dependents" placeholder="Enter number of dependents..." maxlength="5" onkeypress="return onlyNumberKey(event)" value=${data["W4MichiganDependents"][0]}></td></tr>
                                     </tr>`
         table.innerHTML += row
     }
@@ -353,15 +357,14 @@ if ($resultCheck > 0) {
     }
 
     // check DL opening character to be 'S'
-    function checkDLfirstChar(DLValue){
-        if(DLValue[0].toUpperCase() != "S"){
+    function checkDLfirstChar(DLValue) {
+        if (DLValue[0].toUpperCase() != "S") {
             alert("Error: Your Driver's License must start with an 'S'");
             return false;
-        }
-        else{
+        } else {
             console.log(DLValue[0]);
             return true;
-        } 
+        }
     }
 
     // force date if hire check is yes
