@@ -1,4 +1,7 @@
 <?php
+// Key for encrypting/decrypting
+$key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
+
 // This is for the Admin Sign up page
 if (isset($_POST["submit"])) {
 
@@ -145,7 +148,7 @@ else if (isset($_POST["sendInfo"])) {
   // If we get to here, it means there are no user errors
 
   // Now we insert the user into the database
-  createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
+  createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $key);
 
 } else if (isset($_POST["updateEmployeeInfo"])) {
   // Employee ID
@@ -199,7 +202,7 @@ else if (isset($_POST["sendInfo"])) {
   //modifyEmployee($conn, $empID, "Joshs", $middleName, $lastName, $dateOfBirth, $addr, $cit, $sta, $zp, $empEmail, $empSsn, $bAccNum, $rNum, $depMet, $w42019stat, $w42019numDep, $W42021stat, $W42021numDep, $MW4DL, $MW4HiCheck, $MW4dep, $empPhone, $MW4HiDate);
   //modifyEmployee($conn, "6", $fName, "C");
 
-  modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
+  modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $key);
 } else {
   header("location: ../employeeSignup.php");
   exit();

@@ -1,7 +1,4 @@
 <?php
-// Check for empty input for employee signup
-
-// Check for SSN inside of database, no duplicate SSN's should exist.
 
 
 // Check for empty input for admin signup
@@ -115,29 +112,9 @@ function uidExists($conn, $username)
 	mysqli_stmt_close($stmt);
 }
 
-// Insert new user into database
-function createUser($conn, $username, $pwd)
-{
-	$sql = "INSERT INTO adminUsers (usersUid, pwd) VALUES (?, ?);";
-
-	$stmt = mysqli_stmt_init($conn);
-	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: ../adminSignup.php?error=stmtfailed");
-		exit();
-	}
-
-	$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-
-	mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPwd);
-	mysqli_stmt_execute($stmt);
-	mysqli_stmt_close($stmt);
-	mysqli_close($conn);
-	header("location: ../adminSignup.php?error=none");
-	exit();
-}
 
 // Insert new employee into database
-function createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate)
+function createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $key)
 {
 	$sql = "INSERT INTO empInfo (firstName, middleName, lastName, DOB, address, city, state, zip, email, ssn, bankAccountNumber, bankRoutingNumber, bankDirectDeposit, W42019RelStatus, W42019ClaimDependents, W42021RelStatus, W42021ClaimDependents, W4MichiganDL, W4MichiganNewEmployee, W4MichiganDependents, phone, W4MichiganHireDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -146,8 +123,12 @@ function createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $stat
 		header("location: ../employeeSignup.php?error=stmtfailed");
 		exit();
 	}
+	// encrypt sensitive info
+	$encryptSSN = encryptthis($SSN, $key);
+	$encryptbankAccNum = encryptthis($bankAccNum, $key);
+	$encryptMW4DriverLicNum = encryptthis($MW4DriverLicNum, $key);
 
-	mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssss", $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
+	mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssss", $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $encryptSSN, $encryptbankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $encryptMW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	mysqli_close($conn);
@@ -157,13 +138,18 @@ function createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $stat
 
 // Modify Existing employees info
 //function modifyEmployee($conn, $empId, $fName, $mName)
-function modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate)
+function modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $key)
 {
 	$sql = "UPDATE empInfo SET firstName = ?, middleName = ?, lastName = ? , DOB = ?, address = ?, city = ?, state = ?, zip = ?, email = ?, ssn = ?, bankAccountNumber = ?, bankRoutingNumber = ?, bankDirectDeposit = ?, W42019RelStatus = ?, W42019ClaimDependents = ?, W42021RelStatus = ?, W42021ClaimDependents =?, W4MichiganDL = ?, W4MichiganNewEmployee=?, W4MichiganDependents = ?, phone = ?, W4MichiganHireDate = ? WHERE empId = ?";
 	//$sql = "UPDATE empInfo SET firstName = ?, middleName = ? WHERE empId = ?";
 	
 	
 	//, DOB, address, city, state, zip, email, ssn, bankAccountNumber, bankRoutingNumber, bankDirectDeposit, W42019RelStatus, W42019ClaimDependents, W42021RelStatus, W42021ClaimDependents, W4MichiganDL, W4MichiganNewEmployee, W4MichiganDependents, phone, W4MichiganHireDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+	// encrypt sensitive info
+	$encryptSSN = encryptthis($SSN, $key);
+	$encryptbankAccNum = encryptthis($bankAccNum, $key);
+	$encryptMW4DriverLicNum = encryptthis($MW4DriverLicNum, $key);
 
 	$stmt = mysqli_stmt_init($conn);
 	if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -172,15 +158,24 @@ function modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $cit
 	}
 
 	//mysqli_stmt_bind_param($stmt, "ssi", $fName, $mName, $empId);
-	mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssi", $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $empId);
+	mysqli_stmt_bind_param($stmt, "ssssssssssssssssssssssi", $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $encryptSSN, $encryptbankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $encryptMW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $empId);
 	mysqli_stmt_execute($stmt);
 	mysqli_stmt_close($stmt);
 	mysqli_close($conn);
 	header("location: ../myInfo.php?error=none");
 
+	// Decrypt the information after pushing it to the database so as to display properly
+	$SSNdecrypt = decryptthis($encryptSSN, $key);
+	$bankAccDecrypt = decryptthis($encryptbankAccNum, $key);
+	$DLdecrypt = decryptthis($encryptMW4DriverLicNum, $key);
+	
+	
 	session_start();
 	$_SESSION["empId"] = $email;
 	$_SESSION["email"] = $email;
+	$_SESSION["ssn"] = $SSNdecrypt;
+	$_SESSION["bankAccountNumber"] = $bankAccDecrypt;
+	$_SESSION["W4MichiganDL"] = $DLdecrypt;
 	exit();
 }
 
@@ -193,6 +188,7 @@ function ssnExists($conn, $SSN)
 		header("location: ../employeeSignup.php?error=stmtfailed");
 		exit();
 	}
+
 
 	mysqli_stmt_bind_param($stmt, "s", $SSN);
 	mysqli_stmt_execute($stmt);
@@ -214,7 +210,7 @@ function ssnExists($conn, $SSN)
 
 
 
-// Check for empty input login
+// Check for empty input login for Admin Login
 function emptyInputLogin($username, $pwd)
 {
 	$result;
@@ -226,7 +222,7 @@ function emptyInputLogin($username, $pwd)
 	return $result;
 }
 
-// Check for empty input email
+// Check for empty input email for Employee Login
 function emptyInputLoginEmail($email, $ssn)
 {
 	$result;
@@ -238,7 +234,29 @@ function emptyInputLoginEmail($email, $ssn)
 	return $result;
 }
 
-// Log user into website
+// Insert new user into database
+function createUser($conn, $username, $pwd)
+{
+	$sql = "INSERT INTO adminUsers (usersUid, pwd) VALUES (?, ?);";
+
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../adminSignup.php?error=stmtfailed");
+		exit();
+	}
+
+	$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+
+	mysqli_stmt_bind_param($stmt, "ss", $username, $hashedPwd);
+	mysqli_stmt_execute($stmt);
+	mysqli_stmt_close($stmt);
+	mysqli_close($conn);
+	header("location: ../adminSignup.php?error=none");
+	exit();
+}
+
+
+// Login Admin user into website
 function loginUser($conn, $username, $pwd)
 {
 	$uidExists = uidExists($conn, $username);
@@ -248,7 +266,9 @@ function loginUser($conn, $username, $pwd)
 		exit();
 	}
 
-	$pwdHashed = $uidExists["pwd"];
+	// creating a hashed-password variable, and setting it to the "pwd" that is associated
+	// with the user ID that was found in the function uidExists(a,b);
+	$pwdHashed = $uidExists["pwd"]; // will output the hashed version of the password
 	$checkPwd = password_verify($pwd, $pwdHashed);
 
 	if ($checkPwd === false) {
@@ -262,6 +282,57 @@ function loginUser($conn, $username, $pwd)
 		exit();
 	}
 }
+
+// Login employee into website
+function loginEmployee($conn, $empEmail, $ssn, $key)
+{
+	// Email check
+	$empEmailExists = empEmailExists($conn, $empEmail);
+
+	if ($empEmailExists === false) {
+		header("location: ../employeeLogin.php?error=wronglogin");
+		exit();
+	}
+
+	$SSNencrypted = $empEmailExists["ssn"];
+	// find the SSN that is paired with that email
+	$SSNdecrypt = decryptthis($SSNencrypted, $key);
+
+	// Final check to ensure that everything matches correctly
+	if ($SSNdecrypt !== $ssn) {
+		header("location: ../employeeLogin.php?error=wronglogin");
+		exit();
+	} else if ($SSNdecrypt === $ssn) {
+		$bankAccDecrypt = decryptthis($empEmailExists["bankAccountNumber"], $key);
+		$DLdecrypt = decryptthis($empEmailExists["W4MichiganDL"], $key);
+		session_start();
+		$_SESSION["empId"] = $empEmailExists["email"];
+		$_SESSION["email"] = $empEmailExists["email"];
+		$_SESSION["ssn"] = $SSNdecrypt;
+		$_SESSION["bankAccountNumber"] = $bankAccDecrypt;
+		$_SESSION["W4MichiganDL"] = $DLdecrypt;
+		header("location: ../index.php?error=none");
+		exit();
+	}
+}
+
+// Encrypt sensitive info
+function encryptthis($data, $key)
+{
+	$encryption_key = base64_decode($key);
+	$iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+	$encrypted = openssl_encrypt($data, 'aes-256-cbc', $encryption_key, 0, $iv);
+	return base64_encode($encrypted . '::' . $iv);
+}
+
+// Decrypt sensitive info
+function decryptthis($data, $key)
+{
+	$encryption_key = base64_decode($key);
+	list($encrypted_data, $iv) = array_pad(explode('::', base64_decode($data), 2), 2, null);
+	return openssl_decrypt($encrypted_data, 'aes-256-cbc', $encryption_key, 0, $iv);
+}
+	
 
 function empEmailExists($conn, $empEmail)
 {
@@ -288,30 +359,5 @@ function empEmailExists($conn, $empEmail)
 	mysqli_stmt_close($stmt);
 }
 
-function loginEmployee($conn, $empEmail, $ssn)
-{
-	// Email check
-	$empEmailExists = empEmailExists($conn, $empEmail);
-
-	if ($empEmailExists === false) {
-		header("location: ../employeeLogin.php?error=wronglogin");
-		exit();
-	}
-
-	// find the SSN that is paired with that email
-	$ssnCheck = $empEmailExists["ssn"];
-
-	// Final check to ensure that everything matches correctly
-	if ($ssn !== $ssnCheck) {
-		header("location: ../employeeLogin.php?error=wronglogin");
-		exit();
-	} elseif ($ssn === $ssnCheck) {
-		session_start();
-		$_SESSION["empId"] = $empEmailExists["email"];
-		$_SESSION["email"] = $empEmailExists["email"];
-		header("location: ../index.php?error=none");
-		exit();
-	}
-}
 
 

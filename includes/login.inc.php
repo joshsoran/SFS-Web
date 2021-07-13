@@ -1,4 +1,5 @@
 <?php
+$key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
 
 if (isset($_POST["submit"])) {
 
@@ -44,7 +45,7 @@ else if(isset($_POST["employeeLoginSubmit"])){
   // If we get to here, it means there are no user errors
 
   // Now we insert the user into the database
-  loginEmployee($conn, $empEmail, $ssn);
+  loginEmployee($conn, $empEmail, $ssn, $key);
 }
 
 

@@ -132,15 +132,15 @@ if ($resultCheck > 0) {
             $empArray["zip"][0] = $row['zip'];
             $empArray["email"][0] = $row['email'];
             $empArray["phone"][0] = $row['phone'];
-            $empArray["ssn"][0] = $row['ssn'];
-            $empArray["bankAccountNumber"][0] = $row['bankAccountNumber'];
+            $empArray["ssn"][0] = $_SESSION['ssn']; // using $_SESSION instead of $row because this information was previously encrypted.
+            $empArray["bankAccountNumber"][0] = $_SESSION['bankAccountNumber']; // using $_SESSION instead of $row because this information was previously encrypted.
             $empArray["bankRoutingNumber"][0] = $row['bankRoutingNumber'];
             $empArray["bankDirectDeposit"][0] = $row['bankDirectDeposit'];
             $empArray["W42019RelStatus"][0] = $row['W42019RelStatus'];
             $empArray["W42019ClaimDependents"][0] = $row['W42019ClaimDependents'];
             $empArray["W42021RelStatus"][0] = $row['W42021RelStatus'];
             $empArray["W42021ClaimDependents"][0] = $row['W42021ClaimDependents'];
-            $empArray["W4MichiganDL"][0] = $row['W4MichiganDL'];
+            $empArray["W4MichiganDL"][0] = $_SESSION['W4MichiganDL']; // using $_SESSION instead of $row because this information was previously encrypted.
             $empArray["W4MichiganNewEmployee"][0] = $row['W4MichiganNewEmployee'];
             $empArray["W4MichiganHireDate"][0] = $row['W4MichiganHireDate'];
             $empArray["W4MichiganDependents"][0] = $row['W4MichiganDependents'];
@@ -338,7 +338,7 @@ if ($resultCheck > 0) {
 
     // check bank routing char. length
     function checkBankRoutingCharLength(routingValue) {
-        if (routingValue.length == 8) {
+        if (routingValue.length == 9) {
             return true;
         } else {
             alert("Error: Your Bank Routing Number must be at least 8 digits long!");

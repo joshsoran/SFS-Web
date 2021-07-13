@@ -1,6 +1,8 @@
 <?php
 include_once 'header.php';
 require_once "includes/dbh.inc.php";
+require_once "includes/functions.inc.php";
+$key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
 
 if (!isset($_SESSION["useruid"])) {
     header("location: error.php");
@@ -82,15 +84,15 @@ if ($resultCheck > 0) {
         $empArray["zip"][$ind] = $row['zip'];
         $empArray["email"][$ind] = $row['email'];
         $empArray["phone"][$ind] = $row['phone'];
-        $empArray["ssn"][$ind] = $row['ssn'];
-        $empArray["bankAccountNumber"][$ind] = $row['bankAccountNumber'];
+        $empArray["ssn"][$ind] = decryptthis($row['ssn'],$key); // Decrypt the information
+        $empArray["bankAccountNumber"][$ind] = decryptthis($row['bankAccountNumber'],$key); // Decrypt the information
         $empArray["bankRoutingNumber"][$ind] = $row['bankRoutingNumber'];
         $empArray["bankDirectDeposit"][$ind] = $row['bankDirectDeposit'];
         $empArray["W42019RelStatus"][$ind] = $row['W42019RelStatus'];
         $empArray["W42019ClaimDependents"][$ind] = $row['W42019ClaimDependents'];
         $empArray["W42021RelStatus"][$ind] = $row['W42021RelStatus'];
         $empArray["W42021ClaimDependents"][$ind] = $row['W42021ClaimDependents'];
-        $empArray["W4MichiganDL"][$ind] = $row['W4MichiganDL'];
+        $empArray["W4MichiganDL"][$ind] = decryptthis($row['W4MichiganDL'], $key); // Decrypt the information
         $empArray["W4MichiganNewEmployee"][$ind] = $row['W4MichiganNewEmployee'];
         $empArray["W4MichiganHireDate"][$ind] = $row['W4MichiganHireDate'];
         $empArray["W4MichiganDependents"][$ind] = $row['W4MichiganDependents'];
