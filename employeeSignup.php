@@ -1,5 +1,6 @@
 <?php
 include_once 'header.php';
+echo $_SESSION["FName"];
 ?>
 
 <section class="signup-form">
@@ -8,20 +9,20 @@ include_once 'header.php';
     <form action="includes/signup.inc.php" method="post">
       <h2>1. Personal</h2>
       <labelSpace>a. First Name</labelSpace>
-      <input type="text" name="FName" placeholder="Enter first name here...">
+      <input type="text" name="FName" placeholder="Enter first name here..." value='<?php echo $_GET["FName"] ?>'>
       <labelSpace>b. Middle Name</labelSpace>
-      <input type="text" name="MName" placeholder="Enter middle name here...">
+      <input type="text" name="MName" placeholder="Enter middle name here..." value='<?php echo $_GET["MName"] ?>'>
       <labelSpace>c. Last Name</labelSpace>
-      <input type="text" name="LName" placeholder="Enter last name here...">
+      <input type="text" name="LName" placeholder="Enter last name here..." value='<?php echo $_GET["LName"] ?>'>
       <labelSpace>d. Date of Birth</labelSpace>
-      <input type="date" name="DOB">
+      <input type="date" name="DOB" value='<?php echo $_GET["DOB"] ?>'>
       <labelSpace>e. Address</labelSpace>
-      <input type="text" name="address" placeholder="Enter address here...">
+      <input type="text" name="address" placeholder="Enter address here..." value='<?php echo $_GET["address"] ?>'>
       <labelSpace>f. City</labelSpace>
-      <input type="text" name="city" placeholder="Enter city here...">
+      <input type="text" name="city" placeholder="Enter city here..." value='<?php echo $_GET["city"] ?>'>
       <labelSpace>g. State</labelSpace>
       <select id="state" name="state">
-        <option value="---">---</option>
+        <option value='<?php echo $_GET["state"] ?>'><?php echo $_GET["state"] ?></option>
         <option value="Alabama">Alabama</option>
         <option value="Alaska">Alaska</option>
         <option value="Arizona">Arizona</option>
@@ -79,20 +80,20 @@ include_once 'header.php';
         <option value="Wyoming">Wyoming</option>
       </select>
       <labelSpace>h. Zip</labelSpace>
-      <input type="text" name="zip" placeholder="XXXXX" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="zip" placeholder="XXXXX" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["zip"] ?>'>
       <labelSpace>i. Phone number</labelSpace>
-      <input type="text" name="employeePhone" placeholder="(XXX)-XXX-XXXX" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="employeePhone" placeholder="(XXX)-XXX-XXXX" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["employeePhone"] ?>'>
       <labelSpace>j. Email Address</labelSpace>
-      <input type="email" name="email" placeholder="example@company.com">
+      <input type="email" name="email" placeholder="example@company.com" value='<?php echo $_GET["email"] ?>'>
       <labelSpace>k. SSN</labelSpace>
-      <input type="text" name="ssn" placeholder="XXX-XX-XXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="ssn" placeholder="XXX-XX-XXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["ssn"] ?>'>
 
 
       <h2>2. Banking</h2>
       <labelSpace>a. Bank Account #</labelSpace>
-      <input type="text" name="bankAccNum" placeholder="Enter bank account number..." minlength="9" maxlength="17" onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="bankAccNum" placeholder="Enter bank account number..." minlength="9" maxlength="17" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["bankAccNum"] ?>'>
       <labelSpace>b. Routing #</labelSpace>
-      <input type="text" name="routingNum" placeholder="XXXX-XXXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)"><br>
+      <input type="text" name="routingNum" placeholder="XXXX-XXXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["routingNum"] ?>'><br>
       <input type="radio" name="depositMethod" value="Direct Deposit">
       <label for="directDep">Direct Deposit</label>
       <input type="radio" name="depositMethod" value="Check">
@@ -111,7 +112,7 @@ include_once 'header.php';
       </div>
       <labelSpace>b. Claim Dependents</labelSpace>
       <h3><i>Enter '0' if none.</i></h3>
-      <input type="text" name="W4p2019numDep" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="W4p2019numDep" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["W4p2019numDep"] ?>'>
 
 
       <h2>4. W-4 2021</h2>
@@ -127,27 +128,27 @@ include_once 'header.php';
       <h3><i>Multiply the number of other dependents by $500.)</i></h3>
       <h3><i>Add the amounts above and enter the total here:</i></h3>
       <h3><i>Enter '0' if none</i></h3>
-      <div class="dollar"><input type="number" name="W42021numDep" placeholder="Enter total $ here..." onkeypress="return onlyNumberKey(event)"></div>
+      <div class="dollar"><input type="number" name="W42021numDep" placeholder="Enter total $ here..." onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["W42021numDep"] ?>'></div>
 
       <h2>5. Michigan W4</h2>
       <labelSpace>a. Driver's License Number</labelSpace>
-      <input type="text" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" minlength="13" maxlength="13" spellcheck="false">
+      <input type="text" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" minlength="13" maxlength="13" spellcheck="false" value='<?php echo $_GET["MW4DLNum"] ?>'>
       <labelSpace>b. Are you a new employee?</labelSpace>
       <label for="chkYes">
         <input type="radio" id="chkYes" name="MW4HireCheck" onclick="ShowHideDiv()" value="Yes." />Yes.</label><br>
       <div id="dvtext" style="display: none"><label>Enter date of hire: </label>
-        <input type="date" id="dateOfHire" name="MW4HireDate" />
+        <input type="date" id="dateOfHire" name="MW4HireDate"/>
       </div>
       <label for="chkNo">
         <input type="radio" id="chkNo" name="MW4HireCheck" onclick="ShowHideDiv()" value="No." />No.</label><br><br>
       <labelSpace>c. Enter the number of personal and dependent exemptions </labelSpace>
-      <input type="text" name="MW4dependents" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)">
+      <input type="text" name="MW4dependents" placeholder="Enter number of dependents..." onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["MW4dependents"] ?>'>
 
       <h2>6. Agreement</h2>
       <labelSpace>By checking this box you are hereby agreeing that all this information is valid and yours.</labelSpace>
       <labelSpace><input type="checkbox" name="AgreementCheck" />I Agree.</labelSpace><br>
 
-      <button type="submit" name="sendInfo">Submit</button>
+      <button type="submit" name="sendInfo" onsubmit="return false">Submit</button>
     </form>
   </div>
   <?php
@@ -175,6 +176,7 @@ include_once 'header.php';
     }
   }
   ?>
+
 </section>
 
 <?php
@@ -182,6 +184,8 @@ include_once 'footer.php';
 ?>
 
 <script>
+  var firstName = document.getElementsByName("FName")[0].value;
+  console.log(firstName);
   function ShowHideDiv() {
     var chkYes = document.getElementById("chkYes");
     var dvtext = document.getElementById("dvtext");

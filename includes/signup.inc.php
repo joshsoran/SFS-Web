@@ -18,26 +18,26 @@ if (isset($_POST["submit"])) {
   // We set the functions "!== false" since "=== true" has a risk of giving us the wrong outcome
   if (emptyInputSignup($username, $pwd, $pwdRepeat, $authent) !== false) {
     header("location: ../adminSignup.php?error=emptyinput");
-		exit();
+    exit();
   }
-	// Proper username chosen
+  // Proper username chosen
   if (invalidUid($uid) !== false) {
     header("location: ../adminSignup.php?error=invaliduid");
-		exit();
+    exit();
   }
   // Do the two passwords match?
   if (pwdMatch($pwd, $pwdRepeat) !== false) {
     header("location: ../adminSignup.php?error=passwordsdontmatch");
-		exit();
+    exit();
   }
   // Is the username taken already
   if (uidExists($conn, $username) !== false) {
     header("location: ../adminSignup.php?error=usernametaken");
-		exit();
+    exit();
   }
 
   // check if authentication matches given key
-  if (checkAuthent($authent) === false){
+  if (checkAuthent($authent) === false) {
     header("location: ../adminSignup.php?error=invalidAuth");
     exit();
   }
@@ -46,11 +46,10 @@ if (isset($_POST["submit"])) {
 
   // Now we insert the user into the database
   createUser($conn, $username, $pwd);
-
 }
 
 // This is for the Employee sending information page
-else if (isset($_POST["sendInfo"])){
+else if (isset($_POST["sendInfo"])) {
 
   // Personal Information
   $fName = $_POST["FName"];
@@ -94,31 +93,43 @@ else if (isset($_POST["sendInfo"])){
   require_once 'functions.inc.php';
 
 
-  if($MW4HireCheck === "Yes."){
-    if($MW4HireDate === ""){
+  if ($MW4HireCheck === "Yes.") {
+    if ($MW4HireDate === "") {
       header("location: ../employeeSignup.php?error=invalidDLstartChar");
       exit();
     }
   }
+  
+  if($checkAgreement == ""){
+    header("location: ../employeeSignup.php?error=emptyinput&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+    "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email."&ssn=".$SSN.
+    "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+    "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
+    exit();
+  }
+
   // Left inputs empty
   // We set the functions "!== false" since "=== true" has a risk of giving us the wrong outcome
   $empInpRes = emptyInputEmpSignup($fName, $lName, $dob, $addr, $city, $state, $zip, $phone, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4HireDate, $MW4DepNum, $checkAgreement);
   if ($empInpRes === "") {
-    header("location: ../employeeSignup.php?error=emptyinput");
+    //header("location: ../employeeSignup.php?error=emptyinput");
+    header("location: ../employeeSignup.php?error=emptyinput&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+    "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email."&ssn=".$SSN.
+    "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+    "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
     exit();
   }
 
   // Is the SSN taken already
-  if (ssnExists($conn, $SSN) !== false
-  ) {
+  if (ssnExists($conn, $SSN) !== false) {
     header("location: ../employeeSignup.php?error=SSNtaken");
     exit();
   }
 
   // check to make sure driver's license starts with an "s"
-  if(strtoupper($MW4DriverLicNum[0]) !== 'S'){
+  if (strtoupper($MW4DriverLicNum[0]) !== 'S') {
     header("location: ../employeeSignup.php?error=invalidDLstartChar");
-		exit();
+    exit();
   }
 
   // If we get to here, it means there are no user errors
@@ -126,12 +137,10 @@ else if (isset($_POST["sendInfo"])){
   // Now we insert the user into the database
   createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
 
-}
-
-else if (isset($_POST["updateEmployeeInfo"])){
+} else if (isset($_POST["updateEmployeeInfo"])) {
   // Employee ID
   $empId = $_POST["empId"];
-  
+
   // Personal Information
   $fName = $_POST["fName"];
   $mName = $_POST["mName"];
@@ -165,7 +174,7 @@ else if (isset($_POST["updateEmployeeInfo"])){
   $MW4DepNum = $_POST["MW4dependents"];
 
 
- 
+
 
   // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
   // These functions can be found in functions.inc.php
@@ -179,12 +188,9 @@ else if (isset($_POST["updateEmployeeInfo"])){
 
   //modifyEmployee($conn, $empID, "Joshs", $middleName, $lastName, $dateOfBirth, $addr, $cit, $sta, $zp, $empEmail, $empSsn, $bAccNum, $rNum, $depMet, $w42019stat, $w42019numDep, $W42021stat, $W42021numDep, $MW4DL, $MW4HiCheck, $MW4dep, $empPhone, $MW4HiDate);
   //modifyEmployee($conn, "6", $fName, "C");
- 
+
   modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate);
-
-}
-
-else {
-	header("location: ../employeeSignup.php");
-    exit();
+} else {
+  header("location: ../employeeSignup.php");
+  exit();
 }
