@@ -12,7 +12,6 @@
   <p>If you want to view employee information, please log in and follow the instructions there!</p>
 </section>
 
-
 <?php
   include_once 'footer.php';
 ?>

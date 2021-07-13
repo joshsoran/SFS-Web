@@ -4,7 +4,8 @@ body {
 
 .wrapper {
   width: 100%;
-  margin: 0 auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 
@@ -17,7 +18,7 @@ h1, h2, h3, h4, h5, h6, p {
 h1 {
   font-weight: 100;
   font-size: 60px;
-  padding: 20px 0;
+  padding: 30px;
   text-align: center;
 }
 
@@ -38,13 +39,49 @@ p {
   font-size: 16px;
 }
 
+/*Horizontal line*/
 hr {
-  width: 100%;
+  width: 1000px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color:rgb(51, 51, 51);
 }
+
+
+header{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  z-index: 10;
+  
+}
+
+header .navigation{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+header .navigation li{
+  list-style: none;
+  margin: 0 10px;
+}
+
+header .navigation li a{
+  color: black;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
 
 nav {
   width: 100%;
@@ -56,12 +93,11 @@ nav {
 nav .wrapper {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: right;
+  justify-content: left;
   align-items: center;
 }
 
-nav ul li {
+/* nav ul li {
   list-style: none;
   float: left;
 }
@@ -81,12 +117,12 @@ nav ul li a:hover {
   color: #2c83ca;
   transition: all 0.3s ease 0s;
   text-decoration: none;
-}
+} */
 
 
 section {
   width: 100%;
-  padding: 20px 3%;
+  
 }
 
 /* index */
@@ -124,12 +160,12 @@ section {
 }
 
 .signup-form form {
-  width: 30%;
+  width: 40%;
 }
 
 .signup-form form select{
   width: 200px;
-  padding: 12px;
+  
   background-color: white;
   border:1px solid #cccccc;
   margin-bottom: 20px;
@@ -459,4 +495,241 @@ td[contenteditable="true"]:focus{
 
 
 
+/*IPAD size*/
+@media only screen and (max-width: 768px) {
+  .left, .main, .right {
+    width: 100%;
+  }
+  body{
+    font-size: 2em; 
+    
+  }
+  h1{
+    padding: 40px 0;
+  }
+  hr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(51, 51, 51);
+  }
+  header{
+    flex-direction: column;
+    font-size: 2em; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+  }
+  header .navigation{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0px 0;
+  }
+  header .navigation li{
+    list-style: none;
+    margin: 0 10px;
+  }
+  .signup-form form {
+    width: 70%;
+  }
+  .dollar:before {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    position: absolute;
+      content:"$";
+      left:5px;
+    top:16px;
+    color: rgb(0, 0, 0);
+  }
 
+}
+
+/* Pixel */
+@media only screen and (max-width: 411px){
+  .left, .main, .right {
+    width: 100%;
+  }
+  body{
+    font-size: 1em; 
+    
+  }
+
+  h1{
+    font-size: 50px;
+    padding-top: 180px;
+    line-height: 100%;
+    overflow-wrap: break-word;
+  }
+
+  hr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(51, 51, 51);
+  }
+
+  header{
+    position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  z-index: 10;
+    
+  }
+
+  header .navigation{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0px 0;
+  }
+  header .navigation li{
+    list-style: none;
+    margin: 0 10px;
+  }
+
+  .signup-form form {
+    width: 90%;
+  }
+
+  .dollar:before {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    position: absolute;
+      content:"$";
+      left:5px;
+    top:14px;
+    color: rgb(0, 0, 0);
+  }
+
+}
+
+/* Iphones PLUS size */
+@media only screen and (max-width: 414px) {
+  body{
+    font-size: 1em; 
+    
+  }
+
+  h1{
+    font-size: 50px;
+    padding-top: 110px;
+    line-height: 100%;
+    overflow-wrap: break-word;
+  }
+
+  hr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(51, 51, 51);
+  }
+
+  header{
+  top:0;
+  left:0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  z-index: 10;
+    
+  }
+
+  header .navigation{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5px 0;
+  }
+  header .navigation li{
+    list-style: none;
+    margin: 0 5px;
+    padding-right: 40px;
+  }
+
+  .signup-form form {
+    width: 90%;
+  }
+
+  .dollar:before {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    position: absolute;
+      content:"$";
+      left:5px;
+    top:12px;
+    color: rgb(0, 0, 0);
+  }
+
+}
+
+@media only screen and (max-width: 570px) and (min-width:420px) {
+  body{
+    font-size: 1em; 
+    
+  }
+
+  h1{
+    font-size: 64px;
+    padding-top: 40px;
+    line-height: 100%;
+    overflow-wrap: break-word;
+  }
+
+  hr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(51, 51, 51);
+  }
+
+  header{
+  top:0;
+  left:0;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  z-index: 10;
+    
+  }
+
+  header .navigation{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 5px 0;
+  }
+  header .navigation li{
+    list-style: none;
+    margin: 0 5px;
+    padding-right: 40px;
+  }
+
+  .signup-form form {
+    width: 90%;
+  }
+
+  .dollar:before {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    position: absolute;
+      content:"$";
+      left:5px;
+    top:12px;
+    color: rgb(0, 0, 0);
+  }
+
+}

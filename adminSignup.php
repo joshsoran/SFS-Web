@@ -2,13 +2,14 @@
   include_once 'header.php';
 ?>
 
+
 <section class="signup-form">
   <h1>Admin Sign Up</h1>
   <div class="signup-form-form">
     <form action="includes/signup.inc.php" method="post">
-      <center><input type="text" name="uid" placeholder="Username..."><br>
-      <input type="password" name="pwd" placeholder="Password..."><br>
-      <input type="password" name="pwdrepeat" placeholder="Repeat password..."><br>
+      <center><input type="text" name="uid" placeholder="Username..."><br><br>
+      <input type="password" name="pwd" placeholder="Password..."><br><br>
+      <input type="password" name="pwdrepeat" placeholder="Repeat password..."><br><br>
       <input type="text" name="authent" placeholder="Authentication code..."><br></center>
       <button type="submit" name="submit">Sign up</button>
     </form>

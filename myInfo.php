@@ -32,7 +32,7 @@ if (!isset($_SESSION["email"])) {
     </table>
 </section>
 
-
+<br>
 <!-- Used to center the table on the screen with the other items -->
 <section class="signup-form">
     <div class="signup-form-form">
