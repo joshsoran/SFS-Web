@@ -1,13 +1,13 @@
 <?php
-include_once 'header.php';
+session_start();
 require_once "includes/dbh.inc.php";
-require_once "includes/functions.inc.php";
-$key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
-
-if (!isset($_SESSION["useruid"])) {
+if (!isset($_SESSION["useruid"])) { // There must be nothing HTML related ABOVE this line
     header("location: error.php");
     exit();
 }
+include_once 'header.php';
+require_once "includes/functions.inc.php";
+$key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
 ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

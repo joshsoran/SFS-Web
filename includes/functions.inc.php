@@ -204,8 +204,58 @@ function ssnExists($conn, $SSN)
 	mysqli_stmt_close($stmt);
 }
 
+// Check if ENCRYPTED SSN is in database --> used for myInfo.php
+function encryptedSsnExists($conn, $SSN, $key)
+{
+	$sql = "SELECT * FROM empInfo";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../myInfo.php?error=stmtfailed");
+		exit();
+	}
 
+	// Loop through each SSN
+	$result = mysqli_query($conn, $sql);
+	$resultCheck = $result->num_rows;
+	if($resultCheck > 0){
+		while($row = mysqli_fetch_assoc($result)){
+			if($SSN === decryptthis($row["ssn"], $key)){
+				return $SSN;
+				break;
+			}
+		}
+		return false;
+	}
 
+	// need this to not get header errors!
+	mysqli_stmt_close($stmt);
+}
+
+// check if Email is in the system
+function empEmailExists($conn, $empEmail)
+{
+	$sql = "SELECT * FROM empInfo WHERE email = ?;";
+	$stmt = mysqli_stmt_init($conn);
+	if (!mysqli_stmt_prepare($stmt, $sql)) {
+		header("location: ../employeeLogin.php?error=stmtfailed");
+		exit();
+	}
+
+	mysqli_stmt_bind_param($stmt, "s", $empEmail);
+	mysqli_stmt_execute($stmt);
+
+	// "Get result" returns the results from a prepared statement
+	$resultData = mysqli_stmt_get_result($stmt);
+
+	if ($row = mysqli_fetch_assoc($resultData)) {
+		return $row;
+	} else {
+		$result = false;
+		return $result;
+	}
+
+	mysqli_stmt_close($stmt);
+}
 
 
 // Check for empty input login for Admin Login
@@ -332,30 +382,7 @@ function decryptthis($data, $key)
 }
 	
 
-function empEmailExists($conn, $empEmail)
-{
-	$sql = "SELECT * FROM empInfo WHERE email = ?;";
-	$stmt = mysqli_stmt_init($conn);
-	if (!mysqli_stmt_prepare($stmt, $sql)) {
-		header("location: ../employeeLogin.php?error=stmtfailed");
-		exit();
-	}
 
-	mysqli_stmt_bind_param($stmt, "s", $empEmail);
-	mysqli_stmt_execute($stmt);
-
-	// "Get result" returns the results from a prepared statement
-	$resultData = mysqli_stmt_get_result($stmt);
-
-	if ($row = mysqli_fetch_assoc($resultData)) {
-		return $row;
-	} else {
-		$result = false;
-		return $result;
-	}
-
-	mysqli_stmt_close($stmt);
-}
 
 
 

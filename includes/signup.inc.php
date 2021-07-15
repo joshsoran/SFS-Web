@@ -126,19 +126,27 @@ else if (isset($_POST["sendInfo"])) {
   }
 
   // Is the SSN taken already
-  if (ssnExists($conn, $SSN) !== false) {
-    //header("location: ../employeeSignup.php?error=SSNtaken");
+  if(encryptedSsnExists($conn, $SSN, $key) !== false){
     header("location: ../employeeSignup.php?error=SSNtaken&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
     "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email.
     "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
     "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
     exit();
   }
+ 
+  // Is email already taken
+  if(empEmailExists($conn, $email) !== false){
+    header("location: ../employeeSignup.php?error=invalidemail&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+    "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email.
+    "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+    "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
+    exit();
+  }
 
-  // check to make sure driver's license starts with an "s"
-  if (strtoupper($MW4DriverLicNum[0]) !== 'S') {
-    //header("location: ../employeeSignup.php?error=invalidDLstartChar");
-    header("location: ../employeeSignup.php?error=invalidDLstartChar&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+  // check to make sure SSN does not begin with the number 9
+  if (strtoupper($SSN[0]) === '9') {
+    //header("location: ../employeeSignup.php?error=invalidSSN");
+    header("location: ../employeeSignup.php?error=invalidSSN&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
     "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email."&ssn=".$SSN.
     "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
     "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
@@ -151,6 +159,10 @@ else if (isset($_POST["sendInfo"])) {
   createEmployee($conn, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $key);
 
 } else if (isset($_POST["updateEmployeeInfo"])) {
+  // Last session email
+  $sessionEmail = $_POST["sessionEmail"];
+  $sessionSSN = $_POST["sessionSSN"];
+
   // Employee ID
   $empId = $_POST["empId"];
 
@@ -187,8 +199,6 @@ else if (isset($_POST["sendInfo"])) {
   $MW4DepNum = $_POST["MW4dependents"];
 
 
-
-
   // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
   // These functions can be found in functions.inc.php
 
@@ -196,11 +206,36 @@ else if (isset($_POST["sendInfo"])) {
   require_once "dbh.inc.php";
   require_once 'functions.inc.php';
 
-  //$firstName = "<script>document.writeln(firstName);</script>";
-  //echo "<h2>Name: " . $fName . "</h2>";
+  // // Is the SSN taken already
+  // if (ssnExists($conn, $SSN) !== false) {
+  //   //header("location: ../employeeSignup.php?error=SSNtaken");
+  //   header("location: ../myInfo.php?error=SSNtaken&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+  //   "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email.
+  //   "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+  //   "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
+  //   exit();
+  // }
 
-  //modifyEmployee($conn, $empID, "Joshs", $middleName, $lastName, $dateOfBirth, $addr, $cit, $sta, $zp, $empEmail, $empSsn, $bAccNum, $rNum, $depMet, $w42019stat, $w42019numDep, $W42021stat, $W42021numDep, $MW4DL, $MW4HiCheck, $MW4dep, $empPhone, $MW4HiDate);
-  //modifyEmployee($conn, "6", $fName, "C");
+  // Is email already taken
+  if(empEmailExists($conn, $email) !== false && $sessionEmail !== $email){
+    header("location: ../myInfo.php?error=invalidemail&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+    "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email.
+    "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+    "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
+    exit();
+  }
+
+  // Check if Current session SSN matches the one in the input
+  if($SSN !== $sessionSSN){
+    // if a ssn match returns
+    if(encryptedSsnExists($conn, $SSN, $key) !== false){
+      header("location: ../myInfo.php?error=SSNtaken&FName=".$fName."&MName=".$mName."&LName=".$lName."&DOB=".$dob.
+      "&address=".$addr."&city=".$city."&state=".$state."&zip=".$zip."&employeePhone=".$phone."&email=".$email.
+      "&bankAccNum=".$bankAccNum."&routingNum=".$bankRoutingNum."&depositMethod=".$bankDepMethod."&W4p2019Status=".$W4p2019Status.
+      "&W4p2019numDep=".$W4p2019DepNum."&W42021Status=".$W42021Status."&W42021numDep=".$W42021DepNum."&MW4DLNum=".$MW4DriverLicNum."&MW4HireCheck=".$MW4HireCheck."&MW4HireDate=".$MW4HireDate."&MW4dependents=".$MW4DepNum);
+      exit();
+    }
+  }
 
   modifyEmployee($conn, $empId, $fName, $mName, $lName, $dob, $addr, $city, $state, $zip, $email, $SSN, $bankAccNum, $bankRoutingNum, $bankDepMethod, $W4p2019Status, $W4p2019DepNum, $W42021Status, $W42021DepNum, $MW4DriverLicNum, $MW4HireCheck, $MW4DepNum, $phone, $MW4HireDate, $key);
 } else {

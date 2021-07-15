@@ -93,6 +93,7 @@ include_once 'header.php';
       <input type="text" name="bankAccNum" placeholder="Enter bank account number..." minlength="9" maxlength="17" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["bankAccNum"] ?>'>
       <labelSpace>b. Routing #</labelSpace>
       <input type="text" name="routingNum" placeholder="XXXX-XXXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["routingNum"] ?>'><br>
+      <h3>It is mandatory for ALL employees to choose DIRECT DEPOSIT. Exceptions may apply.</h3>
       <input type="radio" name="depositMethod" value="Direct Deposit">
       <label for="directDep">Direct Deposit</label>
       <input type="radio" name="depositMethod" value="Check">
@@ -129,9 +130,9 @@ include_once 'header.php';
       <h3><i>Enter '0' if none</i></h3>
       <div class="dollar"><input type="number" name="W42021numDep" placeholder="Enter total $ here..." onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["W42021numDep"] ?>'></div>
 
-      <h2>5. Michigan W4</h2>
+      <h2>5. Michigan W-4</h2>
       <labelSpace>a. Driver's License Number</labelSpace>
-      <input type="text" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" minlength="13" maxlength="13" spellcheck="false" value='<?php echo $_GET["MW4DLNum"] ?>'>
+      <input type="text" name="MW4DLNum" placeholder="XXXXXXXXXXXXX" minlength="13" maxlength="13" spellcheck="false" value='<?php echo $_GET["MW4DLNum"] ?>'>
       <labelSpace>b. Are you a new employee?</labelSpace>
       <label for="chkYes">
         <input type="radio" id="chkYes" name="MW4HireCheck" onclick="ShowHideDiv()" value="Yes." />Yes.</label><br>
@@ -158,7 +159,7 @@ include_once 'header.php';
     } else if ($_GET["error"] == "invaliduid") {
       echo '<p><span style="color:red;text-align:center;">Choose a proper username!</span></p>';
     } else if ($_GET["error"] == "invalidemail") {
-      echo '<p><span style="color:red;text-align:center;">Choose a proper email!</span></p>';
+      echo '<p><span style="color:red;text-align:center;">Someone is already using that email!</span></p>';
     } else if ($_GET["error"] == "passwordsdontmatch") {
       echo '<p><span style="color:red;text-align:center;">Passwords do not match!</span></p>';
     } else if ($_GET["error"] == "stmtfailed") {
@@ -167,8 +168,8 @@ include_once 'header.php';
       echo '<p><span style="color:red;text-align:center;">Username or email already taken!</span></p>';
     } else if ($_GET["error"] == "SSNtaken") {
       echo '<p><span style="color:red;text-align:center;">Someone else is signed up using that SSN!</span></p>';
-    } else if ($_GET["error"] == "invalidDLstartChar") {
-      echo "<p><span style='color:red;text-align:center;'>Driver's license must begin with an 'S'!</span></p>";
+    } else if ($_GET["error"] == "invalidSSN") {
+      echo "<p><span style='color:red;text-align:center;'>SSN cannot begin with the number 9!</span></p>";
     } else if ($_GET["error"] == "none") {
       echo '<p><span style="color:green;text-align:center;">You have signed up!</span></p>';
     }
@@ -182,8 +183,10 @@ include_once 'footer.php';
 ?>
 
 <script>
-  var firstName = document.getElementsByName("FName")[0].value;
-  console.log(firstName);
+  // var firstName = document.getElementsByName("FName")[0].value;
+  // console.log(firstName);
+
+  // Show hide function for Hire check
   function ShowHideDiv() {
     var chkYes = document.getElementById("chkYes");
     var dvtext = document.getElementById("dvtext");

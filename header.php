@@ -33,8 +33,8 @@ include_once 'includes/functions.inc.php';
           //echo "<h2>" . $_SESSION["email"] . "</h2>";
         } else {
           echo "<li><a href='employeeSignup.php'>Employee Signup</a></li>";
-          echo "<li><a href='adminSignup.php'>Admin Signup</a></li>";
           echo "<li><a href='employeeLogin.php'>Employee Log in</a></li>";
+          echo "<li><a href='adminSignup.php'>Admin Signup</a></li>";
           echo "<li><a href='login.php'>Admin Log in</a></li>";
         }
         ?>

@@ -1,10 +1,11 @@
 <?php
-include_once 'header.php';
+session_start();
 require_once "includes/dbh.inc.php";
-if (!isset($_SESSION["email"])) {
+if (!isset($_SESSION["email"])) { // There must be nothing HTML related ABOVE this line
     header("location: employeeAccessError.php");
     exit();
 }
+include_once 'header.php';
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -45,9 +46,6 @@ if (!isset($_SESSION["email"])) {
     </h3>
 
 
-
-
-
     <div class="signup-form-form">
         <form action="includes/signup.inc.php" method="post">
             <input type="hidden" id="inpempId" name="empId">
@@ -74,6 +72,11 @@ if (!isset($_SESSION["email"])) {
             <input type="hidden" id="inpW4MIHireDate" name="MW4HireDate">
             <input type="hidden" id="inpW4MIDep" name="MW4dependents">
 
+            <!-- Need session email for signup.inc.php email check. This is because I want the person to 
+        press update and have his email be ignored if it's the same as when he entered the page -->
+            <input type="hidden" id="sessionEmail" name="sessionEmail" value=<?php echo $_SESSION["email"] ?>>
+            <input type="hidden" id="sessionSSN" name="sessionSSN" value=<?php echo $_SESSION["ssn"] ?>>
+
             <button type="submit" id="updateButton" name="updateEmployeeInfo" disabled>
                 <center>Update</center>
             </button>
@@ -87,7 +90,7 @@ if (!isset($_SESSION["email"])) {
         } else if ($_GET["error"] == "invaliduid") {
             echo '<p><span style="color:red;text-align:center;">Choose a proper username!</span></p>';
         } else if ($_GET["error"] == "invalidemail") {
-            echo '<p><span style="color:red;text-align:center;">Choose a proper email!</span></p>';
+            echo '<p><span style="color:red;text-align:center;">Email already exists!</span></p>';
         } else if ($_GET["error"] == "passwordsdontmatch") {
             echo '<p><span style="color:red;text-align:center;">Passwords do not match!</span></p>';
         } else if ($_GET["error"] == "stmtfailed") {
@@ -106,11 +109,13 @@ if (!isset($_SESSION["email"])) {
 
 <?php
 $ind = 0;
+$empID = 0;
 $empName = $_GET["empName"];
+
+
 $sql = "SELECT * FROM empInfo;";
 $result = mysqli_query($conn, $sql);
 $resultCheck = $result->num_rows;
-$empID = 0;
 $empArray = array(
     "fName" => array(), "mName" => array(), "lName" => array(), "DOB" => array(), "address" => array(), "city" => array(), "state" => array(), "zip" => array(), "email" => array(),
     "phone" => array(), "ssn" => array(), "bankAccountNumber" => array(), "bankRoutingNumber" => array(), "bankDirectDeposit" => array(), "W42019RelStatus" => array(), "W42019ClaimDependents" => array(),
@@ -356,13 +361,12 @@ if ($resultCheck > 0) {
         }
     }
 
-    // check DL opening character to be 'S'
-    function checkDLfirstChar(DLValue) {
-        if (DLValue[0].toUpperCase() != "S") {
-            alert("Error: Your Driver's License must start with an 'S'");
+    // check SSN opening with a '9'
+    function checkSSNfirstChar(ssnVal) {
+        if (ssnVal[0] == "9") {
+            alert("Error: Your SSN cannot start with a 9!");
             return false;
         } else {
-            console.log(DLValue[0]);
             return true;
         }
     }
@@ -379,6 +383,7 @@ if ($resultCheck > 0) {
 
 
     function saveInfo() {
+        
         var empID = document.getElementById("empId").textContent;
         var firstName = document.getElementById("fName").value;
         var middleName = document.getElementById("mName").value;
@@ -405,7 +410,7 @@ if ($resultCheck > 0) {
 
         //console.log(MW4DL[0]);
 
-        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkDLCharLength(MW4DL) && checkDLfirstChar(MW4DL) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
+        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkDLCharLength(MW4DL) && checkSSNfirstChar(empSsn) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
             // make the hire date invalid if the person wasn't a new hire
             if (MW4HireCheck == "No.") {
                 MW4HiDate = "";
@@ -438,7 +443,6 @@ if ($resultCheck > 0) {
             document.getElementById("updateButton").disabled = false;
             //console.log(document.getElementById("inpfName").value);
         }
-
     }
 
     // Only allow numbers to be typed
