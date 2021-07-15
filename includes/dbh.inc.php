@@ -1,9 +1,9 @@
 <?php
-
+// DO NOT UPLOAD THIS FILE TO LIVE SERVERS!!!!!!!!
 $servername = "localhost";
 $dBUsername = "root";
-$dBPassword = "Scooby12!";
-$dBName = "SFSdb";
+$dBPassword = "password";
+$dBName = "sfsenoll_SFSdb";
 
 $conn = mysqli_connect($servername, $dBUsername, $dBPassword, $dBName);
 

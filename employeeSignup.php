@@ -1,6 +1,5 @@
 <?php
 include_once 'header.php';
-echo $_SESSION["FName"];
 ?>
 
 <section class="signup-form">
@@ -172,7 +171,6 @@ echo $_SESSION["FName"];
       echo "<p><span style='color:red;text-align:center;'>Driver's license must begin with an 'S'!</span></p>";
     } else if ($_GET["error"] == "none") {
       echo '<p><span style="color:green;text-align:center;">You have signed up!</span></p>';
-      header("refresh:3;url=login.php");
     }
   }
   ?>

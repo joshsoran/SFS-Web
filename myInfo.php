@@ -148,7 +148,7 @@ if ($resultCheck > 0) {
             $ind++;
         }
     }
-    mysqli_stmt_close($stmt);
+    //mysqli_stmt_close($stmt);
     mysqli_close($conn);
 }
 

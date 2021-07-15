@@ -1,6 +1,4 @@
 <?php
-
-
 // Check for empty input for admin signup
 function emptyInputSignup($username, $pwd, $pwdRepeat, $authent)
 {
