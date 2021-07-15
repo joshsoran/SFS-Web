@@ -158,7 +158,7 @@ if ($resultCheck > 0) {
                                         <td>${data["W42019RelStatus"][i]}</td>
                                         <td>${data["W42019ClaimDependents"][i]}</td>
                                         <td>${data["W42021RelStatus"][i]}</td>
-                                        <td>${data["W42021ClaimDependents"][i]}</td>
+                                        <td>$${data["W42021ClaimDependents"][i]}</td>
                                         <td>${data["W4MichiganDL"][i]}</td>
                                         <td>${data["W4MichiganNewEmployee"][i]}</td>
                                         <td>${data["W4MichiganHireDate"][i]}</td>
@@ -176,7 +176,7 @@ if ($resultCheck > 0) {
                     }
                 }
             }
-            for (var i = 0; i < secondData.length; i++) {
+            for (var i = 0; i < secondData.length; i++) { // 2021 Dependent claim has an extra $ in front because it shows dollar not because of code
                 var row = `<tr>
                                         <td>${data["name"][indexArray[i]]}</td>
                                         <td>${data["DOB"][indexArray[i]]}</td>
@@ -193,7 +193,7 @@ if ($resultCheck > 0) {
                                         <td>${data["W42019RelStatus"][indexArray[i]]}</td>
                                         <td>${data["W42019ClaimDependents"][indexArray[i]]}</td>
                                         <td>${data["W42021RelStatus"][indexArray[i]]}</td>
-                                        <td>${data["W42021ClaimDependents"][indexArray[i]]}</td>
+                                        <td>$${data["W42021ClaimDependents"][indexArray[i]]}</td>
                                         <td>${data["W4MichiganDL"][indexArray[i]]}</td>
                                         <td>${data["W4MichiganNewEmployee"][indexArray[i]]}</td>
                                         <td>${data["W4MichiganHireDate"][indexArray[i]]}</td>
