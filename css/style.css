@@ -496,12 +496,12 @@ td[contenteditable="true"]:focus{
 
 
 /*IPAD size*/
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) and (min-width: 430px) {
   .left, .main, .right {
     width: 100%;
   }
   body{
-    font-size: 2em; 
+    font-size: 1em; 
     
   }
   h1{
@@ -531,6 +531,9 @@ td[contenteditable="true"]:focus{
     list-style: none;
     margin: 0 10px;
   }
+  table{
+    width: 90%;
+  }
   .signup-form form {
     width: 70%;
   }
@@ -543,6 +546,19 @@ td[contenteditable="true"]:focus{
     top:16px;
     color: rgb(0, 0, 0);
   }
+
+  .tooltip:before {
+
+    /* move to Left */
+    padding: 10px;
+    width: 200px;
+    font-size: 18px;
+    left: 0px;
+    margin-right:0px; /* and add a small left margin */
+    z-index: 11; /* There's already something at 10 */
+    background: #4d9bdb;
+    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+    }
 
 }
 
@@ -669,6 +685,19 @@ td[contenteditable="true"]:focus{
       left:5px;
     top:12px;
     color: rgb(0, 0, 0);
+  }
+
+  .tooltip:before {
+
+  /* move to Left */
+  padding: 10px;
+  width: 120px;
+  font-size: 14px;
+  left: 20px;
+  margin-right:0px; /* and add a small left margin */
+  z-index: 11; /* There's already something at 10 */
+  background: #4d9bdb;
+  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.9);
   }
 
 }
