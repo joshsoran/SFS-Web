@@ -44,9 +44,8 @@ $key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
                 <th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th>
                 <th data-colname="bankRoutingNumber" data-order="desc">Bank Routing #</th>
                 <th data-colname="bankDirectDeposit" data-order="desc">Bank Direct Deposit</th>
-                <th data-colname="W42019RelStatus" data-order="desc">W4-2019 Relation Status</th>
+                <th data-colname="W42019RelStatus" data-order="desc">W4 Relation Status</th>
                 <th data-colname="W42019ClaimDependents" data-order="desc">W4-2019 Dependents Claim</th>
-                <th data-colname="W42021RelStatus" data-order="desc">W4-2021 Relation Status</th>
                 <th data-colname="W42021ClaimDependents" data-order="desc">W4-2021 Dependents Claim</th>
                 <th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th>
                 <th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th>
@@ -157,7 +156,6 @@ if ($resultCheck > 0) {
                                         <td>${data["bankDirectDeposit"][i]}</td>
                                         <td>${data["W42019RelStatus"][i]}</td>
                                         <td>${data["W42019ClaimDependents"][i]}</td>
-                                        <td>${data["W42021RelStatus"][i]}</td>
                                         <td>$${data["W42021ClaimDependents"][i]}</td>
                                         <td>${data["W4MichiganDL"][i]}</td>
                                         <td>${data["W4MichiganNewEmployee"][i]}</td>
@@ -192,7 +190,6 @@ if ($resultCheck > 0) {
                                         <td>${data["bankDirectDeposit"][indexArray[i]]}</td>
                                         <td>${data["W42019RelStatus"][indexArray[i]]}</td>
                                         <td>${data["W42019ClaimDependents"][indexArray[i]]}</td>
-                                        <td>${data["W42021RelStatus"][indexArray[i]]}</td>
                                         <td>$${data["W42021ClaimDependents"][indexArray[i]]}</td>
                                         <td>${data["W4MichiganDL"][indexArray[i]]}</td>
                                         <td>${data["W4MichiganNewEmployee"][indexArray[i]]}</td>

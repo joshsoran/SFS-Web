@@ -247,11 +247,11 @@ if ($resultCheck > 0) {
 
                                         <tr><th data-colname="zip" data-order="desc">Zip</th><td><input type="text" id="zip" name="zip" placeholder="XXXXX" maxlength="5" onkeypress="return onlyNumberKey(event)" value=${data["zip"][0]}></td></tr>
                                         
-                                        <tr><th data-colname="phone" data-order="desc">Phone</th><td><input type="text" id="employeePhone" name="employeePhone" placeholder="(XXX)-XXX-XXXX" maxlength="10" onkeypress="return onlyNumberKey(event)" value=${data["phone"][0]}></td></tr>
+                                        <tr><th data-colname="phone" data-order="desc">Phone</th><td><input type="text" id="employeePhone" name="employeePhone" placeholder="(XXX)-XXX-XXXX" maxlength="14" onkeypress="return onlyNumberKey(event)" value=${data["phone"][0]}></td></tr>
 
                                         <tr><th data-colname="email" data-order="desc">Email</th><td><input type="email" id="email" name="email" placeholder="example@company.com" value=${data["email"][0]}></td></tr>
 
-                                        <tr><th data-colname="ssn" data-order="desc">SSN</th><td><input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" maxlength="9" onkeypress="return onlyNumberKey(event)" value=${data["ssn"][0]}></td></tr>
+                                        <tr><th data-colname="ssn" data-order="desc">SSN</th><td><input type="text" id="ssn" name="ssn" placeholder="XXX-XX-XXXX" maxlength="11" onkeypress="return onlyNumberKey(event)" value=${data["ssn"][0]}></td></tr>
 
                                         <tr><th data-colname="bankAccountNumber" data-order="desc">Bank Account #</th><td><input type="text" id="bankAccNum" name="bankAccNum" placeholder="Enter bank account number..." maxlength="17" onkeypress="return onlyNumberKey(event)" value=${data["bankAccountNumber"][0]}></td></tr>
 
@@ -299,6 +299,35 @@ if ($resultCheck > 0) {
                                     </tr>`
         table.innerHTML += row
     }
+ 
+ // FORMAT SPACING BETWEEN NUMBERS
+  function formatSocialSecurity(val){
+	  val = val.replace(/\D/g, '');
+	  val = val.replace(/^(\d{3})/, '$1-');
+	  val = val.replace(/-(\d{2})/, '-$1-');
+	  val = val.replace(/(\d)-(\d{4}).*/, '$1-$2');
+	  return val;
+  }  
+  
+  function formatPhone(val){
+	  val = val.replace(/\D/g, '');
+	  val = val.replace(/^(\d{3})/, '($1)-');
+	  val = val.replace(/-(\d{3})/, '-$1-');
+	  val = val.replace(/(\d)-(\d{4}).*/, '$1-$2');
+	  return val;
+  } 
+  
+  // Create spaces inside of characters
+  $('#ssn').on('keyup', function() {
+        var value = $(this).val()
+        //console.log('Value: ', formatSocialSecurity(value))
+        document.getElementById("ssn").value = formatSocialSecurity(value);
+    })
+  $('#employeePhone').on('keyup', function(){
+    var value = $(this).val()
+    //console.log('Value: ', formatPhone(value))
+    document.getElementById("employeePhone").value = formatPhone(value);
+  })
 
     // check for valid email
     function ValidateEmail(inputText) {
@@ -313,7 +342,7 @@ if ($resultCheck > 0) {
 
     // check phone char. length
     function checkPhoneCharLength(phoneValue) {
-        if (phoneValue.length == 10) {
+        if (phoneValue.length == 14) { //This doesn't match with the '10' below because it takes into account special character like '()-'
             return true;
         } else {
             alert("Error: Your phone number must be at least 10 digits long!");
@@ -323,7 +352,7 @@ if ($resultCheck > 0) {
 
     // check ssn char. length
     function checkSSNCharLength(ssnValue) {
-        if (ssnValue.length == 9) {
+        if (ssnValue.length == 11) { //This doesn't match with the '9' below because it takes into account special character like '-'
             return true;
         } else {
             alert("Error: Your SSN must be at least 9 digits long!");

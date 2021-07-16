@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
 ?>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <section class="signup-form">
   <h1>Employee Information</h1>
   <div class="signup-form-form">
@@ -79,13 +79,13 @@ include_once 'header.php';
         <option value="Wyoming">Wyoming</option>
       </select>
       <labelSpace>h. Zip</labelSpace>
-      <input type="text" name="zip" placeholder="XXXXX" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["zip"] ?>'>
+      <input type="text" name="zip" placeholder="XXXXX" minlength="5" maxlength="5" onkeypress="return onlyNumberKey(event); return numberWithSpaces(event)" value='<?php echo $_GET["zip"] ?>'>
       <labelSpace>i. Phone number</labelSpace>
-      <input type="text" name="employeePhone" placeholder="(XXX)-XXX-XXXX" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["employeePhone"] ?>'>
+      <input type="text" name="employeePhone" id="empPhone" placeholder="(XXX)-XXX-XXXX" minlength="14" maxlength="14" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["employeePhone"] ?>'>
       <labelSpace>j. Email Address</labelSpace>
       <input type="email" name="email" placeholder="example@company.com" value='<?php echo $_GET["email"] ?>'>
       <labelSpace>k. SSN</labelSpace>
-      <input type="text" name="ssn" placeholder="XXX-XX-XXXX" minlength="9" maxlength="9" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["ssn"] ?>'>
+      <input type="text" name="ssn" id="empSSN" placeholder="XXX-XX-XXXX" minlength="11" maxlength="11" onkeypress="return onlyNumberKey(event)" value='<?php echo $_GET["ssn"] ?>'>
 
 
       <h2>2. Banking</h2>
@@ -185,6 +185,37 @@ include_once 'footer.php';
 <script>
   // var firstName = document.getElementsByName("FName")[0].value;
   // console.log(firstName);
+
+  function numberWithSpaces(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+
+  function formatSocialSecurity(val){
+	  val = val.replace(/\D/g, '');
+	  val = val.replace(/^(\d{3})/, '$1-');
+	  val = val.replace(/-(\d{2})/, '-$1-');
+	  val = val.replace(/(\d)-(\d{4}).*/, '$1-$2');
+	  return val;
+  }  
+  
+  function formatPhone(val){
+	  val = val.replace(/\D/g, '');
+	  val = val.replace(/^(\d{3})/, '($1)-');
+	  val = val.replace(/-(\d{3})/, '-$1-');
+	  val = val.replace(/(\d)-(\d{4}).*/, '$1-$2');
+	  return val;
+  } 
+
+  // Create spaces inside of characters
+  $('#empSSN').on('keyup', function() {
+        var value = $(this).val()
+        console.log('Value: ', formatSocialSecurity(value))
+        document.getElementById("empSSN").value = formatSocialSecurity(value);
+    })
+  $('#empPhone').on('keyup', function(){
+    var value = $(this).val()
+    document.getElementById("empPhone").value = formatPhone(value);
+  })
 
   // Show hide function for Hire check
   function ShowHideDiv() {
