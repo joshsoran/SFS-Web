@@ -132,7 +132,7 @@ include_once 'header.php';
 
       <h2>5. Michigan W-4</h2>
       <labelSpace>a. Driver's License Number</labelSpace>
-      <input type="text" name="MW4DLNum" placeholder="XXXXXXXXXXXXX" minlength="13" maxlength="13" spellcheck="false" value='<?php echo $_GET["MW4DLNum"] ?>'>
+      <input type="text" name="MW4DLNum" placeholder="Enter Driver's License # here..." spellcheck="false" value='<?php echo $_GET["MW4DLNum"] ?>'>
       <labelSpace>b. Are you a new employee?</labelSpace>
       <label for="chkYes">
         <input type="radio" id="chkYes" name="MW4HireCheck" onclick="ShowHideDiv()" value="Yes." />Yes.</label><br>

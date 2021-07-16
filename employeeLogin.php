@@ -6,8 +6,13 @@
   <h1>Employee Log In</h1>
   <div class="signup-form-form">
     <form action="includes/login.inc.php" method="post">
-      <center><input type="text" name="empEmail" placeholder="Enter Email..."><br><br>
-      <input type="password" name="empSSN" placeholder="Enter SSN as password..."></center>
+    <center>
+      <h2>Instructions:</h2>
+      <h3>Enter email you signed up with.</h3>
+      <h3>Enter SSN with dashes, EX: XXX-XX-XXXX</h3>
+  </center><br>
+      <center><input type="email" name="empEmail" placeholder="Enter Email..."><br><br>
+      <input type="password" name="empSSN" placeholder="SSN: XXX-XX-XXXX"></center>
       <button type="submit" name="employeeLoginSubmit">Log in</button>
     </form>
   </div>

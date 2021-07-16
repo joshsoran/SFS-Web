@@ -285,7 +285,7 @@ if ($resultCheck > 0) {
 
                                         <tr><th data-colname="W42021ClaimDependents" data-order="desc"><span data-text="Multiply the number of qualifying children under age 18 by $3,000. Multiply the number of other dependents by $500. Enter '0' if none." class="tooltip">W4-2021 Dependents Claim</span></th><td><div class="dollar"><input type="text" id="W42021numDep" name="W42021numDep" placeholder="$XXXXX" onkeypress="return onlyNumberKey(event)" value=${data["W42021ClaimDependents"][0]}></td></div></tr>
 
-                                        <tr><th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th><td><input type="text" id="MW4DLNum" name="MW4DLNum" placeholder="SXXXXXXXXXXXX" maxlength="13" value=${data["W4MichiganDL"][0]}></td></tr>
+                                        <tr><th data-colname="W4MichiganDL" data-order="desc">W4-MI Driver's License Number</th><td><input type="text" id="MW4DLNum" name="MW4DLNum" placeholder="Enter Driver's License # here..." value=${data["W4MichiganDL"][0]}></td></tr>
 
                                         <tr><th data-colname="W4MichiganNewEmployee" data-order="desc">W4-MI New Employee?</th><td><select id="MW4HireCheck" name="MW4HireCheck">
                                             <option value=${data["W4MichiganNewEmployee"][0]}>${data["W4MichiganNewEmployee"][0]} -- Selected</option>
@@ -380,16 +380,6 @@ if ($resultCheck > 0) {
         }
     }
 
-    // check Dl char. length
-    function checkDLCharLength(DLValue) {
-        if (DLValue.length == 13) {
-            return true;
-        } else {
-            alert("Error: Your Driver's License must be 13 digits long!");
-            return false;
-        }
-    }
-
     // check SSN opening with a '9'
     function checkSSNfirstChar(ssnVal) {
         if (ssnVal[0] == "9") {
@@ -439,7 +429,7 @@ if ($resultCheck > 0) {
 
         //console.log(MW4DL[0]);
 
-        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkDLCharLength(MW4DL) && checkSSNfirstChar(empSsn) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
+        if (ValidateEmail(empEmail) && checkPhoneCharLength(phone) && checkSSNCharLength(empSsn) && checkBankAccCharLength(bAccNum) && checkBankRoutingCharLength(rNum) && checkSSNfirstChar(empSsn) && hireCheckDateReq(MW4HireCheck, MW4HiDate)) {
             // make the hire date invalid if the person wasn't a new hire
             if (MW4HireCheck == "No.") {
                 MW4HiDate = "";
