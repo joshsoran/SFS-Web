@@ -3,7 +3,7 @@ include_once 'header.php';
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <section class="signup-form">
-  <h1>Employee Information</h1>
+  <h1>Employee Signup</h1>
   <div class="signup-form-form">
     <form action="includes/signup.inc.php" method="post">
       <h2>1. Personal</h2>

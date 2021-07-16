@@ -1,764 +1,847 @@
+/* MAIN FORMATTING */
+
+html {
+    height: 100%;
+}
+
 body {
-  background-color: #ffffff;
+    /* background-color: #ffffff; */
+    background: linear-gradient(315deg, #ffffff, #e1e9f1);
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .wrapper {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 
-h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Roboto', sans-serif;
-  color: rgb(51, 51, 51);
-  line-height: 24px;
+/* -MAIN FORMATTING- */
+
+
+/* TEXT FORMATTING */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-family: 'Roboto', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 24px;
 }
 
 h1 {
-  font-weight: 100;
-  font-size: 60px;
-  padding: 30px;
-  text-align: center;
+    font-weight: 100;
+    font-size: 60px;
+    padding: 30px;
+    text-align: center;
 }
 
 h2 {
-  font-weight: 500;
-  font-size: 32px;
-  padding: 20px 0;
-  text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    padding: 20px 0;
+    text-align: center;
 }
 
 h3 {
-  font-weight: 500;
-  font-size: 16px;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 p {
-  font-weight: 400;
-  font-size: 16px;
+    font-weight: 400;
+    font-size: 16px;
 }
 
-/*Horizontal line*/
+
+/* -TEXT FORMATTING- */
+
+
+/* HORIZONTAL LINE */
+
 hr {
-  width: 1000px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:rgb(51, 51, 51);
+    border-top: 1px solid rgb(0, 0, 0);
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
-header{
-  position: absolute;
-  top:0;
-  left:0;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  z-index: 10;
-  
+/* -HORIZONTAL LINE- */
+
+
+/* HEADER */
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    z-index: 10;
 }
 
-header .navigation{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 10px 0;
-}
-header .navigation li{
-  list-style: none;
-  margin: 0 10px;
+header .navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0;
 }
 
-header .navigation li a{
-  color: black;
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 24px;
-  text-transform: uppercase;
+header .navigation li {
+    list-style: none;
+    margin: 0 10px;
 }
 
+header .navigation li a {
+    color: black;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
+
+header .navigation a:hover {
+    color: #2c83ca;
+    transition: all 0.3s ease 0s;
+}
 
 nav {
-  width: 100%;
-  height: 50px;
-  align-items: center;
-
+    width: 100%;
+    height: 50px;
+    align-items: center;
 }
 
 nav .wrapper {
-  width: 100%;
-  height: 100%;
-  justify-content: left;
-  align-items: center;
+    width: 100%;
+    height: 100%;
+    justify-content: left;
+    align-items: center;
 }
-
-/* nav ul li {
-  list-style: none;
-  float: left;
-}
-
-nav ul li a {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  font-size: 24px;
-  color: rgb(51, 51, 51);
-  text-decoration: none;
-  padding: 0 16px;
-  text-transform: uppercase;
-  transition: all 0.3s ease 0s;
-}
-
-nav ul li a:hover {
-  color: #2c83ca;
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
-} */
-
 
 section {
-  width: 100%;
-  
+    width: 100%;
 }
 
-/* index */
+
+/* -HEADER- */
+
+
+/* INDEX */
 
 .index-intro p {
     text-align: center;
 }
 
 .index-categories-list {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .index-categories-list div {
-  width: 24%;
-  height: 200px;
-  background-color: #2c83ca;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 24%;
+    height: 200px;
+    background-color: #2c83ca;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* sign up */
+
+/* -INDEX- */
+
+
+/* SIGNUP FORMS */
 
 .signup-form-form {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .signup-form p {
-  text-align: center;
-  padding-bottom: 40px;
-  color: #2c83ca;
+    text-align: center;
+    padding-bottom: 40px;
+    color: #2c83ca;
 }
 
 .signup-form form {
-  width: 40%;
+    width: 40%;
 }
 
-.signup-form form select{
-  width: 200px;
-  
-  background-color: white;
-  border:1px solid #cccccc;
-  margin-bottom: 20px;
-  border-radius: 3px;
-  transition: all 0.3s ease 0s;
+.signup-form form select {
+    width: 200px;
+    background-color: white;
+    border: 1px solid #cccccc;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    transition: all 0.3s ease 0s;
 }
 
 input::-webkit-inner-spin-button {
-  /* display: none; <- Crashes Chrome on hover */
-  -webkit-appearance: none;
-  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.signup-form form input[type="text"], input[type="date"], input[type="password"], input[type="email"], input[type="number"] {
-  width: 200px;
-  padding: 12px;
-  border:1px solid #cccccc;
-  border-radius: 3px;
-  -moz-appearance:textfield;
-  transition: all 0.3s ease 0s;
+.signup-form form input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+    width: 200px;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    -moz-appearance: textfield;
+    transition: all 0.3s ease 0s;
+}
+
+.signup-form form input[type="text"]:hover,
+input[type="date"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover,
+select:hover {
+    outline: none;
+    box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, 0.1);
+    transition: all 0.3s ease 0s;
+}
+
+.signup-form form input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px #2c83ca;
+    transition: all 0.3s ease 0s;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+input[type="email"],
+input[type="number"] {
+    width: 200px;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    -moz-appearance: textfield;
+    transition: all 0.3s ease 0s;
+}
+
+select {
+    width: 225px;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: 500;
+    -moz-appearance: textfield;
+    transition: all 0.3s ease 0s;
+}
+
+input[type="text"]:hover,
+input[type="date"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="number"]:hover,
+select:hover {
+    outline: none;
+    box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, 0.1);
+    transition: all 0.3s ease 0s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px #2c83ca;
+    transition: all 0.3s ease 0s;
 }
 
 
-.signup-form form input[type="text"]:hover, input[type="date"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="number"]:hover, select:hover{
-  outline:none;
-  box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, 0.1);
-  transition: all 0.3s ease 0s;
-}
-
-.signup-form form input[type="text"]:focus, input[type="date"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="number"]:focus,select:focus{
-  outline:none;
-  box-shadow: 0px 0px 0px 2px #2c83ca;
-  transition: all 0.3s ease 0s;
-}
-
-input[type="text"], input[type="date"], input[type="password"], input[type="email"], input[type="number"]{
-  width: 200px;
-  padding: 12px;
-  border:1px solid #cccccc;
-  border-radius: 3px;
-  -moz-appearance:textfield;
-  transition: all 0.3s ease 0s;
-}
-
-select{
-  width: 225px;
-  padding: 12px;
-  border:1px solid #cccccc;
-  border-radius: 3px;
-  text-align: center;
-  font-weight: 500;
-  -moz-appearance:textfield;
-  transition: all 0.3s ease 0s;
-}
+/* -SIGNUP FORMS- */
 
 
-input[type="text"]:hover, input[type="date"]:hover, input[type="password"]:hover, input[type="email"]:hover, input[type="number"]:hover, select:hover{
-  outline:none;
-  box-shadow: 0px 3px 10px 2px rgba(70, 70, 70, 0.1);
-  transition: all 0.3s ease 0s;
+/* $ sign infront of texts that require money */
+
+.dollar {
+    display: inline-block;
+    position: relative;
 }
 
-input[type="text"]:focus, input[type="date"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="number"]:focus,select:focus{
-  outline:none;
-  box-shadow: 0px 0px 0px 2px #2c83ca;
-  transition: all 0.3s ease 0s;
+.dollar input {
+    padding-left: 15px;
 }
 
-/*$ sign in front of texts that require money */
-
-.dollar{
-	display:inline-block;
-	position: relative;
-}
-.dollar input{
-	padding-left:15px;
-}
 .dollar:before {
-  font-family: 'Roboto', sans-serif;
-	position: absolute;
-    content:"$";
-    left:3px;
-	top:11px;
-  color: rgb(0, 0, 0);
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    content: "$";
+    left: 3px;
+    top: 11px;
+    color: rgb(0, 0, 0);
 }
-  
+
+
+/* -$ SIGN END- */
 
 
 /* viewEmployee.php search bar */
-.form-control{
-  width: fit-content;
-  height: fit-content;
-  position: relative;
+
+.form-control {
+    width: fit-content;
+    height: fit-content;
+    position: relative;
 }
 
-.input-search{
-  height: 30px;
-  width: 210px;
-  border-style: none;
-  padding: 10px;
-  font-size: 18px;
-  letter-spacing: 2px;
-  outline: none;
-  border-radius: 10px;
-  transition: all .5s ease-in-out;
-  background-color: #f8f8f8;
-  color:rgb(0, 0, 0);
-}
-.input-search::placeholder{
-  color:rgba(0, 0, 0, 0.9);
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: 100;
+.input-search {
+    height: 30px;
+    width: 210px;
+    border-style: none;
+    padding: 10px;
+    font-size: 18px;
+    letter-spacing: 2px;
+    outline: none;
+    border-radius: 0px;
+    transition: all .5s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.322);
+    color: rgb(0, 0, 0);
 }
 
-.input-search:focus{
-  width: 500px;
-  border-radius: 0px;
-  background-color: transparent;
-  border-bottom:1px solid rgba(0, 0, 0, 0.5);
-  transition: all .35s ease-in-out;
-  /* transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2); */
+.input-search::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 18px;
+    letter-spacing: 2px;
+    font-weight: 100;
 }
 
-.input-search:hover, .input-search::placeholder:hover{
-  background-color: rgb(241, 241, 241);
-  transition: all .3s ease-in-out;
+.input-search:focus {
+    width: 500px;
+    border-radius: 0px;
+    background-color: rgba(255, 255, 255, 0.508);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    transition: all .35s ease-in-out;
+    /* transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2); */
+}
+
+.input-search:hover,
+.input-search::placeholder:hover {
+    background-color: rgb(241, 241, 241);
+    transition: all .3s ease-in-out;
 }
 
 
-
+/* -viewEmployee.php search bar- */
 
 
 /* Form stuff */
+
 .signup-form form button {
-  
-  color:white;
-	width: 100px;
-  height: 40px;
-  font-size: 17px;
-  text-align: center;
-	margin: auto;
-	background-color: #2c83ca; 
-	border: none;
-	border-radius: 3px;
-	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.09);
-	transition: all 0.3s ease 0s;
-  display: block;
-  padding: 10px 20px;
-  margin: 10px auto;
-  cursor: pointer;
+    color: white;
+    width: 100px;
+    height: 40px;
+    font-size: 17px;
+    text-align: center;
+    margin: auto;
+    background-color: #2c83ca;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.09);
+    transition: all 0.3s ease 0s;
+    display: block;
+    padding: 10px 20px;
+    margin: 10px auto;
+    cursor: pointer;
 }
 
 .signup-form form button:hover {
-  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-  background-color:rgb(255, 255, 255);
-  color: #3aa6ff;
-  border:1px solid #cccccc;
-	transition: all 0.3s ease 0s;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    background-color: rgb(255, 255, 255);
+    color: #3aa6ff;
+    border: 1px solid #cccccc;
+    transition: all 0.3s ease 0s;
 }
 
 .signup-form form button:disabled {
-  color:white;
-	width: 100px;
-  height: 40px;
-  font-size: 17px;
-  text-align: center;
-	margin: auto;
-	background-color: #99afc2; 
-	border: none;
-	border-radius: 3px;
-	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.09);
-	transition: all 0.3s ease 0s;
-  display: block;
-  padding: 10px 20px;
-  margin: 10px auto;
-  cursor:auto;
+    color: white;
+    width: 100px;
+    height: 40px;
+    font-size: 17px;
+    text-align: center;
+    margin: auto;
+    background-color: #99afc2;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.09);
+    transition: all 0.3s ease 0s;
+    display: block;
+    padding: 10px 20px;
+    margin: 10px auto;
+    cursor: auto;
 }
 
 button {
-  
-  color:white;
-	width: 100px;
-  height: 40px;
-  font-size: 17px;
-  text-align: center;
-	margin: auto;
-	background-color: #2c83ca; 
-	border: none;
-	border-radius: 3px;
-	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.09);
-	transition: all 0.3s ease 0s;
-  display: block;
-  padding: 10px 20px;
-  margin: 10px auto;
-  cursor: pointer;
+    color: white;
+    width: 100px;
+    height: 40px;
+    font-size: 17px;
+    text-align: center;
+    margin: auto;
+    background-color: #2c83ca;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.09);
+    transition: all 0.3s ease 0s;
+    display: block;
+    padding: 10px 20px;
+    margin: 10px auto;
+    cursor: pointer;
 }
 
- button:hover {
-  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-  background-color:rgb(255, 255, 255);
-  color: #2c83ca;
-  border:1px solid #cccccc;
-	transition: all 0.3s ease 0s;
+button:hover {
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    background-color: rgb(255, 255, 255);
+    color: #2c83ca;
+    border: 1px solid #cccccc;
+    transition: all 0.3s ease 0s;
 }
 
 
+/* -Form stuff- */
 
 
 /* LABEL */
+
 labelSpace {
-  display: flex;
-  flex-direction: row;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  color: rgb(51, 51, 51);
-  margin: 10px auto;
-  text-decoration: none;
-  transition: all 0.3s ease 0s;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: rgb(51, 51, 51);
+    margin: 10px auto;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
 }
 
 label {
-  flex-direction: row;
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: rgb(51, 51, 51);
-  margin: 10px auto;
-  text-decoration: none;
-  transition: all 0.3s ease 0s;
+    flex-direction: row;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: rgb(51, 51, 51);
+    margin: 10px auto;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
 }
+
+
+/* -LABEL- */
 
 
 /* TABLE */
 
+
 /* viewEmployee.php table */
+
+
 /* If you're looking to changing the table alternatio color, go inside viewEmployees.php,
 there's a JS script that does it */
-table{
-  box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.35);
-  padding-top: 20px;
-  border-radius: 20px;
-  border-collapse:collapse;
+
+table {
+    box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.35);
+    padding-top: 20px;
+    border-radius: 20px;
+    border-collapse: collapse;
 }
 
-table tr:last-child td:first-child{
-  border-bottom-left-radius: 20px;
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 20px;
 }
 
 table tr:last-child td:last-child {
-  border-bottom-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #2c83ca;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+}
+
+td[contenteditable="true"] {
+    text-align: center;
+    transition: all 0.3s ease 0s;
+}
+
+td[contenteditable="true"]:hover {
+    transform: scale(1.2);
+    transition: all 0.3s ease 0s;
+}
+
+td[contenteditable="true"]:focus {
+    outline: 0px solid transparent;
+    font-size: 24px;
+    box-shadow: 0px 0px 0px 2px #2c83ca;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.3s ease 0s;
 }
 
 
-td{
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: 'Roboto', sans-serif;
-  text-align:center;
-}
+/* -TABLE- */
 
 
-th{
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background-color: #2c83ca;
-  font-family: 'Roboto', sans-serif;
-  border: none;
-}
+/* TOOL TIPS */
 
-td[contenteditable="true"]{
-  text-align: center;
-  transition: all 0.3s ease 0s;
-}
-
-td[contenteditable="true"]:hover{
-  transform: scale(1.2);
-  transition: all 0.3s ease 0s;
-}
-
-td[contenteditable="true"]:focus{
-  outline: 0px solid transparent;
-  font-size: 24px;
-  box-shadow: 0px 0px 0px 2px #2c83ca;
-  background-color: rgb(255, 255, 255);
-  transition: all 0.3s ease 0s;
-}
-
-/*Tool Tips*/
 .tooltip {
-  position:relative; /* making the .tooltip span a container for the tooltip text */
-  border-bottom:2px dashed rgb(0, 0, 0); /* little indicater to indicate it's hoverable */
+    position: relative;
+    /* making the .tooltip span a container for the tooltip text */
+    border-bottom: 2px dashed rgb(0, 0, 0);
+    /* little indicater to indicate it's hoverable */
 }
 
 .tooltip:before {
-  content: attr(data-text); /* here's the magic */
-  position:absolute;
-  
-  /* vertically center */
-  top:50%;
-  transform:translateY(-50%);
-  
-  /* move to Left */
-  right:100%;
-  margin-right:20px; /* and add a small left margin */
-  
-  /* basic styles */
-  width:200px;
-  padding:10px;
-  border-radius:10px;
-  background:#2c83ca;
-  color: #fff;
-  text-align:center;
-  font-weight: lighter;
-  white-space:pre-wrap;
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
-
-  display:none; /* hide by default */
+    content: attr(data-text);
+    /* here's the magic */
+    position: absolute;
+    /* vertically center */
+    top: 50%;
+    transform: translateY(-50%);
+    /* move to Left */
+    right: 100%;
+    margin-right: 20px;
+    /* and add a small left margin */
+    /* basic styles */
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #2c83ca;
+    color: #fff;
+    text-align: center;
+    font-weight: lighter;
+    white-space: pre-wrap;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
+    display: none;
+    /* hide by default */
 }
 
 .tooltip:hover:before {
-  display:block;
+    display: block;
 }
 
 
+/* -TOOL TIPS- */
 
+
+/* MOBILE DISPLAYS */
 
 
 /*IPAD size*/
+
 @media only screen and (max-width: 768px) and (min-width: 430px) {
-  .left, .main, .right {
-    width: 100%;
-  }
-  body{
-    font-size: 1em; 
-    
-  }
-  h1{
-    padding: 40px 0;
-  }
-  hr{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(51, 51, 51);
-  }
-  header{
-    flex-direction: column;
-    font-size: 2em; 
-    padding-top: 5px;
-    padding-bottom: 5px;
-    
-  }
-  header .navigation{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 0px 0;
-  }
-  header .navigation li{
-    list-style: none;
-    margin: 0 10px;
-  }
-  table{
-    width: 90%;
-  }
-  .signup-form form {
-    width: 70%;
-  }
-  .dollar:before {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    position: absolute;
-      content:"$";
-      left:5px;
-    top:16px;
-    color: rgb(0, 0, 0);
-  }
-
-  .tooltip:before {
-
-    /* move to Left */
-    padding: 10px;
-    width: 200px;
-    font-size: 18px;
-    left: 0px;
-    margin-right:0px; /* and add a small left margin */
-    z-index: 11; /* There's already something at 10 */
-    background: #4d9bdb;
-    box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+    .left,
+    .main,
+    .right {
+        width: 100%;
     }
-
+    body {
+        font-size: 1em;
+    }
+    h1 {
+        padding: 40px 0;
+    }
+    hr {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(51, 51, 51);
+    }
+    header {
+        flex-direction: column;
+        font-size: 2em;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    header .navigation {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0px 0;
+    }
+    header .navigation li {
+        list-style: none;
+        margin: 0 10px;
+    }
+    table {
+        width: 90%;
+    }
+    .signup-form form {
+        width: 70%;
+    }
+    .dollar:before {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        position: absolute;
+        content: "$";
+        left: 5px;
+        top: 16px;
+        color: rgb(0, 0, 0);
+    }
+    .tooltip:before {
+        /* move to Left */
+        padding: 10px;
+        width: 200px;
+        font-size: 18px;
+        left: 0px;
+        margin-right: 0px;
+        /* and add a small left margin */
+        z-index: 11;
+        /* There's already something at 10 */
+        background: #4d9bdb;
+        box-shadow: 0px 0px 20px 3px rgba(0, 0, 0, 0.75);
+    }
 }
+
 
 /* Pixel */
-@media only screen and (max-width: 411px){
-  .left, .main, .right {
-    width: 100%;
-  }
-  body{
-    font-size: 1em; 
-    
-  }
 
-  h1{
-    font-size: 50px;
-    padding-top: 180px;
-    line-height: 100%;
-    overflow-wrap: break-word;
-  }
-
-  hr{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(51, 51, 51);
-  }
-
-  header{
-    position: absolute;
-  top:0;
-  left:0;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  z-index: 10;
-    
-  }
-
-  header .navigation{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 0px 0;
-  }
-  header .navigation li{
-    list-style: none;
-    margin: 0 10px;
-  }
-
-  .signup-form form {
-    width: 90%;
-  }
-
-  .dollar:before {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    position: absolute;
-      content:"$";
-      left:5px;
-    top:14px;
-    color: rgb(0, 0, 0);
-  }
-
+@media only screen and (max-width: 411px) {
+    .left,
+    .main,
+    .right {
+        width: 100%;
+    }
+    body {
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 50px;
+        padding-top: 180px;
+        line-height: 100%;
+        overflow-wrap: break-word;
+    }
+    hr {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(51, 51, 51);
+    }
+    header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        z-index: 10;
+    }
+    header .navigation {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 0px 0;
+    }
+    header .navigation li {
+        list-style: none;
+        margin: 0 10px;
+    }
+    .signup-form form {
+        width: 90%;
+    }
+    .dollar:before {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        position: absolute;
+        content: "$";
+        left: 5px;
+        top: 14px;
+        color: rgb(0, 0, 0);
+    }
 }
 
+
 /* Iphones PLUS size */
+
 @media only screen and (max-width: 414px) {
-  body{
-    font-size: 1em; 
-    
-  }
-
-  h1{
-    font-size: 50px;
-    padding-top: 110px;
-    line-height: 100%;
-    overflow-wrap: break-word;
-  }
-
-  hr{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(51, 51, 51);
-  }
-
-  header{
-  top:0;
-  left:0;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  z-index: 10;
-    
-  }
-
-  header .navigation{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 5px 0;
-  }
-  header .navigation li{
-    list-style: none;
-    margin: 0 5px;
-    padding-right: 40px;
-  }
-
-  .signup-form form {
-    width: 90%;
-  }
-
-  .dollar:before {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    position: absolute;
-      content:"$";
-      left:5px;
-    top:12px;
-    color: rgb(0, 0, 0);
-  }
-
-  .tooltip:before {
-
-  /* move to Left */
-  padding: 10px;
-  width: 120px;
-  font-size: 14px;
-  left: 20px;
-  margin-right:0px; /* and add a small left margin */
-  z-index: 11; /* There's already something at 10 */
-  background: #4d9bdb;
-  box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.9);
-  }
-
+    body {
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 50px;
+        padding-top: 110px;
+        line-height: 100%;
+        overflow-wrap: break-word;
+    }
+    hr {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(51, 51, 51);
+    }
+    header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        z-index: 10;
+    }
+    header .navigation {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 5px 0;
+    }
+    header .navigation li {
+        list-style: none;
+        margin: 0 5px;
+        padding-right: 40px;
+    }
+    .signup-form form {
+        width: 90%;
+    }
+    .dollar:before {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        position: absolute;
+        content: "$";
+        left: 5px;
+        top: 12px;
+        color: rgb(0, 0, 0);
+    }
+    .tooltip:before {
+        /* move to Left */
+        padding: 10px;
+        width: 120px;
+        font-size: 14px;
+        left: 20px;
+        margin-right: 0px;
+        /* and add a small left margin */
+        z-index: 11;
+        /* There's already something at 10 */
+        background: #4d9bdb;
+        box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.9);
+    }
 }
 
 @media only screen and (max-width: 570px) and (min-width:420px) {
-  body{
-    font-size: 1em; 
-    
-  }
-
-  h1{
-    font-size: 64px;
-    padding-top: 40px;
-    line-height: 100%;
-    overflow-wrap: break-word;
-  }
-
-  hr{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(51, 51, 51);
-  }
-
-  header{
-  top:0;
-  left:0;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  z-index: 10;
-    
-  }
-
-  header .navigation{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 5px 0;
-  }
-  header .navigation li{
-    list-style: none;
-    margin: 0 5px;
-    padding-right: 40px;
-  }
-
-  .signup-form form {
-    width: 90%;
-  }
-
-  .dollar:before {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    position: absolute;
-      content:"$";
-      left:5px;
-    top:12px;
-    color: rgb(0, 0, 0);
-  }
-
+    body {
+        font-size: 1em;
+    }
+    h1 {
+        font-size: 64px;
+        padding-top: 40px;
+        line-height: 100%;
+        overflow-wrap: break-word;
+    }
+    hr {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(51, 51, 51);
+    }
+    header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        z-index: 10;
+    }
+    header .navigation {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 5px 0;
+    }
+    header .navigation li {
+        list-style: none;
+        margin: 0 5px;
+        padding-right: 40px;
+    }
+    .signup-form form {
+        width: 90%;
+    }
+    .dollar:before {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        position: absolute;
+        content: "$";
+        left: 5px;
+        top: 12px;
+        color: rgb(0, 0, 0);
+    }
 }
+
+
+/* -MOBILE DISPLAYS- */
+
+
+/* MASTER LOGIN PAGE DIVIDERS */
+
+#divLeft {
+    width: 49%;
+    float: left;
+}
+
+#divRight {
+    width: 49%;
+    float: right;
+}
+
+
+/* Verticle Line down the middle */
+
+.vl {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    border-left: 1px solid #000000;
+    transform: translate(-50%);
+    height: 80%;
+}
+
+
+/* -MASTER LOGIN PAGE DIVIDERS- */

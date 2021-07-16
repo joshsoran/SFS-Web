@@ -17,15 +17,18 @@ $key = 'cHcabxgZDblOq1wlTEWEDZjT2JkbOgAaKobpXT1DbaR9zQ5K1HB1zEXJEuPK51oK';
         color: #fff;
     }
     /* alternate row color */
-    tr:nth-child(even) {background-color: #ebebeb;}
+    tr:nth-child(even) {background-color: #dde4eb;}
+    tr:nth-child(odd) {background-color: #fff;}
 </style>
 
 <h1>Employee Information</h1>
 
-<div class="form-control">
-<center><label>Search: </label>
-    <input class="input-search" id="search-input" type="text" placeholder="Employee name..."></center>
-</div>
+
+<center>
+    <label>Search: </label>
+    <input class="input-search" id="search-input" type="text" placeholder="Employee name...">
+</center>
+
 <br>
 
 <div class="emp-container">
