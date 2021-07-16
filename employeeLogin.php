@@ -9,8 +9,8 @@ include_once 'header.php';
     <div class="logInputfield">
       <center>
         <h2>Instructions:</h2>
-        <h3>Enter email you signed up with.</h3>
-        <h3>Enter SSN with dashes, EX: XXX-XX-XXXX</h3><br>
+        <h3>Enter the email you signed up with.</h3>
+        <h3>Enter SSN with dashes, EX: XXX-XX-XXXX.</h3><br>
         <input type="email" name="empEmail" placeholder="Enter Email..."><br><br>
         <input type="password" name="empSSN" placeholder="SSN: XXX-XX-XXXX"><br><br>
         <button class="button button--greip" type="submit" name="employeeLoginSubmit"><span><span>Login</span></span></button>

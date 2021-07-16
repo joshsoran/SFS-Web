@@ -171,7 +171,8 @@ include_once 'header.php';
     } else if ($_GET["error"] == "invalidSSN") {
       echo "<p><span style='color:red;text-align:center;'>SSN cannot begin with the number 9!</span></p>";
     } else if ($_GET["error"] == "none") {
-      echo '<p><span style="color:green;text-align:center;">You have signed up!</span></p>';
+      //echo '<p><span style="color:green;text-align:center;">You have signed up!</span></p>';
+      echo '<script> window.location.href = "signupSuccess.php";</script>';
     }
   }
   ?>
