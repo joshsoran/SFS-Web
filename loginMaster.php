@@ -15,7 +15,7 @@ include_once 'header.php';
     </form>
     </center>
 </div>
-
+<div class="horizL"></div>
 <!-- Right side -->
 <div id="divRight">
     <h1>Admin Login</h1>

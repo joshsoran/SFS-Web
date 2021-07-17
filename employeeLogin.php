@@ -4,11 +4,11 @@ include_once 'header.php';
 <link rel="stylesheet" href="css/inputField.css?ver=<?php echo rand(111, 999) ?>">
 <link rel="stylesheet" href="css/base.css?ver=<?php echo rand(111, 999) ?>">
 <form action="includes/login.inc.php" method="post">
-  <h1>Employee Log In</h1>
+  <h1 style="line-height: 0px; padding: 0px 0;">Employee Log In</h1><br>
   <div class="wrapthis">
     <div class="logInputfield">
       <center>
-        <h2>Instructions:</h2>
+        <h2 style="line-height: 0px; padding: 0px 0;">Instructions:</h2><br>
         <h3>Enter the email you signed up with.</h3>
         <h3>Enter SSN with dashes, EX: XXX-XX-XXXX.</h3><br>
         <input type="email" name="empEmail" placeholder="Enter Email..."><br><br>
@@ -18,15 +18,15 @@ include_once 'header.php';
     </div>
   </div>
 </form>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <?php
 // Error messages
 if (isset($_GET["error"])) {
   if ($_GET["error"] == "emptyinput") {
-    echo "<p>Fill in all fields!</p>";
+    echo '<center><p style="color:red;">Fill in all fields!</p></center>';
   } else if ($_GET["error"] == "wronglogin") {
-    echo "<p>Wrong login!</p>";
+    echo '<center><p style="color:red;">Wrong Login!</p></center>';
   }
 }
 ?>

@@ -83,10 +83,9 @@ hr {
 
 header {
     position: absolute;
-    top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -564,6 +563,37 @@ td[contenteditable="true"]:focus {
 /* -TOOL TIPS- */
 
 
+/* MASTER LOGIN PAGE DIVIDERS */
+
+#divLeft {
+    width: 49%;
+    float: left;
+}
+
+#divRight {
+    width: 49%;
+    float: right;
+}
+
+
+/* Verticle Line down the middle */
+
+.vl {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    border-left: 1px solid #000000;
+    transform: translate(-50%);
+    height: 80%;
+}
+
+.horizL {}
+
+
+/* -MASTER LOGIN PAGE DIVIDERS- */
+
+
 /* MOBILE DISPLAYS */
 
 
@@ -579,7 +609,10 @@ td[contenteditable="true"]:focus {
         font-size: 1em;
     }
     h1 {
+        font-size: 50px;
         padding: 40px 0;
+        line-height: 100%;
+        overflow-wrap: break-word;
     }
     hr {
         width: 100%;
@@ -692,6 +725,16 @@ td[contenteditable="true"]:focus {
         top: 14px;
         color: rgb(0, 0, 0);
     }
+    .horizL {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: 370px;
+        border-bottom: 1px solid black;
+        width: 80%;
+        justify-content: center;
+        transform: translate(12%);
+    }
 }
 
 
@@ -703,7 +746,7 @@ td[contenteditable="true"]:focus {
     }
     h1 {
         font-size: 50px;
-        padding-top: 110px;
+        padding-top: 0px;
         line-height: 100%;
         overflow-wrap: break-word;
     }
@@ -760,6 +803,27 @@ td[contenteditable="true"]:focus {
         background: #4d9bdb;
         box-shadow: 0px 0px 13px 3px rgba(0, 0, 0, 0.9);
     }
+    #divLeft {
+        width: 100%;
+        float: left;
+    }
+    #divRight {
+        width: 100%;
+        float: left;
+    }
+    .vl {
+        height: 0;
+    }
+    .horizL {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: 370px;
+        border-bottom: 1px solid black;
+        width: 80%;
+        justify-content: center;
+        transform: translate(12%);
+    }
 }
 
 @media only screen and (max-width: 570px) and (min-width:420px) {
@@ -815,33 +879,47 @@ td[contenteditable="true"]:focus {
 }
 
 
+/* Iphone 5 */
+
+@media only screen and (max-width: 320px) {
+    .horizL {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: 150px;
+        border-bottom: 1px solid black;
+        width: 80%;
+        justify-content: center;
+        transform: translate(12%);
+    }
+}
+
+
+/* Pixel 2 XL */
+
+@media only screen and (max-height: 823px) and (min-height: 823px) {
+    .horizL {
+        bottom: 460px;
+    }
+}
+
+
+/* Iphone 6/7/8 */
+
+@media only screen and (max-height: 667px) and (min-height: 667px) {
+    .horizL {
+        bottom: 250px;
+    }
+}
+
+
+/* Iphone X */
+
+@media only screen and (max-height: 812px) and (min-height: 812px) {
+    .horizL {
+        bottom: 395px;
+    }
+}
+
+
 /* -MOBILE DISPLAYS- */
-
-
-/* MASTER LOGIN PAGE DIVIDERS */
-
-#divLeft {
-    width: 49%;
-    float: left;
-}
-
-#divRight {
-    width: 49%;
-    float: right;
-}
-
-
-/* Verticle Line down the middle */
-
-.vl {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    left: 50%;
-    border-left: 1px solid #000000;
-    transform: translate(-50%);
-    height: 80%;
-}
-
-
-/* -MASTER LOGIN PAGE DIVIDERS- */
