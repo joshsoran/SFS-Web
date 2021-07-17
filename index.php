@@ -3,12 +3,11 @@
 ?>
 
 <section class="index-intro">
-  <h1>Hello,</h1>
-  <p>If you're new here and need to send your important employee information, click on "Employee Signup" up above.</p>
-  <p>If you're a returning employee, click on "Employee Log In" so you can verify and update your information accordingly.</p>
-  <br>
-  <p>If you're an Admin and are looking to make an account, click on Admin Signup.</p>
-  <p>If you want to view employee information, please log in and follow the instructions there!</p>
+  <h1>Hey!</h1>
+  <h2 style="font-weight: 370; line-height: 100%;">1. Need to send your information?</h2>
+  <p> Click 'Signup' <a href="employeeSignup.php" style="font-size: 25px; text-decoration: none; color: #2c83ca;">here</a>, or up at the top!</p>
+  <h2 style="font-weight: 370;">2. Returning back?</h2>
+  <p>Click 'Login' <a href="loginMaster.php" style="font-size: 25px; text-decoration: none; color: #2c83ca;">here</a>, or up at the top and go from there.</p>  
 </section>
 
 <?php

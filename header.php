@@ -16,6 +16,9 @@ include_once 'includes/functions.inc.php';
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=Yomogi&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?ver=<?php echo rand(111, 999) ?>">
 </head>
 

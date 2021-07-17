@@ -5,8 +5,10 @@ html {
 }
 
 body {
-    /* background-color: #ffffff; */
-    background: linear-gradient(315deg, #ffffff, #e1e9f1);
+    background-color: #ffffff;
+    /* background: linear-gradient(315deg, #ffffff, #707880); */
+    background: rgb(255, 255, 255);
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(152, 175, 209, 0.5) 100%);
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
@@ -38,8 +40,9 @@ p {
 }
 
 h1 {
-    font-weight: 100;
-    font-size: 60px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 300;
+    font-size: 80px;
     padding: 30px;
     text-align: center;
 }
@@ -635,7 +638,7 @@ td[contenteditable="true"]:focus {
         font-size: 1em;
     }
     h1 {
-        font-size: 50px;
+        font-size: 64px;
         padding: 40px 0;
         line-height: 100%;
         overflow-wrap: break-word;
@@ -661,9 +664,10 @@ td[contenteditable="true"]:focus {
         margin: 0px 0;
     }
     header .navigation li a {
-        font-size: 25px;
+        font-size: 30px;
         list-style: none;
         margin: 0 10px;
+        padding-right: 20px;
     }
     table {
         width: 90%;
@@ -1016,6 +1020,9 @@ td[contenteditable="true"]:focus {
     }
     header .navigation li a {
         font-size: 25px;
+    }
+    .signup-form form {
+        width: 90%;
     }
     #divLeft {
         width: 100%;

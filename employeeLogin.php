@@ -4,7 +4,7 @@ include_once 'header.php';
 <link rel="stylesheet" href="css/inputField.css?ver=<?php echo rand(111, 999) ?>">
 <link rel="stylesheet" href="css/base.css?ver=<?php echo rand(111, 999) ?>">
 <form action="includes/login.inc.php" method="post">
-  <h1 style="line-height: 0px; padding: 0px 0;">Employee Log In</h1><br>
+  <h1>Employee Login</h1><br>
   <div class="wrapthis">
     <div class="logInputfield">
       <center>
