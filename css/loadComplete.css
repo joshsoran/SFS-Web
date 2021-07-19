@@ -1,3 +1,9 @@
+/*
+AUTHOR: Josh Soran
+DESCRIPTION: A simple green-circled checkmark animation 
+used to show successful completion of something.
+ */
+
 .checkmark__circle {
     stroke-dasharray: 166;
     stroke-dashoffset: 166;
