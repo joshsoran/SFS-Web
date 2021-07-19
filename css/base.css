@@ -1216,3 +1216,18 @@ https://oreillymedia.github.io/Using_SVG/extras/ch07-textpaths.html */
         color: #fff;
     }
 }
+
+@media only screen and (max-width: 540px) and (min-width: 500px) {
+    .button--hyperion {
+        width: 150px;
+        height: 70px;
+        text-align: center;
+        font-size: 24px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        padding: 1rem 1.5rem;
+        border: 1px solid #2c83ca;
+        overflow: hidden;
+        color: #fff;
+    }
+}

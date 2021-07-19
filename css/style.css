@@ -618,8 +618,6 @@ td[contenteditable="true"]:focus {
     height: 80%;
 }
 
-.horizL {}
-
 
 /* -MASTER LOGIN PAGE DIVIDERS- */
 
@@ -629,7 +627,7 @@ td[contenteditable="true"]:focus {
 
 /*IPAD size*/
 
-@media only screen and (max-width: 768px) and (min-width: 768px) {
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
     .left,
     .main,
     .right {
@@ -694,7 +692,7 @@ td[contenteditable="true"]:focus {
 
 /* Pixel 2 */
 
-@media only screen and (max-width: 411px) and (min-width: 411px) {
+@media only screen and (max-width: 411px) and (min-width: 393px) {
     body {
         font-size: 1em;
     }
@@ -741,16 +739,6 @@ td[contenteditable="true"]:focus {
     .signup-form form {
         width: 90%;
     }
-    .horizL {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        bottom: 290px;
-        border-bottom: 1px solid black;
-        width: 80%;
-        justify-content: center;
-        transform: translate(12%);
-    }
     #divLeft {
         width: 100%;
         float: left;
@@ -767,7 +755,7 @@ td[contenteditable="true"]:focus {
 
 /* Iphones PLUS size */
 
-@media only screen and (max-width: 414px) and (min-width: 414px) {
+@media only screen and (max-width: 434px) and (min-width: 414px) {
     body {
         font-size: 1em;
     }
@@ -842,22 +830,12 @@ td[contenteditable="true"]:focus {
     .vl {
         height: 0;
     }
-    .horizL {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        bottom: 330px;
-        border-bottom: 1px solid black;
-        width: 80%;
-        justify-content: center;
-        transform: translate(12%);
-    }
 }
 
 
 /* ??? Not sure what this one's for */
 
-@media only screen and (max-width: 570px) and (min-width:570px) {
+@media only screen and (max-width: 570px) and (min-width:540px) {
     body {
         font-size: 1em;
     }
@@ -912,7 +890,7 @@ td[contenteditable="true"]:focus {
 
 /* Iphone 5 */
 
-@media only screen and (max-width: 320px) and (min-width: 320px) {
+@media only screen and (max-width: 375px) and (min-width: 320px) {
     body {
         font-size: 1em;
     }
@@ -987,26 +965,12 @@ td[contenteditable="true"]:focus {
     .vl {
         height: 0;
     }
-    .horizL {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        bottom: 110px;
-        border-bottom: 1px solid black;
-        width: 80%;
-        justify-content: center;
-        transform: translate(12%);
-    }
 }
 
 
 /* Pixel 2 XL */
 
-@media only screen and (max-height: 823px) and (min-height: 823px) {
-    .horizL {
-        bottom: 380px;
-    }
-}
+@media only screen and (max-height: 823px) and (min-height: 823px) {}
 
 
 /* Iphone 6/7/8 */
@@ -1036,25 +1000,12 @@ td[contenteditable="true"]:focus {
     .vl {
         height: 0;
     }
-    .horizL {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        bottom: 280px;
-        border-bottom: 1px solid black;
-        width: 80%;
-        justify-content: center;
-        transform: translate(12%);
-    }
 }
 
 
 /* Iphone X */
 
 @media only screen and (max-height: 812px) and (min-height: 812px) {
-    .horizL {
-        bottom: 395px;
-    }
     h1 {
         padding-top: 30px;
         font-size: 50px;
@@ -1075,18 +1026,43 @@ td[contenteditable="true"]:focus {
         width: 100%;
         float: left;
     }
+    .signup-form form {
+        width: 90%;
+    }
     .vl {
         height: 0;
     }
-    .horizL {
-        content: "";
-        position: absolute;
-        z-index: -1;
-        bottom: 350px;
-        border-bottom: 1px solid black;
-        width: 80%;
-        justify-content: center;
-        transform: translate(12%);
+}
+
+
+/* smaller than 360px */
+
+@media only screen and (max-width: 360px) and (min-width: 280px) {
+    h1 {
+        padding-top: 30px;
+        font-size: 50px;
+        line-height: 100%;
+        overflow-wrap: break-word;
+    }
+    header {
+        padding-right: 4%;
+    }
+    header .navigation li a {
+        font-size: 25px;
+    }
+    #divLeft {
+        width: 100%;
+        float: left;
+    }
+    #divRight {
+        width: 100%;
+        float: left;
+    }
+    .signup-form form {
+        width: 90%;
+    }
+    .vl {
+        height: 0;
     }
 }
 
